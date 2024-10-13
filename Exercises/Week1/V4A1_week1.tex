@@ -141,12 +141,50 @@ In particular,
 for any $W\subset V\subset U\subset X$ open. Let $\alpha:\mathcal{F}_U\to\mathcal{G}_U$ be a presheaf homomorphism. We define $\rho_{UV}(\alpha)$ to be such that for any $W\subset V$, $\rho_{UV}(\alpha)_W = \alpha_W$. By this construction, $\rho_{UU}=\mathbf{id}_{\Hom(\mathcal{F}_U,\mathcal{G}_U)}$. And this satisfies the inclusion criterion, thus a presheaf. 
 \\
 \par Let us denote the presheaf by $\mathcal{H}(U) = \Hom(\mathcal{F}|_U,\mathcal{G}|_U)$. Suppose $\{U_i\}_{i\in I}$ is an open covering of $U$. Then we define $\varphi,\varphi_1,\varphi_2$ as in the definition of sheaves. We will now show that $\varphi$ is an equalizer of $(\varphi_1,\varphi_2)$. \\
-\par Suppose there is $\psi:\mathcal{H}(U')\to\prod_{i\in I}\mathcal{H}(U_i)$ such that $\varphi_1\circ\psi = \varphi_2\circ\psi$.  Then we will define $\tilde{\psi}$ to be
+\par Suppose there is $\psi:\mathcal{H}(U')\to\prod_{i\in I}\mathcal{H}(U_i)$ such that $\varphi_1\circ\psi = \varphi_2\circ\psi$. We are going to construct a suitable $\tilde{\psi}$.\\
+\par For each $i\in I$ and $s\in\mathcal{F}(U_i)$, we have $(\psi(\alpha)_{i})_{U_i}(s)\in\mathcal{G}(U_i)$. And for any pair $i,j\in I$, 
+
+\[ \begin{tikzcd}[row sep=large, column sep=large]
+\mathcal{F}(U_i) \arrow{r}{\rho^{\mathcal{F}}_{U_iU_i\cap U_j}} \arrow[swap]{d}{(\psi(\alpha)_j)_{U_j}} & \mathcal{F}(U_i\cap U_j) \arrow{d}[swap]{(\psi(\alpha)_i)_{U_i\cap U_j}} \arrow{d}{(\psi(\alpha)_j)_{U_i\cap U_j}}&\arrow{l}[swap]{\rho^{\mathcal{F}}_{U_jU_i\cap U_j}} \mathcal{F}(U_j)\arrow{d}{(\psi(\alpha)_j)_{U_j}}\\%
+\mathcal{G}(U_i) \arrow{r}[swap]{\rho^{\mathcal{G}}_{U_iU_i\cap U_j}} & \mathcal{G}(U_i\cap U_j)&\arrow{l}{\rho^{\mathcal{G}}_{U_jU_i\cap U_j}} \mathcal{G}(U_j)
+\end{tikzcd}
+\]
+
+By the assumption of $\psi$, we have the equality
 \begin{equation*}
-\tilde{\psi}(\alpha)(V) = \alpha(V).
+(\psi(\alpha)_i)_{U_i\cap U_j} = \rho_{U_iU_i\cap U_j}(\psi(\alpha)_I)_{U_i\cap U_j}=\rho_{U_jU_i\cap U_j}(\psi(\alpha)_j)_{U_i\cap U_j}=(\psi(\alpha)_j)_{U_i\cap U_j}.
 \end{equation*}
 
+Therefore, the diagram above is well-define and commutative. \\
+\par By the definition of natural transformations, we have for any $s\in\mathcal{F}(U)$ and an open subset $V$ of $U$, 
 
+\begin{equation*}
+\tilde{\psi}(\alpha)_U(s)|_V = \tilde{\psi}(\alpha)_V(s|_V).
+\end{equation*}
+
+Therefore it is suffice to study $\tilde{\psi}(\alpha)_U$ to study $\tilde{\psi}(\alpha)$.\\
+\par For each $s\in\mathcal{F}(U)$ and $i\in I$, we define $s_i=\rho_{UU_i}(s)$ and $g_i\in\mathcal{G}(U_i)$ to be a section such that
+\begin{equation*}
+g_i = (\psi(\alpha)_i)_{U_i}(s_i).
+\end{equation*}
+
+\[ \begin{tikzcd}[row sep=large, column sep=large]
+{}&\mathcal{F}(U)\arrow{ld}[swap]{\rho^{\mathcal{F}}_{UU_i}}\arrow{rd}{\rho^{\mathcal{F}}_{UU_j}}\\%
+\mathcal{F}(U_i) \arrow{r}{\rho^{\mathcal{F}}_{U_iU_i\cap U_j}} \arrow[swap]{d}{(\psi(\alpha)_j)_{U_j}} & \mathcal{F}(U_i\cap U_j) \arrow{d}[swap]{(\psi(\alpha)_i)_{U_i\cap U_j}} \arrow{d}{(\psi(\alpha)_j)_{U_i\cap U_j}}&\arrow{l}[swap]{\rho^{\mathcal{F}}_{U_jU_i\cap U_j}} \mathcal{F}(U_j)\arrow{d}{(\psi(\alpha)_j)_{U_j}}\\%
+\mathcal{G}(U_i) \arrow{r}[swap]{\rho^{\mathcal{G}}_{U_iU_i\cap U_j}} & \mathcal{G}(U_i\cap U_j)&\arrow{l}{\rho^{\mathcal{G}}_{U_jU_i\cap U_j}} \mathcal{G}(U_j)
+\end{tikzcd}
+\]
+
+This diagram is commutative since $\mathcal{F}$ is a sheaf. Furthermore, we have $\mathcal{G}$ is a sheaf which means there exists a section $g\in\mathcal{G}(U)$ such that $\rho_{UU_i}(g)=g_i$. We now define the natural transformation $\tilde{\psi}(\alpha)$ to be
+\begin{equation*}
+\tilde{\psi}(\alpha)_U(s) = g.
+\end{equation*}
+
+We now check such $\tilde{\psi}$ satisfies the conditions. First we check for each $i\in I$,
+\begin{align*}
+(\phi\circ\tilde{\psi}(\alpha)_i)_{U_i} & = \tilde{\psi}(\alpha)_{U_i}\\
+\tilde{\psi}(\alpha)_{U_i}(s) & = 
+\end{align*}
 
 \section{Exercise 6}
 
