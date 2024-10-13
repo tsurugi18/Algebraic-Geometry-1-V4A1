@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.13)  13 OCT 2024 11:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.13)  13 OCT 2024 12:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -596,9 +596,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 119--120
  []
 
 
-LaTeX Warning: Reference `eq_cond_3_2' on page 3 undefined on input line 125.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 128--130
 
  []
@@ -633,18 +630,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 159--160
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
  14761 strings out of 474116
  307706 string characters out of 5743682
- 1941187 words of memory out of 5000000
+ 1940187 words of memory out of 5000000
  36844 multiletter control sequences out of 15000+600000
  568250 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -669,7 +659,7 @@ e/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/te
 xlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local
 /texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive
 /2024/texmf-dist/fonts/type1/public/rsfs/rsfs7.pfb>
-Output written on V4A1_week1.pdf (4 pages, 200091 bytes).
+Output written on V4A1_week1.pdf (4 pages, 199645 bytes).
 PDF statistics:
  120 PDF objects out of 1000 (max. 8388607)
  73 compressed objects within 1 object stream
