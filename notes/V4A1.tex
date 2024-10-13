@@ -1,0 +1,372 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{calrsfs}
+\usepackage{tikz-cd} 
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}[section] 
+\newtheorem{definition}{Definition}[section] 
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{notation}{Notation}[section] 
+\newtheorem{remark}{Remark}[section] 
+\newtheorem{corollary}{Corollary}[section] 
+\newtheorem{terminology}{Terminology}[section] 
+\newtheorem{example}{Example}[section] 
+\numberwithin{equation}{section}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\PreSh}{PreSh}
+\DeclareMathOperator{\Sh}{Sh}
+\DeclareMathOperator{\Fun}{Fun}
+
+\title{Algebraic Geometry 1}
+\author{So Murata}
+\date{2024/2025 Winter Semester - Uni Bonn}
+
+\begin{document}
+\maketitle
+
+\section{Topology}
+
+\subsection{Connected Sets}
+
+\begin{definition}
+Let $(X,\mathcal{T})$ be a topological space. A subset $A$ of $X$ is said to be connected if for any $U,V\in\mathcal{T}$, $U\cap V=\empty, U\cup V\supset A$ then $A$ is fully contained in one of $U,V$. 
+\end{definition}
+
+\begin{definition}
+A connected component of a topological space is a maximal connected subset of a space. 
+\end{definition}
+
+\begin{proposition}
+Let $(X,\mathcal{T}_X),(Y,\mathcal{T}_Y)$ be topological space and $f:X\to Y$ be a continuous function. Then for any connected subset $A$ of $X$, $f(A)$ is connected in $Y$. 
+\end{proposition}
+
+\begin{proof}
+\begin{align*}
+U,V\in\mathcal{T}_Y, U\cup V\supset f(A), U\cap V=\emptyset, \\
+ \Rightarrow &f^{-1}(U),f^{-1}(V)\in\mathcal{T}_X,\\
+& f^{-1}(U)\cup f^{-1}(V)\supset A, \\
+&f^{-1}(U)\cap f^{-1}(V)=\emptyset,\\
+ \Rightarrow& f^{-1}(U)\supset A\lor f^{-1}(V)\supset A,\\
+ \Rightarrow& U\supset f(A) \lor V\supset f(A).
+\end{align*}
+\end{proof}
+
+
+\section{Category Theory}
+
+\subsection{Categories}
+
+\begin{definition}
+A category $\mathcal{A}$ consists of
+\begin{enumerate}[\textbullet]
+\item a collection $\ob(\mathcal{A})$ of objects;
+\item for each $A,B\in\ob(\mathcal{A})$, a collection $\mathcal{A}(A,B)$ of morphisms from $A$ to $B$;
+\end{enumerate}
+such that 
+\begin{enumerate}[i).]
+\item for each $A\in\ob(\mathcal{A})$, the identity $1_A\in\mathcal{A}(A,A)$;
+\item the composition $\mathcal{A}(B,C)\times\mathcal{A}(A,B)\ni(g,f)\mapsto g\circ f\in\mathcal{A}(A,C)$ is well-defined;
+\end{enumerate}
+and they satisfy the following axioms
+\begin{enumerate}[I).]
+\item Associativity : $f\in\mathcal{A}(A,B),g\in\mathcal{A}(B,C),h\in\mathcal{A}(C,D)$, $(h\circ g)\circ f = h\circ (g\circ f)$.
+\item Identity laws : $f\in\mathcal{A}(A,B)$ then $f\circ 1_A = 1_B\circ f$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Let $\mathcal{A}$ be a category. A terminal object $T\in\ob(\mathcal{A})$ is an object such that for any $A\in\ob(\mathcal{A})$, $\mathcal{A}(A,T)$ is a single element set.
+\end{definition}
+
+\begin{definition}
+Given two categories $\mathcal{A},\mathcal{B}$, we say $\mathcal{A}$ is a full-subcategory of $\mathcal{B}$ if 
+\begin{enumerate}[i).]
+\item $\mathcal{A}\subset\mathcal{B}$,
+\item $\ob(\mathcal{A})=\ob(\mathcal{B})$.
+\end{enumerate}
+\end{definition}
+
+\begin{notation}
+Here we give notations to some important categories.
+\begin{enumerate}[\textbullet]
+\item $(\mathbf{Sets})$ : A category of sets equipped with set theoretic functions.
+\item $(\mathbf{Ab})$ : A category of abelian groups with group homomorphisms.
+\end{enumerate}
+\end{notation}
+
+\begin{example}
+Given a partially ordered set $(X,\leq)$. This can be encoded to a category $\mathcal{O}$ by
+\begin{enumerate}[i).]
+\item $\ob(\mathcal{O}) = X$,
+\item For $x,y\in X$, $x\leq y\Rightarrow\mathcal{O}(x,y) = \{*\}$ otherwise the morphisms between $x,y$ is an emptyset.
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+A opposite/dual category of a category $\mathcal{A}$ is $\mathcal{A}^{\textbf{op}}$ such that
+\begin{enumerate}[i).]
+\item $\ob(\mathcal{A}^{\textbf{op}})=\ob(\mathcal{A})$,
+\item $\mathcal{A}^{\textbf{op}}(B,A) = \mathcal{A}(A,B)$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Let $\mathcal{A}$ be a category and $\varphi_1,\varphi_2\in\mathcal{A}(M,N)$. A morphism $\varphi:K\to M$ is called an equalizer of $(\varphi_1,\varphi_2)$ if for any morphism $\psi:P\to M$ such that
+$\varphi_1\circ\psi=\varphi_2\circ\psi$, there is a unique morphism $\tilde{\psi}:P\to K$ such that $\varphi\circ\tilde{\psi}=\psi$.
+\end{definition}
+
+\begin{proposition}
+If an equalizer exists then it is unique up to unique isomorphism.
+\end{proposition}
+
+\begin{proof}
+Suppose $\varphi:K\to M,\psi:L\to M$ be equalizers of $(\varphi_1,\varphi_2)$. Then we have
+\begin{align*}
+\varphi\circ\tilde{\psi}=\psi,\quad\psi\circ\tilde{\varphi}=\varphi
+\end{align*}
+By the uniqueness, we have $\tilde{\varphi}\circ\tilde{\psi} = 1_L,\tilde{\psi}\circ\tilde{\varphi} = 1_K$. 
+\end{proof}
+
+\begin{definition}
+Let $\mathcal{A},\mathcal{B}$ be categories. A functor $F:\mathcal{A}\to\mathcal{B}$ is a function such that for each $f\in\mathcal{A}(A,A')$, $F(f):F(A)\to F(A')$. In other words, $f\mapsto F(f):\mathcal{A}(A,A')\to\mathcal{B}(F(A),F(A'))$. Furthermore, $F$ satisfies the following axioms.
+\begin{enumerate}[I).]
+\item $F(f'\circ f) = F(f')\circ F(f)$ whenever $f:A\to A',f':A'\to A''$ in $\mathcal{A}$,
+\item $F(1_A) = 1_{F(A)}$ whenever $A\in\mathcal{A}$. 
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Let $F,G$ be functors between two categories $\mathcal{A},\mathcal{B}$. A natural transformation $\alpha:F\to G$ is a family $(\alpha_A:F(A)\to G(A))_{A\in\mathcal{A}}$ such that 
+\[ \begin{tikzcd}
+F(A) \arrow{r}{F(f)} \arrow[swap]{d}{\alpha_A} & F(A') \arrow{d}{\alpha_{A'}} \\%
+G(A) \arrow{r}{G(f)}& G(A')
+\end{tikzcd}
+\]
+is a commutative diagram. Each $\alpha_A$ is called a component of $\alpha$. 
+ \label{natural_transformation}
+\end{definition}
+
+\subsection{Direct Limits}
+
+\begin{definition}
+A partially ordered set $(X,\leq)$ is directed if for any $x,y\in X$ there is $z\in X$ such that $x\leq c$ and $y\leq c$.
+\end{definition}
+
+\begin{example}
+Let $(X,\mathcal{T})$ be a topological space. A partially ordered set $(\mathcal{T},\leq)$ such that 
+\begin{equation*}
+V\subseteq U\Rightarrow U\leq V
+\end{equation*}
+is directed. Since for any $U\in\mathcal{T}$, $U\leq \emptyset$. As a category this is $\Ouv_X^{\mathbf{op}}$.
+\end{example}
+
+\begin{example}
+Let $(X,\mathcal{T})$ be a topological space. For $x\in X$, define$O_x = \{U\in\mathcal{T}\:|\: x\in U\}$. If we define an order as in the previous example, we get $(O_x,\leq)$ is directed. This follows from for any $U,V\in O_x$, $U,V\leq U\cap V$.  
+\end{example}
+
+\begin{definition}
+Let $I$ be a directed partially ordered set and $\mathcal{A}$ be a category. 
+\end{definition}
+
+\section{Sheaf Theory}
+
+\subsection{Presheaves}
+
+\begin{definition}
+Let $(X,\mathcal{T})$ be a topological space. We define the presheaf $\mathcal{F}$ of a category $\mathcal{A}$ on $X$ such that 
+\begin{enumerate}[\textbullet]
+\item $U\in\mathcal{T}$, $\mathcal{F}(U)\in\ob(\mathcal{A})$,
+\item $U,V\in\mathcal{T}$, $V\subset U \Rightarrow $ there exists a map $\rho_{UV}:\mathcal{F}(U)\to\mathcal{F}(V)$ 
+\end{enumerate}
+
+such that 
+\begin{enumerate}[i).]
+\item For any $U\in\mathcal{T}$, $\rho_{UU}=1_{\mathcal{F}(U)}$.
+\item $U,V,W\in\mathcal{T}, W\subset V\subset U\rightarrow \rho_{UW}=\rho_{VW}\circ\rho_{UW}$.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+In the case $\mathcal{A} = (\mathbf{Sets}),(\mathbf{Ab})$, $\mathcal{F}(\emptyset)=\emptyset,\{1\}$, respectively.
+\end{remark}
+
+\begin{definition}
+An element of $\mathcal{F}(U)$ is called a local section of $\mathcal{F}$ and $\Gamma(U,\mathcal{F}) = \mathcal{F}(U)$ is called the space of sections over $U$. In particular $\Gamma(X,\mathcal{F})$ is called the space of global sections of $\mathcal{F}$.
+\end{definition}
+
+\begin{definition}
+Let $(X,\mathcal{T})$ be a topological space and $\mathcal{F}$ be a presheaf of a category $\mathcal{A}$ on $X$. Suppose we have two open sets $U,V\in\mathcal{T}$ such that $V\subset U$. Then for any section $s\in\mathcal{F}(U)$, $s|_V=\rho_{UV}(s)$ is called the restriction of $s$ to $V$.
+\end{definition}
+
+\begin{example}
+Let $(X,\mathcal{T})$ be a topological space. We have a presheaf of continuous functions $\mathcal{C}_X(U)=\mathcal{C}^0(U,\mathbb{R})$. This is indeed a presheaf with restriction maps $\rho_{UV}:\mathcal{C}_X(U)\to\mathcal{C}_X(V)$. (Explicitly, $\rho_{UV}(f) = f\circ i_V$ where $i_V$ is an inclusion map.)  We note that we can introduce operations $+,\cdot$ to endow some algebraic structures (groups, rings, ...) on $\mathbb{R}$.
+\end{example}
+
+\begin{example}
+Let $(X,\mathcal{T})$ be a topological space and suppose we have presheaves 
+\begin{enumerate}[\textbullet]
+\item $\mathcal{C}^{\textbf{diff}}_X(U) = \{f:U\to\mathbb{R}\:|\: f\text{ is differentiable.}\}$.
+\end{enumerate}
+Then there is an inclusion relation $\mathcal{C}^{\textbf{diff}}_X(U)\subseteq\mathcal{C}_X(U)$ and this defines a presheaf.
+\end{example}
+
+\begin{example}
+Let $(X,\mathcal{T}_X)$,$(Y,\mathcal{T}_Y)$ be topological spaces. Define a presheaf on $X$ by 
+\begin{equation*}
+U\in\mathcal{T}_X, \mathcal{F}(U) = \mathcal{C}^0(X,Y).
+\end{equation*}
+And like the previous example, we define $\rho_{UV}(f) = f|_V$ for $U,V\in\mathcal{T}_X, V\subset U$. the restriction of $f$ to $V$. \\
+But this is a presheaf only of a set. 
+\end{example}
+
+\begin{example}
+Let $(X,\mathcal{T})$ be a topological space and $G$ be an abelian group. The constant presheaf $\mathbb{G}$ is such that 
+\begin{equation*}
+U\in\mathcal{T}, \mathbb{G}(U) = G,
+\end{equation*}
+with $\rho_UV=id_G$ for any $U,V\in\mathcal{T},V\subset U$. 
+\end{example}
+
+\subsection{Presheaves as Categories}
+
+\begin{definition}
+Let $(X,\mathcal{T})$ be a topological space then $(\mathbf{Ouv}_X)$ is the category such that its objects are the open sets of $X$ and for any $U,V\in\mathcal{T}$ we have
+\begin{equation*}
+\mathbf{Ouv}_X(U,V)=
+\begin{cases}
+\emptyset \quad (V\not\subset U),\\
+i_V \quad (V\subset U).
+\end{cases}
+\end{equation*}
+\end{definition}
+
+\begin{definition}
+Let $(X,\mathcal{T})$ be a topological space and $\mathcal{A}$ be a category. A presheaf of $\mathcal{A}$ on $X$ is a functor $F:\mathbf{Ouv}_X\to\mathcal{A}$.
+\end{definition}
+
+\begin{example}
+For $\mathbf{Ouv}_X$, we can define a presheaf of $F$ to be
+\begin{equation*}
+\ob(\mathbf{Ouv}_X)\ni U\mapsto F(U) = \mathcal{C}^0(U,\mathbb{R}).
+\end{equation*}
+\end{example}
+
+\begin{example}
+Let $A$ be a commutative ring with non-zero multiplicative identity and $X=\Spec(A)$. Let us consider the Zariski topology $(X,\mathcal{T})$. Let us consider a category $\mathcal{O}_X$ such that
+\begin{enumerate}[\textbullet]
+\item $\ob(\mathcal{O}_X) = \mathcal{T}$,
+\item $\mathcal{O}_X(U) =  \{s:U\to\coprod_{\mathfrak{p}\in U}A_{\mathfrak{p}}\}$,
+\end{enumerate}
+where $s:U\to\coprod_{\mathfrak{p}\in U}A_{\mathfrak{p}}$ is a function such that for any $\mathfrak{p}\in U$,
+\begin{enumerate}[i).]
+\item $s(p)\in A_{\mathfrak{p}}$,
+\item there exists an open set $V\subset U$ such that $\mathfrak{p}\in V$ and for any $\mathfrak{q}\in V$,  $s(\mathfrak{q})={\frac a b}$ for $b\not\in\mathfrak{q}$. 
+\end{enumerate}
+Now we define a presheaf by the restrictions of maps such that
+\begin{equation*}
+s:U\to\coprod_{\mathfrak{p}\in U}A_{\mathfrak{p}} \mapsto s|_V:V\to\coprod_{\mathfrak{q}\in V} A_{\mathfrak{q}}.
+\end{equation*}
+\end{example}
+
+\begin{definition}
+Let $(X,\mathcal{T})$ be a topological space and $\mathcal{A}$ be a category. We define a set of presheaves of $\mathcal{A}$ on $X$ as
+\begin{equation*}
+\PreSh_{\mathcal{A}}(X)=\Fun(\mathbf{Ouv}_X^{\mathbf{op}},\mathcal{A}).
+\end{equation*}
+\end{definition}
+
+\begin{definition}
+A morphism of presheaves is a natural transformation $\alpha:F\to G$ where $F,G\in\Fun(\mathbf{Ouv}_X^{\mathbf{op}},\mathcal{A})$.(See Definition \ref{natural_transformation}).
+\end{definition}
+
+\begin{remark}
+$\PreSh(X)$ can be regarded as a category with its objects presheaves and morphisms defined above. 
+\end{remark}
+
+\begin{notation}
+In the case $\mathcal{A}= (\mathbf{Ab})$ then we denote $\PreSh(X)=\PreSh_{\mathbf{Ab}}(X)$.
+\end{notation}
+
+\begin{example}
+Let $X$ be a differential manifold(eg. $X\subset\mathbb{R}^n$). Let us define 
+\begin{equation*}
+\mathcal{C}^{\mathbf{diff}}(U) = \{f:U\to\mathbb{R}\:|\:f\text{ is differentiable.}\}. 
+\end{equation*}
+Then the inclusions $\mathcal{C}_X^{\mathbf{diff}}(U)\subset\mathcal{C}_X(U)$ defines the natural transformation.
+\end{example}
+
+\begin{example}
+Let $X,Y=S^1$ be topological spaces and $F$ be a presheaf such that for any open set $U\subset X$, $F(U)=\mathcal{C}^0(U,Y)$.Then we can introduce a natural transformation such that 
+\begin{equation*}
+\mathcal{C}_X(U)\ni f\mapsto \exp(2\pi fi).
+\end{equation*}
+\end{example}
+
+\subsection{Sheaves}
+
+\begin{definition}
+A presheaf $\mathcal{F}$ on $(X,\mathcal{T})$ is called a sheaf if the following holds.
+For any collection of open sets $(U_i)_{i\in I}\subset \mathcal{T},U=\bigcup_{i\in I}U_i$, the map $\varphi:\mathcal{F}(U)\to\prod_{i\in I}\mathcal{F}(U_i)$ which is defined as
+\begin{equation*}
+\varphi(s) = (s|_{U_i})_{i\in I}.
+\end{equation*}
+is the equalizer of the following functions $\varphi_1,\varphi_2:\prod_{i\in I}\mathcal{F}(U_i)\to\prod_{i,j\in I}\mathcal{F}(U_i\cap U_j)$, 
+\begin{equation*}
+\varphi_1((s_i)_{i\in I}) = (s_i|_{U_i\cap U_j})_{i,j\in I},\quad\varphi_1((s_i)_{i\in I}) = (s_j|_{U_i\cap U_j})_{i,j\in I}.
+\end{equation*}
+\end{definition}
+
+\begin{remark}
+In the case $I=\{1,2\}$, we have $U=U_1\cup U_2$, and for any $U'\in\mathcal{T}$ such that $U\subset U'$, we have for $\mathcal{F}(U')\ni s:U'\to\mathbb{R}$ ,$\psi(s) = (s|_{U_1},s|_{U_2})$, as in $\mathbf{Ouv}_X$, morphisms are inclusions. Let $\tilde{\psi}(s) = s|_{U}$, then this satisfies the condition for the equalizer (ie. $\varphi\circ\tilde{\psi}=\psi$). 
+\end{remark}
+
+\begin{remark}
+A presheaf $\mathcal{O}_X$ with $X=\Spec(A)$ is a sheaf.
+\end{remark}
+
+\begin{example}
+Let $(X,\mathcal{T})$ be a topological space and $G$ be a group. We define a constant presheaf $\mathbb{G}(U) = G$. In general, this is not a sheaf. Instead, we define a constant sheaf $\underline{\mathbb{G}}(U) = \mathcal{C}^0(U,G)$ where $G$ is regarded as a topological space with the discrete topology. Then for any connected component of $X$ is mapped to a single point set in $G$.
+\end{example}
+
+\begin{definition}
+Let $\mathcal{F}_1,\mathcal{F}_2$ be sheaves. A mapping $\varphi:\mathcal{F}_1\to\mathcal{F}_2$ is called a morphism of sheaves if it is a morphism of presheaves.
+\end{definition}
+
+\begin{definition}
+A set of sheaves of $\mathcal{A}$ on the topological space $(X,\mathcal{T})$ is denoted as $\Sh_{\mathcal{A}}(X)$.
+\end{definition}
+
+\begin{remark}
+As in the case of presheaves, $\Sh_\mathcal{A}(X)$ can be regarded as a category with sheaf morphisms.
+\end{remark}
+
+\begin{remark}
+$\Sh_{\mathcal{A}}(X)$ is a full-subcategory of $\PreSh_{\mathcal{A}}(X)$.
+\end{remark}
+
+\begin{notation}
+In the case $\mathcal{A}=(\mathbf{Ab})$, we denote $\Sh_{(\mathbf{Ab})}(X) = \Sh(X)$. 
+\end{notation}
+
+
+
+\end{document}

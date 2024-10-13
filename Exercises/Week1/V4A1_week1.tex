@@ -1,0 +1,175 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{calrsfs}
+\usepackage{tikz-cd} 
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}[section] 
+\newtheorem{definition}{Definition}[section] 
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{notation}{Notation}[section] 
+\newtheorem{remark}{Remark}[section] 
+\newtheorem{corollary}{Corollary}[section] 
+\newtheorem{terminology}{Terminology}[section] 
+\newtheorem{example}{Example}[section] 
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\PreSh}{PreSh}
+\DeclareMathOperator{\Fun}{Fun}
+
+
+\title{Algebraic Geometry 1 Week 1 Exercise Sheet Solutions}
+\author{So Murata}
+\date{2024/2025 Winter Semester - Uni Bonn}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 1}
+
+\subsection*{(i)}
+For any $\psi:P\to M$ such that $\varphi_1\circ\psi = \varphi_2\circ\psi$, thus the image of $P$ under $\psi$ is contained in $K$. Therefore, we can define a mapping $\tilde{\psi} = x\mapsto \psi(x):P\to K$. As $\varphi$ is an inclusion, $\varphi\circ\tilde{\psi}=\psi$. The uniqueness follows from the fact that $\varphi$ is inclusion and any $\psi_1,\psi_2$ such that $\varphi\circ\psi_1 = \varphi\circ\psi_2$ we have $\psi_1 = \psi_2$.
+
+\subsection*{(ii)}
+$x\in\Ker(\varphi_1-\varphi_2) \Leftrightarrow \varphi_1(x)-\varphi_2(x) = 0\Leftrightarrow \varphi_1(x)=\varphi_2(x)$. Therefore, we can use the previous argument and conclude that the inclusion is an equalizer.
+
+\section*{Exercise 2}
+
+\subsection{(i)}
+
+Let $f\in\mathcal{C}(U)$. Then for any $x\in W$, we have $x\in V$ and thus $x\in U$. Therefore, $(f|_V)|_W(x) = f|_V(x) = f(x) = f|_W(x)$. In the case $W=\emptyset$ we have $\rho_UW(f) = *$, and $\rho_{VW}\circ\rho_{UV}(f) = *$ for any $f\in\mathcal{C}(U)$.
+
+\subsection{(ii)}
+
+Let $\psi:\mathcal{C}(U')\to \prod\mathcal{C}(V_i)$ be such that $\varphi_1\circ\psi=\varphi_2\circ\psi$ where $U\subset U'$. Let us define $\tilde{\psi}:\mathcal{C}(U')\to\mathcal{C}(U)$ to be such that 
+\begin{equation*}
+\tilde{\psi}(f)|_{V_i} = \psi(f)_i.
+\end{equation*}
+
+Then 
+\begin{equation*}
+\varphi\circ\tilde{\psi}(f)|_{V_i} = \psi(f)_i.
+\end{equation*}
+which is equal to $\psi$. And this $\tilde{\psi}$ is unique as $\varphi$ is injective. The injectivity comes from that $(V_i)_i$ is a covering of $U$, thus for any function $f\in\mathcal{C}(U')$ and any point $x$ has an index $i$ such that $x\in V_i$. Therefore, any image of morphism $\tilde{\psi}':\mathcal{C}(U')\to\mathcal{C}(U)$, $\tilde{\psi}(f)\in\mathcal{C}(U)$ equals to $\tilde{\psi}(f)$.
+
+
+\section*{Exercise 3}
+
+For $(m_x)_{x\in U}\in\mathcal{F}(U)$, we define the map $\rho_{UV}((m_x)_{x\in U}) = (m_y)_{y\in V}$. i) follows from the inclusion relations for $W\subset V\subset U$. 
+
+\subsection*{(ii)}
+
+
+
+\section*{Exercise 4}
+
+\subsection*{Construction}
+Let us define a presheaf such that
+\begin{equation*}
+\mathcal{O}(U) = \bigcap_{(p)\in U} \mathbb{Z}_{(p)}.
+\end{equation*}
+
+Then this is isomorphic to 
+\begin{equation*}
+\mathbb{Z}\left[{\frac 1 n}\right]\quad\text{where }n=\prod_{i=1}^n p_i,
+\end{equation*}
+such that each $\{p_i\}_{i=1,\cdots,n}$ is the set of all primes not contained in any of $(p)\in U$.\\
+We can assure that there are finitely many such primes. By the definition, the closed set of the Zariski topology is of the form $V(\mathfrak{a})$ for some ideal $\mathfrak{a}\subset\mathbb{Z}$. $\mathbb{Z}$ is a principle ideal domain, there is $a\in\mathbb{Z}$ such that $\mathfrak{a} = (a)$. Since $a$ has finitely many prime divisors, we now conclude that there are finitely many primes belong to $X\backslash U$.\\
+\par We will now show that $\mathcal{O}(U)=\mathbb{Z}\left[{\frac 1 n}\right]$. Any ${\frac a b}\in\mathcal{O}(U)$, $b\in\mathbb{Z}\backslash (p)$ for each $(p)\in U$. Therefore, the primes that appear in the prime decomposition of $b$ is the subset of  $\{p_i\}_{i=1,\cdots,n}$. As ${\frac 1 {p_i}} ={\frac {\prod_{j\not=i} p_j} {n}}$, ${\frac 1 {p_i}}\in\mathbb{Z}[{\frac 1 n}]$. This implies that $\bigcap_{(p)\in U} \mathbb{Z}_{(p)}\subseteq \mathbb{Z}[{\frac 1 n}]$. By the construction of $n$, we have $\mathbb{Z}[{\frac 1 n}]\subseteq \bigcap_{(p)\in U} \mathbb{Z}_{(p)}$. Hence they are isomorphic.\\
+
+\subsection*{(i)}
+
+\par Let us now define $\rho_{UV}({\frac a b}) = {\frac a b}$, then this is well-defined when $V\subseteq U$ since such inclusion implies $\bigcap_{(p)\in U} \mathbb{Z}_{(p)}\subseteq \bigcap_{(q)\in V} \mathbb{Z}_{(q)}$.\\
+
+\par Thus for any $W\subset V\subset U\subset X$ open,
+\begin{equation*}
+\rho_{UW}\left({\frac a b}\right) = {\frac a b} = \rho_{VW}\left({\frac a b}\right) = \rho_{VW}\left(\rho_{UV}\left({\frac a b}\right)\right).
+\end{equation*}
+Therefore, $\rho_{UW}=\rho_{VW}\circ\rho_{UV}$.\\
+\par As in the previous exercise, for an open covering $(V_i)_{i\in I}$ with $U=\bigcup_{i\in I}V_i$, we define $\varphi_1,\varphi_2:\prod_{i\in I}\mathcal{O}(V_i)\to\prod_{i,j\in I}\mathcal{O}(V_i\cap V_j)$ such that
+\begin{equation*}
+\varphi_1\left({\frac {a_i} {b_i}}\right) = \left(\rho_{UV_i\cap V_j}\left({\frac {a_i} {b_i}}\right)\right)_{i,j\in I}, \varphi_2\left({\frac {a_i} {b_i}}\right) = \left(\rho_{UV_i\cap V_j}\left({\frac {a_j} {b_j}}\right)\right)_{i,j\in I}.
+\end{equation*}
+
+\subsection*{(ii)}
+
+We will show that 
+\begin{equation*}
+\varphi:\mathcal{O}(U)\to\prod_{i\in I} \mathcal{O}(V_i), \quad\varphi\left({\frac a b}\right) = \left(\rho_{UV_i}\left({\frac a b}\right)\right)
+\end{equation*}
+
+is an equalizer of $(\varphi_1,\varphi_2)$.\\
+\par Suppose for $ U'\subset X$ open and there is $\psi:\mathcal{O}(U')\to\prod_{i\in I}\mathcal{O}(V_i)$ such that 
+\begin{equation}
+\label{eq_cond_3_2}
+\varphi_1\circ\psi = \varphi_2\circ\psi.
+\end{equation}
+We define $\tilde{\psi}\left({\frac a b}\right)=\psi\left({\frac a b}\right)_1$. By Equation \ref{eq_cond_3_2}, we get that for each $\psi\left({\frac a b}\right)_i=\psi\left({\frac a b}\right)_j$ in $V_i\cap V_j$ for any $i,j\in I$. Hence for each $i\in I$,
+\begin{equation}
+\varphi(\tilde{\psi})\left({\frac a b}\right)_i = \psi\left({\frac a b}\right)_1 =  \psi\left({\frac a b}\right)_i.
+\end{equation}
+We've proven that $\varphi\circ\tilde{\psi} = \psi$.\\
+\par Conversely, suppose $\tilde{\psi}$ is such that $\varphi\circ\tilde{\psi} = \psi$. Then for any $i\in I$.
+\begin{equation*}
+\psi\left({\frac a b}\right)_i=\rho_{UV_i}\left(\tilde{\psi}\left({\frac a b}\right)\right)=\tilde{\psi}\left({\frac a b}\right).
+\end{equation*}
+In particular,
+\begin{equation*}
+\psi\left({\frac a b}\right)_1=\tilde{\psi}\left({\frac a b}\right).
+\end{equation*}
+\section{Exercise 5}
+
+\par Let $\mathcal{F},\mathcal{G}$ be presheaves on a topological space $X$. We need to find homomorphisms $\rho_{UV}:\Hom(\mathcal{F}_U,\mathcal{G}_U)\to\Hom(\mathcal{F}_V,\mathcal{G}_V)$ such that $\rho_{VW}\circ\rho_{UV}=\rho_{UW}$ holds
+for any $W\subset V\subset U\subset X$ open. Let $\alpha:\mathcal{F}_U\to\mathcal{G}_U$ be a presheaf homomorphism. We define $\rho_{UV}(\alpha)$ to be such that for any $W\subset V$, $\rho_{UV}(\alpha)_W = \alpha_W$. By this construction, $\rho_{UU}=\mathbf{id}_{\Hom(\mathcal{F}_U,\mathcal{G}_U)}$. And this satisfies the inclusion criterion, thus a presheaf. 
+\\
+\par Let us denote the presheaf by $\mathcal{H}(U) = \Hom(\mathcal{F}|_U,\mathcal{G}|_U)$. Suppose $\{U_i\}_{i\in I}$ is an open covering of $U$. Then we define $\varphi,\varphi_1,\varphi_2$ as in the definition of sheaves. We will now show that $\varphi$ is an equalizer of $(\varphi_1,\varphi_2)$. \\
+\par Suppose there is $\psi:\mathcal{H}(U')\to\prod_{i\in I}\mathcal{H}(U_i)$ such that $\varphi_1\circ\psi = \varphi_2\circ\psi$.  Then we will define $\tilde{\psi}$ to be
+\begin{equation*}
+\tilde{\psi}(\alpha)(V) = \
+\end{equation*}
+
+\section{Exercise 6}
+
+Let us define a collection of open sets $U_{(x,n)} = B(x,{\frac {|x|} n})$. Then $\mathcal{B}=\{U_{(x,n)}\}_{X\times\mathbb{N}}$ forms a basis of the space which each basis element is simply connected as they do not contain the origin.\\
+
+\par In order to show the subjectivity, we first note that by Cauchy's integral formula, we have that for any holomorphic function $f:U\to\mathbb{C}$ over a simply connected domain $U$, there exists a anti-derivative $F:U\to\mathbb{C}$ of $f$ on $U$. \\
+\par For $U\in\mathcal{B}$ and $f\in\mathcal{O}(U)^*_X$, let us define a function $h:\mathcal{U}\to\mathbb{C}$, such that
+\begin{equation*}
+h(z) = {\frac {f'(z)} {f(z)}}.
+\end{equation*}
+
+Since $f$ is nowhere $0$, this is a well-defined holomorphic function on a simply connected open set $U$. Thus it has an anti-derivative $H:U\to\mathbb{C}$.\\
+\par We know show that $f=\exp(H)$. 
+
+\begin{align*}
+(f\exp(-H))' & = f'\exp(-H)+f(-H')\exp(-H),\\
+& = f'\exp(-H)-f'\exp(-H),\\
+& = 0.
+\end{align*}
+From this we conclude that $f(z) = c\exp(H)=\exp(H+C)$, for some constants $c,C\in\mathbb{C}$. Thus the map $\exp:\mathcal{O}_X(U)\to\mathcal{O}^*_X(U)$ is a surjection.
+
+We now examine the kernel of the morphism. Let $z\in U$,
+\begin{equation*}
+e^{f(z)} = e^{g(z)} \Rightarrow {\frac {e^{f(z)}} {e^{g(z)}}} = 1 = e^{f(z)-g(z)} = e^{2\pi ki}
+\end{equation*}
+for some $k\in\mathbb{Z}$. By the continuity of $f,g$, we have that $f-g$ is also continuous and the values $f-g$ can take is the discrete set $2\pi i\mathbb{Z}$ . Therefore $f-g$ is a fixed value $2\pi ki$ for some $k\in\mathbb{Z}$. We conclude $\Ker(\exp)=2\pi i\mathbb{Z}$.
+
+\end{document}
