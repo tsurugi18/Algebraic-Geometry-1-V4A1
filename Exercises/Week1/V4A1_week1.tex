@@ -137,13 +137,13 @@ In particular,
 \end{equation*}
 \section{Exercise 5}
 
-\par Let $\mathcal{F},\mathcal{G}$ be presheaves on a topological space $X$. We need to find homomorphisms $\rho_{UV}:\Hom(\mathcal{F}_U,\mathcal{G}_U)\to\Hom(\mathcal{F}_V,\mathcal{G}_V)$ such that $\rho_{VW}\circ\rho_{UV}=\rho_{UW}$ holds
-for any $W\subset V\subset U\subset X$ open. Let $\alpha:\mathcal{F}_U\to\mathcal{G}_U$ be a presheaf homomorphism. We define $\rho_{UV}(\alpha)$ to be such that for any $W\subset V$, $\rho_{UV}(\alpha)_W = \alpha_W$. By this construction, $\rho_{UU}=\mathbf{id}_{\Hom(\mathcal{F}_U,\mathcal{G}_U)}$. And this satisfies the inclusion criterion, thus a presheaf. 
+\par Let $\mathcal{F},\mathcal{G}$ be presheaves on a topological space $X$. We need to find homomorphisms $\rho_{UV}:\Hom(\mathcal{F}|_U,\mathcal{G}|_U)\to\Hom(\mathcal{F}|_V,\mathcal{G}|_V)$ such that $\rho_{VW}\circ\rho_{UV}=\rho_{UW}$ holds
+for any $W\subset V\subset U\subset X$ open. Let $\alpha:\mathcal{F}_U\to\mathcal{G}_U$ be a presheaf homomorphism. We define $\rho_{UV}(\alpha)$ to be such that for any $W\subset V$, $\rho_{UV}(\alpha)_W = \alpha_W$. By this construction, $\rho_{UU}=\mathbf{id}_{\Hom(\mathcal{F}|_U,\mathcal{G}|_U)}$. And this satisfies the inclusion criterion, thus a presheaf. 
 \\
 \par Let us denote the presheaf by $\mathcal{H}(U) = \Hom(\mathcal{F}|_U,\mathcal{G}|_U)$. Suppose $\{U_i\}_{i\in I}$ is an open covering of $U$. Then we define $\varphi,\varphi_1,\varphi_2$ as in the definition of sheaves. We will now show that $\varphi$ is an equalizer of $(\varphi_1,\varphi_2)$. \\
 \par Suppose there is $\psi:\mathcal{H}(U')\to\prod_{i\in I}\mathcal{H}(U_i)$ such that $\varphi_1\circ\psi = \varphi_2\circ\psi$. We are going to construct a suitable $\tilde{\psi}$.\\
 
-\par For each $i\in I$ and an open subset $V$ of $U$. We define $\{V_i\}_{i\in I}$ to be such that $V_i=V\cap U_i$ for each $i\in I$. Then this is an open covering of $V$. 
+\par For each $i\in I$ and an open subset $V$ of $U$, we define $\{V_i\}_{i\in I}$ to be a collection where $V_i=V\cap U_i$ for each $i\in I$. Then this is an open covering of $V$. 
 
 \[ \begin{tikzcd}[row sep=large, column sep=large]
 \mathcal{F}(V_i) \arrow{r}{\rho^{\mathcal{F}}_{V_iV_i\cap V_j}} \arrow[swap]{d}{(\psi(\alpha)_j)_{V_j}} & \mathcal{F}(V_i\cap V_j) \arrow{d}[swap]{(\psi(\alpha)_i)_{V_i\cap V_j}} \arrow{d}{(\psi(\alpha)_j)_{V_i\cap V_j}}&\arrow{l}[swap]{\rho^{\mathcal{F}}_{V_jV_i\cap V_j}} \mathcal{F}(V_j)\arrow{d}{(\psi(\alpha)_j)_{V_j}}\\%
@@ -157,11 +157,7 @@ By the assumption of $\psi$, we have the equality
 \end{equation*}
 
 Therefore, the diagram above is well-define and commutative. \\
-\par By the definition of natural transformations, we have for any $s\in\mathcal{F}(U)$ and an open subset $V$ of $U$, 
 
-\begin{equation*}
-\tilde{\psi}(\alpha)_U(s)|_V = \tilde{\psi}(\alpha)_V(s|_V).
-\end{equation*}
 
 \par For each $s\in\mathcal{F}(V)$ and $i\in I$, we define $s_i=\rho_{VV_i}(s)$ and $t_i\in\mathcal{G}(V_i)$ to be a section such that
 \begin{equation*}
@@ -175,21 +171,23 @@ t_i = (\psi(\alpha)_i)_{V_i}(s_i).
 \end{tikzcd}
 \]
 
-This diagram is commutative since $\mathcal{F}$ is a sheaf. Furthermore, we have $\mathcal{G}$ is a sheaf which means there exists a section $t\in\mathcal{G}(U)$ such that $\rho^{\mathcal{G}}_{VV_i}(t)=t_i$. We now define the natural transformation $\tilde{\psi}(\alpha)$ to be
+This diagram is commutative since $\mathcal{F}$ is a presheaf and the upper-triangle part of the diagram is commutative. Furthermore, we have $\mathcal{G}$ is a sheaf. Thus combining with the commutativity of the diagram, we deduce that there exists a section $t\in\mathcal{G}(U)$ such that $\rho^{\mathcal{G}}_{VV_i}(t)=t_i$. We now define the natural transformation $\tilde{\psi}(\alpha)$ to be
 \begin{equation*}
 \tilde{\psi}(\alpha)_V(s) = t.
 \end{equation*}
 
 We now check such $\tilde{\psi}$ satisfies the conditions.\\
-\par First we will show that such $\tilde{\psi}$ is indeed a sheaf homomorphism. For any open subset $V,W$ of $U$ such that $W\subset V$, we define $\{W_i\}_{i\in I}$ to be $W_i=W\cap U$ for each $i\in I$. Then this is an open cover of $W$. Therefore, since $\mathcal{G}$ is a sheaf, it is sufficient to show that for each $i\in $I, the following equality holds.
+\par First we will show that such $\tilde{\psi}$ is indeed a sheaf homomorphism. For any open subset $V,W$ of $U$ such that $W\subset V$, we define $\{W_i\}_{i\in I}$ to be $W_i=W\cap U_i$ for each $i\in I$. Then this is an open cover of $W$. Therefore, since $\mathcal{G}$ is a sheaf, it is sufficient to show that for each $i\in $I, the following equality holds.
 \begin{equation*}
-\rho^{\mathcal{G}}_{WW_i}(\rho^{\mathcal{G}}_{VW}\circ(\tilde{\psi}(\alpha))_V(s))=\rho^{\mathcal{G}}_{WW_i}(\tilde{\psi}_{W}(\rho^{\mathcal{F}}_{VW}(s))).
+\rho^{\mathcal{G}}_{WW_i}(\rho^{\mathcal{G}}_{VW}\circ(\tilde{\psi}(\alpha))_V(s))=\rho^{\mathcal{G}}_{WW_i}(\tilde{\psi}(\alpha)_{W}(\rho^{\mathcal{F}}_{VW}(s))).
 \end{equation*}
 
 Indeed, as $\psi(\alpha)$ is an natural transformation, the left-hand side is equal to
 \begin{align*}
 \rho_{VW_i}^{\mathcal{G}}(\tilde{\psi}(\alpha)_V(s))&=\rho_{V_iW_i}^{\mathcal{G}}((\psi(\alpha)_i)_{V_i}(\rho^{\mathcal{F}}_{VV_i}(s))),\\
 &=(\psi(\alpha)_i)_{W_i}(\rho^{\mathcal{F}}_{VW_i}(s)),\\
+&=(\psi(\alpha)_i)_{W_i}(\rho^{\mathcal{F}}_{WW_i}\circ\rho^{\mathcal{F}}_{VW}(s)),\\
+&=\rho^{\mathcal{F}}_{WW_i}((\psi(\alpha)_i)_{W}(\rho^{\mathcal{F}}_{VW}(s))),\\
 &=\rho^{\mathcal{G}}_{WW_i}(\tilde{\psi}(\alpha)_{W}(\rho^{\mathcal{F}}_{VW}(s))).
 \end{align*}
 
@@ -198,7 +196,7 @@ Thus such $\tilde{\psi}$ defines a natural transformation at each $\alpha\in\mat
 \varphi\circ\tilde{\psi}=\psi.
 \end{equation*}
 
-Let us define $\{V_i\}_{i\in I}$ as in before. Then we have $V_i = V$ for $i$ such that $V\subset U_i$. By the construction of $\tilde{\psi}$,
+Let us define $\{V_i\}_{i\in I}$ as before. Then we have $V_i = V$ for $i$ such that $V\subset U_i$. By the construction of $\tilde{\psi}$,
 \begin{equation*}
 \tilde{\psi}(\alpha)_V(s) = t=\rho^{\mathcal{G}}_{VV}=\rho^{\mathcal{G}}_{VV_i}(t) = t_i = (\psi(\alpha)_i)_{V_i}(s)=(\psi(\alpha)_i)_{V}(s).
 \end{equation*}

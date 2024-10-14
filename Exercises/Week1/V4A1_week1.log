@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.13)  14 OCT 2024 01:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.13)  14 OCT 2024 02:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -621,22 +621,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 159--160
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
 
  []
 
 [4]
+Underfull \hbox (badness 10000) in paragraph at lines 212--213
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 214--215
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 220--221
 
  []
 
@@ -675,7 +675,7 @@ xlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local
 /texlive/2024/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive
 /2024/texmf-dist/fonts/type1/public/rsfs/rsfs5.pfb></usr/local/texlive/2024/tex
 mf-dist/fonts/type1/public/rsfs/rsfs7.pfb>
-Output written on V4A1_week1.pdf (6 pages, 211322 bytes).
+Output written on V4A1_week1.pdf (6 pages, 211349 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  80 compressed objects within 1 object stream
