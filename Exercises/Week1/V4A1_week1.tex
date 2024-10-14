@@ -141,12 +141,12 @@ In particular,
 for any $W\subset V\subset U\subset X$ open. Let $\alpha:\mathcal{F}_U\to\mathcal{G}_U$ be a presheaf homomorphism. We define $\rho_{UV}(\alpha)$ to be such that for any $W\subset V$, $\rho_{UV}(\alpha)_W = \alpha_W$. By this construction, $\rho_{UU}=\mathbf{id}_{\Hom(\mathcal{F}|_U,\mathcal{G}|_U)}$. And this satisfies the inclusion criterion, thus a presheaf. 
 \\
 \par Let us denote the presheaf by $\mathcal{H}(U) = \Hom(\mathcal{F}|_U,\mathcal{G}|_U)$. Suppose $\{U_i\}_{i\in I}$ is an open covering of $U$. Then we define $\varphi,\varphi_1,\varphi_2$ as in the definition of sheaves. We will now show that $\varphi$ is an equalizer of $(\varphi_1,\varphi_2)$. \\
-\par Suppose there is $\psi:\mathcal{H}(U')\to\prod_{i\in I}\mathcal{H}(U_i)$ such that $\varphi_1\circ\psi = \varphi_2\circ\psi$. We are going to construct a suitable $\tilde{\psi}$.\\
+\par Suppose there is $\psi:M\to\prod_{i\in I}\mathcal{H}(U_i)$ such that $\varphi_1\circ\psi = \varphi_2\circ\psi$ for some $M\in(\mathbf{Ab})$. We are going to construct a suitable $\tilde{\psi}$.\\
 
 \par For each $i\in I$ and an open subset $V$ of $U$, we define $\{V_i\}_{i\in I}$ to be a collection where $V_i=V\cap U_i$ for each $i\in I$. Then this is an open covering of $V$. 
 
 \[ \begin{tikzcd}[row sep=large, column sep=large]
-\mathcal{F}(V_i) \arrow{r}{\rho^{\mathcal{F}}_{V_iV_i\cap V_j}} \arrow[swap]{d}{(\psi(\alpha)_j)_{V_j}} & \mathcal{F}(V_i\cap V_j) \arrow{d}[swap]{(\psi(\alpha)_i)_{V_i\cap V_j}} \arrow{d}{(\psi(\alpha)_j)_{V_i\cap V_j}}&\arrow{l}[swap]{\rho^{\mathcal{F}}_{V_jV_i\cap V_j}} \mathcal{F}(V_j)\arrow{d}{(\psi(\alpha)_j)_{V_j}}\\%
+\mathcal{F}(V_i) \arrow{r}{\rho^{\mathcal{F}}_{V_iV_i\cap V_j}} \arrow[swap]{d}{(\psi(\alpha)_i)_{V_i}} & \mathcal{F}(V_i\cap V_j) \arrow{d}[swap]{(\psi(\alpha)_i)_{V_i\cap V_j}} \arrow{d}{(\psi(\alpha)_j)_{V_i\cap V_j}}&\arrow{l}[swap]{\rho^{\mathcal{F}}_{V_iV_i\cap V_i}} \mathcal{F}(V_j)\arrow{d}{(\psi(\alpha)_j)_{V_j}}\\%
 \mathcal{G}(V_i) \arrow{r}[swap]{\rho^{\mathcal{G}}_{V_iV_i\cap V_j}} & \mathcal{G}(V_i\cap V_j)&\arrow{l}{\rho^{\mathcal{G}}_{V_jV_i\cap V_j}} \mathcal{G}(V_j)
 \end{tikzcd}
 \]
@@ -166,7 +166,7 @@ t_i = (\psi(\alpha)_i)_{V_i}(s_i).
 
 \[ \begin{tikzcd}[row sep=large, column sep=large]
 {}&\mathcal{F}(V)\arrow{ld}[swap]{\rho^{\mathcal{F}}_{VV_i}}\arrow{rd}{\rho^{\mathcal{F}}_{VV_j}}\\%
-\mathcal{F}(V_i) \arrow{r}{\rho^{\mathcal{F}}_{V_iV_i\cap V_j}} \arrow[swap]{d}{(\psi(\alpha)_j)_{V_j}} & \mathcal{F}(V_i\cap V_j) \arrow{d}[swap]{(\psi(\alpha)_i)_{V_i\cap V_j}} \arrow{d}{(\psi(\alpha)_j)_{V_i\cap V_j}}&\arrow{l}[swap]{\rho^{\mathcal{F}}_{V_jV_i\cap V_j}} \mathcal{F}(V_j)\arrow{d}{(\psi(\alpha)_j)_{V_j}}\\%
+\mathcal{F}(V_i) \arrow{r}{\rho^{\mathcal{F}}_{V_iV_i\cap V_j}} \arrow[swap]{d}{(\psi(\alpha)_i)_{V_i}} & \mathcal{F}(V_i\cap V_j) \arrow{d}[swap]{(\psi(\alpha)_i)_{V_i\cap V_j}} \arrow{d}{(\psi(\alpha)_j)_{V_i\cap V_j}}&\arrow{l}[swap]{\rho^{\mathcal{F}}_{V_jV_i\cap V_j}} \mathcal{F}(V_j)\arrow{d}{(\psi(\alpha)_j)_{V_j}}\\%
 \mathcal{G}(V_i) \arrow{r}[swap]{\rho^{\mathcal{G}}_{V_iV_i\cap V_j}} & \mathcal{G}(V_i\cap V_j)&\arrow{l}{\rho^{\mathcal{G}}_{V_jV_i\cap V_j}} \mathcal{G}(V_j)
 \end{tikzcd}
 \]
@@ -184,21 +184,22 @@ We now check such $\tilde{\psi}$ satisfies the conditions.\\
 
 Indeed, as $\psi(\alpha)$ is an natural transformation, the left-hand side is equal to
 \begin{align*}
-\rho_{VW_i}^{\mathcal{G}}(\tilde{\psi}(\alpha)_V(s))&=\rho_{V_iW_i}^{\mathcal{G}}((\psi(\alpha)_i)_{V_i}(\rho^{\mathcal{F}}_{VV_i}(s))),\\
+\rho_{VW_i}^{\mathcal{G}}(\tilde{\psi}(\alpha)_V(s))&=\rho_{V_iW_i}^{\mathcal{G}}\circ\rho_{VV_i}^{\mathcal{G}}(\tilde{\psi}(\alpha)_V(s)),\\
+&=\rho_{V_iW_i}^{\mathcal{G}}((\psi(\alpha)_i)_{V_i}(\rho^{\mathcal{F}}_{VV_i}(s))),\\
 &=(\psi(\alpha)_i)_{W_i}(\rho^{\mathcal{F}}_{VW_i}(s)),\\
 &=(\psi(\alpha)_i)_{W_i}(\rho^{\mathcal{F}}_{WW_i}\circ\rho^{\mathcal{F}}_{VW}(s)),\\
 &=\rho^{\mathcal{F}}_{WW_i}((\psi(\alpha)_i)_{W}(\rho^{\mathcal{F}}_{VW}(s))),\\
 &=\rho^{\mathcal{G}}_{WW_i}(\tilde{\psi}(\alpha)_{W}(\rho^{\mathcal{F}}_{VW}(s))).
 \end{align*}
 
-Thus such $\tilde{\psi}$ defines a natural transformation at each $\alpha\in\mathcal{H}(U')$. We then prove that 
+Thus such $\tilde{\psi}$ defines a natural transformation at each $\alpha\in M$. We then prove that 
 \begin{equation*}
 \varphi\circ\tilde{\psi}=\psi.
 \end{equation*}
 
 Let us define $\{V_i\}_{i\in I}$ as before. Then we have $V_i = V$ for $i$ such that $V\subset U_i$. By the construction of $\tilde{\psi}$,
 \begin{equation*}
-\tilde{\psi}(\alpha)_V(s) = t=\rho^{\mathcal{G}}_{VV}=\rho^{\mathcal{G}}_{VV_i}(t) = t_i = (\psi(\alpha)_i)_{V_i}(s)=(\psi(\alpha)_i)_{V}(s).
+\tilde{\psi}(\alpha)_V(s) = t=\rho^{\mathcal{G}}_{VV}(t)=\rho^{\mathcal{G}}_{VV_i}(t) = t_i = (\psi(\alpha)_i)_{V_i}(s)=(\psi(\alpha)_i)_{V}(s).
 \end{equation*}
 
 Thus we proved the claim. Finally we prove that such $\tilde{\psi}$ is unique. This is due to the fact that $\mathcal{G}$ is a sheaf as for any open subset $V$ of $U$ and $s\in\mathcal{F}(V)$, let $t=\tilde{\psi}(\alpha)_V(s)$, 

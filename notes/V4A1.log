@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.13)  11 OCT 2024 22:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.13)  14 OCT 2024 17:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -565,7 +565,7 @@ LaTeX Font Info:    Trying to load font information for OMS+rsfs on input line
 (/usr/local/texlive/2024/texmf-dist/tex/latex/calrsfs/OMSrsfs.fd)
 
 LaTeX Warning: The counter will not be printed.
-             The label is: \textbullet  on input line 77.
+             The label is: \textbullet  on input line 80.
 
 [1
 
@@ -573,53 +573,50 @@ LaTeX Warning: The counter will not be printed.
 al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
 LaTeX Warning: The counter will not be printed.
-             The label is: \textbullet  on input line 107.
+             The label is: \textbullet  on input line 110.
 
 [2]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 168
-.
- (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/ueuf.fd
-File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-)
-Overfull \hbox (39.31236pt too wide) in paragraph at lines 168--169
-[]\OT1/cmr/bx/n/10 Definition 1.10. []\OT1/cmr/m/it/10 Let $\OML/cmm/m/it/10 A$
- \OT1/cmr/m/it/10 be a ring. Then we de-fine $[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/
-10 A\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 f\U/euf/m/n/10 p \OMS/cmsy/m/n/10 ^^Z 
-\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 j \U/euf/m/n/10 p[]\OMS/cmsy/m/n/10 g$ 
- []
-
 
 LaTeX Warning: The counter will not be printed.
-             The label is: \textbullet  on input line 189.
+             The label is: \textbullet  on input line 196.
 
-
-Overfull \hbox (6.03915pt too wide) in paragraph at lines 206--207
-[]\OT1/cmr/bx/n/10 Definition 2.2. []\OT1/cmr/m/it/10 An el-e-ment of $\OMS/rsf
+[3]
+Overfull \hbox (6.03915pt too wide) in paragraph at lines 213--214
+[]\OT1/cmr/bx/n/10 Definition 3.2. []\OT1/cmr/m/it/10 An el-e-ment of $\OMS/rsf
 s/m/n/10 F\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 U\OT1/cmr/m/n/10 )$ \OT1/cmr/m/it/1
 0 is called a lo-cal sec-tion of $\OMS/rsfs/m/n/10 F$ \OT1/cmr/m/it/10 and $\OT
 1/cmr/m/n/10 ^^@(\OML/cmm/m/it/10 U; \OMS/rsfs/m/n/10 F\OT1/cmr/m/n/10 ) =
  []
 
-[3]
 
 LaTeX Warning: The counter will not be printed.
-             The label is: \textbullet  on input line 219.
+             The label is: \textbullet  on input line 226.
 
 
-Overfull \hbox (0.91466pt too wide) in paragraph at lines 222--223
+Overfull \hbox (0.91466pt too wide) in paragraph at lines 229--230
 \OT1/cmr/m/it/10 Then there is an in-clu-sion re-la-tion $\OMS/rsfs/m/n/10 C[]\
 OT1/cmr/m/n/10 (\OML/cmm/m/it/10 U\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^R \OMS/r
 sfs/m/n/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 U\OT1/cmr/m/n/10 )$ \OT1/cmr/m/
 it/10 and this de-fines a presheaf. 
  []
 
+[4]
 
 LaTeX Warning: The counter will not be printed.
-             The label is: \textbullet  on input line 268.
+             The label is: \textbullet  on input line 275.
 
-[4]
-Overfull \hbox (2.08171pt too wide) in paragraph at lines 299--300
-[]\OT1/cmr/bx/n/10 Notation 2.1. []\OT1/cmr/m/it/10 In the case $\OMS/rsfs/m/n/
+LaTeX Font Info:    Trying to load font information for U+euf on input line 277
+.
+(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+)
+
+LaTeX Warning: Reference `natural_transformation' on page 5 undefined on input 
+line 298.
+
+
+Overfull \hbox (2.08171pt too wide) in paragraph at lines 306--307
+[]\OT1/cmr/bx/n/10 Notation 3.1. []\OT1/cmr/m/it/10 In the case $\OMS/rsfs/m/n/
 10 A \OT1/cmr/m/n/10 = ([])$ \OT1/cmr/m/it/10 then we de-note $[]\OT1/cmr/m/n/1
 0 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 ) = [][](\OML/cmm/m/it/10 X\OT1/cmr/m/n/10
  )$\OT1/cmr/m/it/10 . 
@@ -630,12 +627,19 @@ Overfull \hbox (2.08171pt too wide) in paragraph at lines 299--300
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 14906 strings out of 474116
- 311137 string characters out of 5743682
+ 14904 strings out of 474116
+ 311079 string characters out of 5743682
  1942187 words of memory out of 5000000
- 36984 multiletter control sequences out of 15000+600000
+ 36982 multiletter control sequences out of 15000+600000
  570748 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  116i,15n,121p,472b,1059s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -662,7 +666,7 @@ texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/202
 e/2024/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2024/t
 exmf-dist/fonts/type1/public/rsfs/rsfs7.pfb></usr/local/texlive/2024/texmf-dist
 /fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on V4A1.pdf (6 pages, 242950 bytes).
+Output written on V4A1.pdf (6 pages, 242616 bytes).
 PDF statistics:
  142 PDF objects out of 1000 (max. 8388607)
  87 compressed objects within 1 object stream
