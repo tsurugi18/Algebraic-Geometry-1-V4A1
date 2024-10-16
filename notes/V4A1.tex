@@ -114,6 +114,7 @@ Here we give notations to some important categories.
 \end{notation}
 
 \begin{example}
+\label{order_category}
 Given a partially ordered set $(X,\leq)$. This can be encoded to a category $\mathcal{O}$ by
 \begin{enumerate}[i).]
 \item $\ob(\mathcal{O}) = X$,
@@ -180,12 +181,73 @@ is directed. Since for any $U\in\mathcal{T}$, $U\leq \emptyset$. As a category t
 \end{example}
 
 \begin{example}
-Let $(X,\mathcal{T})$ be a topological space. For $x\in X$, define$O_x = \{U\in\mathcal{T}\:|\: x\in U\}$. If we define an order as in the previous example, we get $(O_x,\leq)$ is directed. This follows from for any $U,V\in O_x$, $U,V\leq U\cap V$.  
+\label{top_dir_cat}
+Let $(X,\mathcal{T})$ be a topological space. For $x\in X$, define $O_x = \{U\in\mathcal{T}\:|\: x\in U\}$. If we define an order as in the previous example, we get $(O_x,\leq)$ is directed. This follows from for any $U,V\in O_x$, $U,V\leq U\cap V$.  
 \end{example}
 
 \begin{definition}
-Let $I$ be a directed partially ordered set and $\mathcal{A}$ be a category. 
+Let $I$ be a directed partially ordered set and $\mathcal{A}$ be a category. A directed system of objects of $\mathcal{A}$ indexed by $I$ is a collection of objects $(A_i)_{i\in I}$ and morphisms $(\rho_{ij})_{i\leq j}$ of $\mathcal{A}$ such that 
+\begin{enumerate}[i).]
+\item $\rho_{ii}=\mathbf{id}_{A_i}$,
+\item for $i,j,k\in I$, $i\leq j \leq k \Rightarrow \rho_{ik} = \rho_{jk}\circ\rho_{ij}$.
+\end{enumerate}
 \end{definition}
+
+\begin{remark}
+Categorically, the directed system of objects of $\mathcal{A}$ indexed by $I$ is a functor $\mathcal{O}^{op}\to\mathcal{C}$, where $\mathcal{O}$ is a category which encodes the ordered set $I$ as a category by the same procedure as in Example \ref{order_category}. Then a directed system if a functor $\mathcal{O}^{\mathbf{op}}\to\mathcal{A}$.
+\end{remark}
+
+\begin{definition}
+Given a directed system $((A_i)_{i\in I},\{\rho_{ij}\}_{i\leq j})$ of objects in $\mathcal{A}$ indexed by $I$. A direct limit of the system is an object $\varinjlim{A_n}\in\mathbf{ob}(\mathcal{A})$ satisfying the following universal property.\\
+\par Given a collection of morphisms $(f_i)_{i\in I}$ such that 
+\begin{enumerate}[i).]
+\item $f_i:A_i\to\varinjlim A_n\in\mathcal{A}$,
+\item for any $i\leq j$, $f_j\circ\rho_{ij} = f_i$.
+\end{enumerate}
+For any $A\in\mathcal{A}$ where there is a collection of morphisms $(g_i)_{i\in I}$ satisfying the above condition, there is a unique map $\varphi:\varinjlim A_n\to A$ such that
+
+\[ 
+\begin{tikzcd}
+A_i \arrow[rr, "\rho_{ij}", no head] \arrow[rd, "f_i"] \arrow[rdd, swap, "g_i", bend right] &                                               & A_j \arrow[ld, "f_j"'] \arrow[ldd, "g_j", bend left] \\
+                                                                                      & \varinjlim A_n \arrow[d, "\exists !", dotted] &                                                      \\
+                                                                                      & A                                             &                                                     
+\end{tikzcd}
+\]
+
+is a commutative diagram.
+\end{definition}
+
+\begin{proposition}
+In the cases where $\mathcal{A}=(\mathbf{Ab}),(\mathbf{Sets})$, there exist direct limits and for each category, such limit is constructed in the following ways.
+\begin{enumerate}[i).]
+\item $\varinjlim A_n = (\bigoplus_{i\in I}A_i)/N$ where $N=\{a_i-\rho_{ij}(a_i)\:|\:a_i,i\leq j\}$.
+\item $\varinjlim A_n = (\coprod_{i\in I}A_i)/\sim$ where $a_i\sim a_j$ if there is $k$ such that $i\leq k$ $j\leq k$, and $\rho_{ik}(a_i)=\rho_{jk}(a_j)$.
+\end{enumerate}
+Furthermore, these two direct limits match as sets.
+\end{proposition}
+
+\begin{proposition}
+$\varinjlim$ is (left) exact in $(\mathbf{Ab})$. In other words, 
+given a exact sequence of directed systems 
+\[
+\begin{tikzcd}
+0 \arrow[r] & (M_i)_{i\in I} \arrow[r] & (N_i)_{i\in I} \arrow[r] & (P_i)_{i\in I} \arrow[r] & 0
+\end{tikzcd}
+\]
+in which we have
+\[
+\begin{tikzcd}
+0 \arrow[r] & M_i \arrow[r] \arrow[d, "\rho^M_{ij}"'] & N_i \arrow[r] \arrow[d, "\rho^N_{ij}"'] & P_i \arrow[r] \arrow[d, "\rho^P_{ij}"'] & 0 \\
+0 \arrow[r] & M_j \arrow[r]                           & N_j \arrow[r]                           & P_j \arrow[r]                           & 0
+\end{tikzcd}
+\]
+There exists a short exact sequence 
+\[
+\begin{tikzcd}
+0 \arrow[r] & \varinjlim M_n \arrow[r] & \varinjlim N_n \arrow[r] & \varinjlim P_n \arrow[r] & 0
+\end{tikzcd}
+\]
+\end{proposition}
 
 \section{Sheaf Theory}
 
@@ -367,6 +429,122 @@ $\Sh_{\mathcal{A}}(X)$ is a full-subcategory of $\PreSh_{\mathcal{A}}(X)$.
 In the case $\mathcal{A}=(\mathbf{Ab})$, we denote $\Sh_{(\mathbf{Ab})}(X) = \Sh(X)$. 
 \end{notation}
 
+\subsection{Stalks}
 
+\begin{definition}
+\label{def_stalk}
+Suppose we have a topological space $(X,\mathcal{T})$ and a category $\mathcal{A}$ which admits direct limits. For a presheaf $\mathcal{F}\in\PreSh_{\mathcal{A}}(X)$, by inheriting the notations from Example \ref{top_dir_cat}, we define the stalk $\mathcal{F}_x$ of $\mathcal{F}$ at $x\in X$ by
+\begin{equation*}
+\mathcal{F}_x = \varinjlim_{U\in\mathcal{O}_x}\mathcal{F}(U) =  \varinjlim_{x\in U,U\in\mathcal{T}}\mathcal{F}(U).
+\end{equation*}
+\end{definition}
+
+\begin{example}
+\label{stalk_ex1}
+Let us assume that $\mathcal{A}=(\mathbf{Ab})$ in Definition \ref{def_stalk}. Then stalks and germs can be constructed explicitly in the following way.
+\begin{equation*}
+\mathcal{F}_x = \{(s,U)\:|\: U\in\mathcal{O}_x, s\in\mathcal{F}(U)\}/\sim,
+\end{equation*}
+where $\sim$ is an equivalent relation such that for $(s,U),(t,V)$,
+\begin{equation*}
+(s,U)\sim(t,V) \text{ if there is } W\in\mathcal{O}_x \text{ such that } W\subseteq U\cap V, \rho_{UW}(s)=\rho_{VW}(t).
+\end{equation*}
+\end{example}
+
+\begin{definition}
+Inheriting the notations from Definition \ref{def_stalk}, suppose we have $(f_U:\mathcal{F}(U)\to\mathcal{F}_x)_{U\in\mathcal{O}_x}$ such that for $f_U, f_V$ are compatible with $\rho_{UV}$. Then we define the germ of $s\in\mathcal{F}(U)$ to be $s_x=f_U(s)$. By the universal property of the direct limit, such $s_x$ is unique up to images under isomorphisms.
+\end{definition}
+
+\begin{example}
+In the case of Remark \ref{stalk_ex1}, we have for each $U\in\mathcal{T}$, $x\in U$, and $s\in\mathcal{F}(U)$,
+\begin{equation*}
+s_x = \{(t,V)\:|\: \text{ There is } W\in\mathcal{O}_x \text{ such that } W\subseteq U\cap V, \rho_{UW}(s)=\rho_{VW}(t)\}.
+\end{equation*}
+\end{example}
+
+\begin{remark}
+In the above definition, if a category $\mathcal{A}$ admits products, we get a map
+\begin{equation}
+\label{germ_map}
+(s\mapsto (s_x)_{x\in U})):\mathcal{F}(U)\to\prod_{x\in U}\mathcal{F}_x.
+\end{equation}
+This is neither surjective nor injective in general.
+\end{remark}
+
+\begin{proposition}
+\label{stalk_lifting}
+Suppose in the definition of stalks, $\mathcal{F}$ is a sheaf. Then the map defined by Equation \ref{germ_map} is injective.
+\end{proposition}
+
+\begin{proof}
+We prove the case when $\mathcal{A}=(\mathbf{Ab})$. \\
+\par Suppose $s\in\mathcal{F}(U)$ is such that $s_x=0$ in $\mathcal{F}_x$ for all $x\in U$. Since for any restriction maps are group homomorphisms. We have that there is $V_x\in\mathcal{O}_x$ such that 
+\begin{equation*}
+V_x\subseteq U,\quad\rho_{UV_x}(s) = 0.
+\end{equation*}
+Therefore $\{V_x\}_{x\in U}$ is an open covering of $U$. Since $\mathcal{F}$ is a sheaf, we derive that $s=0$ in $\mathcal{F}(U)$.
+\end{proof}
+
+\begin{example}
+Given $(X,\mathcal{F})$, a topological space and $G$, an abelian group. We will consider the constant presheaf $\mathbb{G}$ and the constant sheaf $\underline{\mathbb{G}}$ on $X$. For any open set $U$ and $x\in U$ we have
+\begin{equation*}
+\mathbb{G}_x\cong\underline{\mathbb{G}}_x\cong G.
+\end{equation*}
+For any $U,V$ open such that $V\subset U$ we have, $\rho_{UV}=\mathbf{id}_G$. Thus by the construction, for $x\in U,V$, $(s,U)\sim (t,V)$ then $x\in U\cap V$ and $\rho_{UU\cap V}(s) = s=t=\rho_{VU\cap V}(t)$. Therefore, we proved the claim.
+\end{example}
+
+\begin{remark}
+Categorically, taking stalking is a functor for each $x\in X$. Suppose we have $\mathcal{F},\mathcal{G}\in\PreSh_\mathcal{A}(X)$ and a morphism $\varphi:\mathcal{F}\to\mathcal{G}$, then 
+\begin{equation*}
+\varphi_x:\mathcal{F}_x\to\mathcal{G}_x,\varphi_x(s_x)=\varphi(s)_x.
+\end{equation*}
+
+\[
+\begin{tikzcd}
+\mathcal{F}\arrow{r}{\varphi}\arrow{d}&\mathcal{G}\arrow{d}\\
+\mathcal{F}_x\arrow{r}{\varphi_x}&\mathcal{G}_x
+\end{tikzcd}
+\]
+\end{remark}
+
+\begin{proposition}
+Let $\mathcal{F},\mathcal{G}\in\Sh_{(\mathbf{Ab})}(X)$ Then for any morphism $\varphi:\mathcal{F}\to\mathcal{G}$ we have
+\begin{equation*}
+\varphi = 0 \Leftrightarrow \forall x\in X,  \varphi_x = 0
+\end{equation*}
+\end{proposition}
+
+\begin{proof}
+$\Rightarrow$ is trivial by its construction. We will prove $\Leftarrow$.\\
+\par We first note that $\varphi=0$ means that for any $U\in \mathcal{T}$, we have $\varphi_U\equiv0$ as a group homomorphism. Let $U\in\mathcal{T}$ and $s\in\mathcal{F}(U)$. Then by the assumption and Proposition \ref{stalk_lifting}, we have proven the claim.
+\end{proof}
+
+\subsection{Sheafification}
+
+\begin{definition}
+Let $\mathcal{F}\in\PreSh_\mathcal{A}(X)$. The sheafification of $\mathcal{F}$ is a presheaf $\mathcal{F}^+$ which is a set of all $(s_x)_{x\in U}\in\prod_{x\in U}\mathcal{F}_x$ such that
+for any $x\in U$ there is $x\in V_x\subset U$, such that there is $t\in\mathcal{F}(V_x)$ satisfying for any $y\in V_x$, $s_y = t_y$. We give them restrictions such that
+\begin{equation*}
+\mathcal{F}^+(U)\ni (s_x)_{x\in U}\mapsto (s_x)_{x\in V}\in \mathcal{F}^+(V).
+\end{equation*}
+\end{definition}
+
+\begin{proposition}
+Such $\mathcal{F}^+$ is indeed a sheaf.
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{remark}
+\begin{equation*}
+\mathcal{F}\mapsto\mathcal{F}^+:\PreSh_\mathcal{A}(X)\to\Sh_\mathcal{A}(X)
+\end{equation*}
+is a functor. Indeed given $\varphi:\mathcal{F}\to\mathcal{G}$, a morphism of presheaves. We give
+\begin{equation*}
+\varphi^+(U)((s_x)_{x\in U}) = (\varphi(s)_x)_{x\in U}.
+\end{equation*}
+\end{remark}
 
 \end{document}
