@@ -35,6 +35,9 @@
 \DeclareMathOperator{\PreSh}{PreSh}
 \DeclareMathOperator{\Sh}{Sh}
 \DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\Coker}{Coker}
 
 \title{Algebraic Geometry 1}
 \author{So Murata}
@@ -333,6 +336,7 @@ For $\mathbf{Ouv}_X$, we can define a presheaf of $F$ to be
 \end{example}
 
 \begin{example}
+\label{structure_sheaf_ring}
 Let $A$ be a commutative ring with non-zero multiplicative identity and $X=\Spec(A)$. Let us consider the Zariski topology $(X,\mathcal{T})$. Let us consider a category $\mathcal{O}_X$ such that
 \begin{enumerate}[\textbullet]
 \item $\ob(\mathcal{O}_X) = \mathcal{T}$,
@@ -357,8 +361,14 @@ Let $(X,\mathcal{T})$ be a topological space and $\mathcal{A}$ be a category. We
 \end{definition}
 
 \begin{definition}
-A morphism of presheaves is a natural transformation $\alpha:F\to G$ where $F,G\in\Fun(\mathbf{Ouv}_X^{\mathbf{op}},\mathcal{A})$.(See Definition \ref{natural_transformation}).
+A morphism of presheaves is a natural transformation $\varphi:\mathcal{F}\to \mathcal{G}$ where $\mathcal{F},\mathcal{G}\in\PreSh_\mathcal{A}(X)=\Fun(\mathbf{Ouv}_X^{\mathbf{op}},\mathcal{A})$.(See Definition \ref{natural_transformation}).\\
+\par Such $\varphi:\mathcal{F}\to\mathcal{G}$ is 
+\begin{enumerate}[i).]
+\item injective if 
+\end{enumerate}
 \end{definition}
+
+
 
 \begin{remark}
 $\PreSh(X)$ can be regarded as a category with its objects presheaves and morphisms defined above. 
@@ -494,17 +504,8 @@ For any $U,V$ open such that $V\subset U$ we have, $\rho_{UV}=\mathbf{id}_G$. Th
 \end{example}
 
 \begin{remark}
-Categorically, taking stalking is a functor for each $x\in X$. Suppose we have $\mathcal{F},\mathcal{G}\in\PreSh_\mathcal{A}(X)$ and a morphism $\varphi:\mathcal{F}\to\mathcal{G}$, then 
-\begin{equation*}
-\varphi_x:\mathcal{F}_x\to\mathcal{G}_x,\varphi_x(s_x)=\varphi(s)_x.
-\end{equation*}
-
-\[
-\begin{tikzcd}
-\mathcal{F}\arrow{r}{\varphi}\arrow{d}&\mathcal{G}\arrow{d}\\
-\mathcal{F}_x\arrow{r}{\varphi_x}&\mathcal{G}_x
-\end{tikzcd}
-\]
+Categorically, taking stalks is a functor for each $x\in X$. Suppose we have $\mathcal{F},\mathcal{G}\in\PreSh_\mathcal{A}(X)$ and a morphism $\varphi:\mathcal{F}\to\mathcal{G}$, then 
+later
 \end{remark}
 
 \begin{proposition}
@@ -534,7 +535,7 @@ Such $\mathcal{F}^+$ is indeed a sheaf.
 \end{proposition}
 
 \begin{proof}
-
+later
 \end{proof}
 
 \begin{remark}
@@ -545,6 +546,270 @@ is a functor. Indeed given $\varphi:\mathcal{F}\to\mathcal{G}$, a morphism of pr
 \begin{equation*}
 \varphi^+(U)((s_x)_{x\in U}) = (\varphi(s)_x)_{x\in U}.
 \end{equation*}
+later
 \end{remark}
+
+\begin{proposition}
+A mapping $\varphi:\mathcal{F}\to\mathcal{F}^+$ such that for each $U\in\mathcal{T}$, 
+\begin{equation*}
+\varphi_U:\mathcal{F}(U)\to\mathcal{F}^+(U),\quad \varphi(s)=(s_x)_{x\in U},
+\end{equation*}
+is a natural transformation thus a morphism of presheaves.
+\end{proposition}
+
+\begin{proof}
+Later
+\end{proof}
+
+\begin{proposition}
+\label{section_rep}
+For any open set $U\in\mathcal{T}$ and a section $s\in\mathcal{F}^+(U)$, there is an open covering $(U_i)_{i\in I}$ which satisfies that there is a sequence $(s_i)_{i\in I}\in\prod_{i\in I}\mathcal{F}(U_i)$ and for each $i$, the following hodls.
+\begin{equation*}
+\rho_{UU_i}(s)=s_i.
+\end{equation*}
+\end{proposition}
+\begin{proof}
+Later.
+\end{proof}
+
+\begin{proposition}
+For each $x\in X$, there exists an isomorphism
+\begin{equation*}
+\mathcal{F}_x\cong (\mathcal{F}^+)_x,
+\end{equation*}
+as presheaves.
+\end{proposition}
+
+\begin{proof}
+later
+\end{proof}
+
+\begin{proposition}
+Let $(X,\mathcal{T})$ be a topological group and $\mathcal{F}$ be a presheaf of a category $\mathcal{A}$ on $X$. Suppose for a sheaf $\mathcal{G}$ of a category $\mathcal{A}$ on $X$, there exists a morphism $\varphi:\mathcal{F}\to\mathcal{G}$. Then there exists a unique morphism $\varphi^+:\mathcal{F}^+\to\mathcal{G}$, such that
+\[
+\begin{tikzcd}
+\mathcal{F} \arrow[d, "\varphi"'] \arrow[r] & \mathcal{F}^+ \arrow[ld, "\exists!\varphi^+", dotted] \\
+\mathcal{G}                                 &                                                      
+\end{tikzcd}
+\]
+is a commutative diagram.
+\label{sheaf_morphism_universal_property}
+\end{proposition}
+
+\begin{proof}
+Let $U\in\mathcal{T}$, then by Proposition \ref{section_rep}, for any $s\in\mathcal{F}^+$, there exists an open covering $(U_i)_{i\in I}$ and $(s_i)_{i\in I}\in\prod_{i\in I}\mathcal{F}(U_i)$ such that $\rho_{UU_i}(s)=s_i$ for any $i\in I$. We define
+\begin{equation*}
+t_i = \varphi(s_i)\in\mathcal{G}(U_i),
+\end{equation*}
+for each $i\in I$. Using the definition of natural transformation we derive that
+\begin{equation*}
+\rho^{\mathcal{G}}_{UU_i\cap U_j}(t_i) = \varphi^{\mathcal{F}}_{U_i\cap U_j}(\rho_{UU_i\cap U_j}(s))=\rho^{\mathcal{G}}_{UU_i\cap U_j}(t_j).
+\end{equation*}
+Thus we can glue $(t_i)_{i\in I}$ to a section $t\in\mathcal{G}(U)$.\\
+\par We now define $\varphi^+:\mathcal{F}^+\to\mathcal{G}$. Given $(s_x)_{x\in U}$ which is the germ of $s$,
+\begin{equation*}
+\varphi^+_{U}((s_x)_{x\in U}) = t.
+\end{equation*}
+Such $\varphi^+$ is unique since $\mathcal{G}$ is a sheaf.
+\end{proof}
+
+\begin{corollary}
+Let $i:\Sh_\mathcal{A}(X)\to\PreSh_\mathcal{A}(X)$ be a forgetful functor. Then we have
+\begin{equation*}
+\PreSh_\mathcal{A}(X)(\mathcal{F},i(\mathcal{G})) \cong \Sh_{\mathcal{A}}(\mathcal{F}^+,\mathcal{G})
+\end{equation*}
+In other words, the sheafification is a left-adjoint functor of the inclusion map.
+\end{corollary}
+
+\begin{proof}
+By Proposition \ref{sheaf_morphism_universal_property}, we define two maps $\Phi,\Psi$ such that
+\begin{align*}
+\Phi:\PreSh_\mathcal{A}(X)(\mathcal{F},i(\mathcal{G})) &\to \Sh_{\mathcal{A}}(\mathcal{F}^+,\mathcal{G}),&\\
+& \Phi(\varphi) = \varphi^+,\\
+\Psi:\Sh_{\mathcal{A}}(\mathcal{F}^+,\mathcal{G})&\to\PreSh_\mathcal{A}(X)(\mathcal{F},i(\mathcal{G})),&\\
+ &\Psi(\varphi^+)  = \varphi.
+\end{align*}
+Then these two are inverses of each other.
+\end{proof}
+
+\begin{proposition}
+Let $X=\Spec(A)$ and $\mathcal{O}_X$ be the structure sheaf defined in Example \ref{structure_sheaf_ring}. Then we have the following.
+\begin{enumerate}[1).]
+\item For any $\mathfrak{p}=x\in X$, $(\mathcal{O}_{X})_x \cong A_{\mathfrak{p}}$.
+\item For any $a\in A$, $\mathcal{O}_X(D(a)) \cong A_a$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+For a given $U\subset X$ open and $\mathfrak{p}\subset A$, there is $a,b\in A$ such that for $V\subset U$ open and $s\in\mathcal{O}_X(U), s:U\to\coprod_{\mathfrak{p}\in U}A_{\mathfrak{p}}$.
+\begin{equation*}
+s(\mathfrak{q}) = {\frac a b}\in A_{\mathfrak{q}}
+\end{equation*}
+holds for any $\mathfrak{q}\in V$.
+\[
+\begin{tikzcd}
+\mathcal{O}_X(U) \arrow[r] \arrow[d, "\rho_{UV}"'] & A_\mathfrak{p} \\
+\mathcal{O}_X(V) \arrow[ru]                        &               
+\end{tikzcd}
+\]
+\end{proof}
+
+\begin{definition}
+Let $\varphi:\mathcal{F}\to\mathcal{G}$ be a homomorphism of presheaves $\PreSh_{(\mathbf{Ab})}(X)$. Then we define the following.
+\begin{enumerate}[1).]
+\item $\Ker^{\mathbf{pre}}(\varphi)(U) = \Ker\varphi_U$,
+\item $\Image^{\mathbf{pre}}(\varphi)(U) = \Image\varphi_U$,
+\item $\Coker^{\mathbf{pre}}(\varphi)(U) = \Coker\varphi_U$.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+Such $\Ker^{\mathbf{pre}},\Image^{\mathbf{pre}},\Coker^{\mathbf{pre}}$ are presheaves.
+\end{proposition}
+
+\begin{proof}For the case of kernels.
+Let $U,V\in\mathcal{T}$ and $V\subset U$. We define $\rho_UV: \Ker^{\mathbf{pre}}(\varphi)(U) \to\Ker^{\mathbf{pre}}(\varphi)(V)$ to be such that
+\begin{equation*}
+\rho_UV(s) = \rho^{\mathcal{F}}(s).
+\end{equation*}
+Such construction is justified as the diagram below is commutative.
+\[
+\begin{tikzcd}
+\mathcal{F}(U) \arrow[r, "\rho^{\mathcal{F}}_{UV}"] \arrow[d, "\varphi_U"'] & \mathcal{F}(V) \arrow[d, "\varphi_V"] \arrow[r, "\rho^{\mathcal{F}}_{UV}"] & \mathcal{F}(W) \arrow[d, "\varphi_W"] \\
+\mathcal{G}(U) \arrow[r, "\rho^{\mathcal{G}}_{UV}"']                        & \mathcal{G}(V) \arrow[r, "\rho^{\mathcal{G}}_{UV}"']                       & \mathcal{F}(W)                       
+\end{tikzcd}
+\]
+Furthermore,
+\begin{equation*}
+\rho_UW(s) = \rho^{\mathcal{F}}_{UV}(s)=\rho^{\mathcal{F}}_{VW}\circ\rho^{\mathcal{F}}_{UV}(s) = \rho_{VW}\circ\rho_{UV}(s).
+\end{equation*}
+Thus $\Ker^{\mathbf{pre}}(\varphi)(U)$ is a presheaf.
+\end{proof}
+
+\begin{corollary}
+If $\varphi:\mathcal{F}\to\mathcal{G}$ is a morphism of sheaves. Then $\Ker^{\mathbf{pre}}$ is also a sheaf.
+\end{corollary}
+
+\begin{proof}
+Given $(s_i)_{i\in I}\in\prod_{i\in I}\Ker\varphi_{U_i}$ such that
+\begin{equation*}
+\rho(s_i)_{U_iU_i\cap U_j}=\rho(s_j)_{U_jU_i\cap U_j}
+\end{equation*}
+for any $i,j\in I$. Then since $\mathcal{F}$ is a sheaf, we can glue $(s_i)_{i\in I}$ to $s\in\mathcal{F}(U)$. For such $s$ we have
+\begin{equation*}
+\rho^{\mathcal{G}}_{UU_i}(\varphi_U(s)) = (\varphi_{U_i}(\rho^{\mathcal{F}}_{UU_i}(s))) = \varphi_{UU_i}(s_i) = 0.
+\end{equation*}
+Therefore, since $\mathcal{G}$ is a sheaf, $\varphi_U(s)=0$.
+\end{proof}
+
+\begin{remark}
+Let $\varphi:\mathcal{F}(U)\to\prod_{i\in I}\mathcal{F}(U_i),\varphi_1:\prod_{i\in I}\mathcal{F}(U_i)\to\prod_{i,j\in I}\mathcal{F}(U_i\cap U_j),\varphi_2:\prod_{i\in I}\mathcal{F}(U_j)\to\prod_{i,j\in I}\mathcal{F}(U_i\cap U_j)$. Then $\mathcal{F}$ is a sheaf if and only if
+\begin{equation*}
+\Ker(\varphi_1\circ\varphi - \varphi_2\circ\varphi) = \mathcal{F}(U),
+\end{equation*}
+holds for any open set $U$.
+\end{remark}
+
+\begin{remark}
+$\Image^{\mathbf{pre}}\varphi,\Coker^{\mathbf{pre}}\varphi$ are not in general sheaves even tho $\varphi:\mathcal{F}\to\mathcal{G}$ is a homomorphism of sheaves.
+\label{sheaf_condition_kernel}
+\end{remark}
+
+\begin{example}
+Let $X=\{x_1,x_2\}$ and we assign the discrete topology to it. Let $G$ be an abelian group. We define a sheaf $\mathcal{F},\mathcal{G}\in\Sh_{(\mathbf{Ab})}(X)$ by such that
+\begin{equation*}
+\mathcal{F}(U)=\mathcal{G}(U) = 
+\begin{cases}
+G\times G\quad (U=X),\\
+G \quad (|U|=1),\\
+0\quad (U=\emptyset).
+\end{cases}
+\end{equation*}
+Let us define a homomorphism of sheaves $\varphi$ such that
+\begin{equation*}
+\varphi_U = 
+\begin{cases}
+\mathbf{id}_{G\times G}\quad (U=X)\\
+0\quad (U\not= X).
+\end{cases}
+\end{equation*}
+Then we have
+\begin{equation*}
+\Coker^{\mathbf{pre}}(\varphi)(U) = 
+\begin{cases}
+0\quad (U=X),\\
+G\quad (U\not= X).
+\end{cases}
+\end{equation*}
+By \ref{sheaf_condition_kernel}, we observe that
+\begin{equation*}
+\Coker^{\mathbf{pre}}(\varphi)(X)=G\times G/\mathbf{id}_{G\times G}(G\times G) = \{0\}.
+\end{equation*}
+However, 
+\begin{equation*}
+later.
+\end{equation*}
+\end{example}
+
+\begin{definition}
+Given a morphism of sheaves $\varphi:\mathcal{F}\to\mathcal{G}$, we define the following.
+\begin{enumerate}[1).]
+\item $\Ker(\varphi)=\Ker^{\mathbf{pre}}(\varphi)$,
+\item $\Image(\varphi)=(\Image^{\mathbf{pre}}(\varphi))^+$,
+\item $\Coker(\varphi)=(\Coker^{\mathbf{pre}}(\varphi))^+$.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}[Universal property of kernels]
+Given a sheaf homomorphism $\varphi:\mathcal{F}\to\mathcal{G}$. For any sheaf homomorphism $\alpha:\mathcal{H}\to\mathcal{F}$, $\varphi\circ\alpha = 0$ if and only if there is a unique $\psi:\mathcal{H}\to\Ker\varphi$ such that
+\[
+\begin{tikzcd}
+                                        & \mathcal{H} \arrow[d, "\alpha"] \arrow[rd, "\varphi_0=0"] \arrow[ld, "\exists!\psi"', dotted] &             \\
+\Ker(\mathcal{\varphi}) \arrow[r, hook] & \mathcal{F} \arrow[r, "\varphi"']                                                           & \mathcal{G}
+\end{tikzcd}
+\]
+is a commutative diagram.
+\end{proposition}
+\begin{proof}
+We argue by each open set of the space.
+\[
+\begin{tikzcd}
+                                        & \mathcal{H}(U) \arrow[d, "\alpha_U"] \arrow[rd, "(\varphi_0)_U=0"] \arrow[ld, "\exists!\psi_U"', dotted] &             \\
+\Ker(\mathcal{\varphi})(U) \arrow[r, hook] & \mathcal{F}(U) \arrow[r, "\varphi_U"']                                                           & \mathcal{G}(U)
+\end{tikzcd}
+\]
+This is a universal property of the kernel in abelian groups. Thus the statement immediately follows from it.
+\end{proof}
+
+\begin{proposition}[Universal property of Cokernels]
+Given a sheaf homomorphism $\varphi:\mathcal{F}\to\mathcal{G}$. For any sheaf homomorphism $\alpha:\mathcal{G}\to\mathcal{H}$, $\alpha\circ\varphi = 0$ if and only if there is a unique $\psi:\Coker\varphi\to\mathcal{H}$ such that
+\[
+\begin{tikzcd}
+\mathcal{F} \arrow[r, "\varphi"] \arrow[r] \arrow[rd, "\varphi_0=0"'] & \mathcal{G} \arrow[r,"\pi"] \arrow[d, "\alpha"]                 & \Coker(\varphi) \arrow[ld, "\exists!\psi"', dotted, swap]\\
+                                                                    & \mathcal{H}  &                
+\end{tikzcd}
+\]
+is a commutative diagram.
+\end{proposition}
+
+\begin{proof}
+We argue for each open set $U\subset X$. 
+\[
+\begin{tikzcd}
+\mathcal{F}(U) \arrow[r, "\varphi_U"] \arrow[r] \arrow[rd, "(\varphi_0)_U=0"'] & \mathcal{G}(U) \arrow[r] \arrow[d,"\alpha_U"] & \Coker^{\mathbf{pre}}(\varphi)(U) \arrow[ld, "\exists!\psi^{\mathbf{pre}}_U"', dotted] \arrow[r]& \Coker(\varphi)(U) \arrow[lld, "\exists!\psi_U", dotted] \\
+                                                                    & \mathcal{H}(U)                     &                                                                                   &                                                    
+\end{tikzcd}
+\]
+By the universal property of Cokernels of abelian groups, there is a unique $\varphi^{\mathbf{pre}}$. By the universal property of the sheafification operator, we derive a unique $\psi$.
+\end{proof}
+
+\begin{proposition}
+Let $x\in X$, then we have the following.
+\begin{enumerate}[1).]
+\item $\Ker(\varphi)_x=\Ker(\varphi_x)$,
+\item $\Image(\varphi)_x=\Image(\varphi_x)$,
+\item $\Coker(\varphi)_x=\Coker(\varphi_x)$.
+\end{enumerate}
+\end{proposition}
 
 \end{document}
