@@ -503,9 +503,17 @@ Given $(X,\mathcal{F})$, a topological space and $G$, an abelian group. We will 
 For any $U,V$ open such that $V\subset U$ we have, $\rho_{UV}=\mathbf{id}_G$. Thus by the construction, for $x\in U,V$, $(s,U)\sim (t,V)$ then $x\in U\cap V$ and $\rho_{UU\cap V}(s) = s=t=\rho_{VU\cap V}(t)$. Therefore, we proved the claim.
 \end{example}
 
+\begin{definition}
+\label{stalk_morphism}
+Suppose $\varphi:\mathcal{F}\to\mathcal{G}$ be a morphism of presheaves. Then we define 
+\begin{equation*}
+\varphi_x(s_x)=(\varphi(s)_U)_x.
+\end{equation*}
+This defines a morphism of presheaves. 
+\end{definition}
+
 \begin{remark}
-Categorically, taking stalks is a functor for each $x\in X$. Suppose we have $\mathcal{F},\mathcal{G}\in\PreSh_\mathcal{A}(X)$ and a morphism $\varphi:\mathcal{F}\to\mathcal{G}$, then 
-later
+Categorically, taking stalks is a functor for each $x\in X$. Suppose we have $\mathcal{F},\mathcal{G}\in\PreSh_\mathcal{A}(X)$ and a morphism $\varphi:\mathcal{F}\to\mathcal{G}$, 
 \end{remark}
 
 \begin{proposition}
@@ -653,6 +661,8 @@ holds for any $\mathfrak{q}\in V$.
 \end{tikzcd}
 \]
 \end{proof}
+
+\subsection{Morphisms in $\PreSh_{(\mathbf{Ab})}(X)$}
 
 \begin{definition}
 Let $\varphi:\mathcal{F}\to\mathcal{G}$ be a homomorphism of presheaves $\PreSh_{(\mathbf{Ab})}(X)$. Then we define the following.
@@ -811,5 +821,56 @@ Let $x\in X$, then we have the following.
 \item $\Coker(\varphi)_x=\Coker(\varphi_x)$.
 \end{enumerate}
 \end{proposition}
+
+\begin{proof}
+By Definition, \ref{stalk_morphism}
+\end{proof}
+
+\begin{definition}
+Let $\varphi:\mathcal{F}\to\mathcal{G}$ be a sheaf morphism. $\varphi$ is called
+\begin{enumerate}[1).]
+\item a monomorphism if any morphism of sheaves $\varphi_0:\mathcal{H}\to\mathcal{F}$, $\varphi\circ\varphi_0=0$ if and only if $\varphi_0=0$,
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+Let $\varphi:\mathcal{F}\to\mathcal{G}$ be a morphism of sheaves of $(\mathbf{Ab})$. Then the following statements are equivalent.
+\begin{enumerate}[i).]
+\item $\varphi$ is a monomorphism.
+\item $\Ker\varphi = 0$.
+\item For any open set $U\subset X$, $\varphi_U$ is injective.
+\item For any $x\in X$, $\varphi_x:\to\mathcal{F}_x\to\mathcal{G}_x$ is injective.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Here, I put the procedure of the proof.
+\[
+\begin{tikzcd}
+i) \arrow[d]  & iv) \arrow[d]                       \\
+ii) \arrow[r] & iii) \arrow[u] \arrow[l] \arrow[lu]
+\end{tikzcd}
+\]
+\par $i)\Rightarrow ii)$, 
+\[
+\begin{tikzcd}
+\Ker(\varphi) \arrow[d, "\varphi_0"'] \arrow[rd, "0"] &             \\
+\mathcal{F} \arrow[r, "\varphi"']                     & \mathcal{G}
+\end{tikzcd}
+\]
+Where $\varphi_0(U)$ is an inclusion map of abelian groups.\\
+\par $ii)\Leftrightarrow iii)$,
+\begin{equation*}
+\Ker\varphi=0\Leftrightarrow \forall U\in\mathcal{T}, \Ker\varphi(U)=0\Leftrightarrow\varphi_U\text{ is injective.}
+\end{equation*}
+\par $iii)\Rightarrow iv)$,
+Fix $x\in X$.
+\begin{equation*}
+\varphi_x(s_x) = (\varphi(s)_U)_x = 0.
+\end{equation*}
+This implies that 
+\end{proof}
+
+
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.13)  18 OCT 2024 23:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.13)  19 OCT 2024 13:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -633,25 +633,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 490--491
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 519--520
+Underfull \hbox (badness 10000) in paragraph at lines 527--528
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 607--609
+Underfull \hbox (badness 10000) in paragraph at lines 615--617
 
  []
 
 [10]
-Overfull \hbox (13.60965pt too wide) in paragraph at lines 658--659
-[]\OT1/cmr/bx/n/10 Definition 3.14. []\OT1/cmr/m/it/10 Let $\OML/cmm/m/it/10 ' 
+Overfull \hbox (13.60965pt too wide) in paragraph at lines 668--669
+[]\OT1/cmr/bx/n/10 Definition 3.15. []\OT1/cmr/m/it/10 Let $\OML/cmm/m/it/10 ' 
 \OT1/cmr/m/n/10 : \OMS/rsfs/m/n/10 F \OMS/cmsy/m/n/10 ! \OMS/rsfs/m/n/10 G$ \OT
 1/cmr/m/it/10 be a ho-mo-mor-phism of presheaves $[][]\OT1/cmr/m/n/10 (\OML/cmm
 /m/it/10 X\OT1/cmr/m/n/10 )$\OT1/cmr/m/it/10 .
  []
 
 [11]
-Overfull \hbox (2.48943pt too wide) in paragraph at lines 706--707
+Overfull \hbox (2.48943pt too wide) in paragraph at lines 716--717
 []\OT1/cmr/bx/n/10 Remark 3.10. []\OT1/cmr/m/it/10 Let $\OML/cmm/m/it/10 ' \OT1
 /cmr/m/n/10 : \OMS/rsfs/m/n/10 F\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 U\OT1/cmr/m/n
 /10 ) \OMS/cmsy/m/n/10 ! [][] \OMS/rsfs/m/n/10 F\OT1/cmr/m/n/10 (\OML/cmm/m/it/
@@ -661,49 +661,57 @@ m/n/10 F\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 U[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10
 0 \
  []
 
-[12] [13] [14] (./V4A1.aux)
+[12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 860--862
+
+ []
+
+[14] [15] (./V4A1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15567 strings out of 474116
- 327384 string characters out of 5743682
+ 15653 strings out of 474116
+ 329450 string characters out of 5743682
  1963187 words of memory out of 5000000
- 37645 multiletter control sequences out of 15000+600000
- 570748 words of font info for 85 fonts, out of 8000000 for 9000
+ 37729 multiletter control sequences out of 15000+600000
+ 572077 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  116i,27n,121p,472b,1066s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></
 usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></us
-r/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></u
-sr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
-r/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
-/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/l
-ocal/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/loc
-al/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
-/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/t
-exlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/tex
-live/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texliv
-e/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
-024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
-24/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/te
-xmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2024/
-texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive/2024
-/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/
-2024/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2024/tex
-mf-dist/fonts/type1/public/rsfs/rsfs5.pfb></usr/local/texlive/2024/texmf-dist/f
-onts/type1/public/rsfs/rsfs7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type
-1/public/cm-super/sfti1000.pfb>
-Output written on V4A1.pdf (14 pages, 300295 bytes).
+r/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/
+local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr
+/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/
+local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/l
+ocal/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/lo
+cal/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/loca
+l/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/
+texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/te
+xlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texl
+ive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texliv
+e/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2
+024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-di
+st/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2024/texmf-
+dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive/2024/texmf
+-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/t
+exmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2024/texmf-dis
+t/fonts/type1/public/rsfs/rsfs5.pfb></usr/local/texlive/2024/texmf-dist/fonts/t
+ype1/public/rsfs/rsfs7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/publ
+ic/cm-super/sfti1000.pfb>
+Output written on V4A1.pdf (15 pages, 329776 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 112 compressed objects within 2 object streams
+ 198 PDF objects out of 1000 (max. 8388607)
+ 123 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -33,6 +33,7 @@
 \DeclareMathOperator{\ob}{ob}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\PreSh}{PreSh}
+\DeclareMathOperator{\Sh}{Sh}
 \DeclareMathOperator{\Fun}{Fun}
 
 
@@ -42,4 +43,32 @@
 
 \begin{document}
 \maketitle
+\section*{Exercise 8}
+
+Let $(X,\mathcal{T})$ be a topological space and $\mathcal{F}\in\Sh_{\mathcal{A}}(X)$ be a sheaf. We define
+\begin{equation*}
+\vert\mathcal{F}\vert = \coprod_{x\in X}\mathcal{F}_x.
+\end{equation*}
+We first prove that $\mathcal{B}=\{\overline{s}(U)\:|\: U\in\mathcal{T}, \overline{s}:X\to\vert\mathcal{F}\vert\}$ defines a basis of the desired strongest topology on $\vert\mathcal{F}\vert$.
+In order to do so, we need $\overline{s}^{-1}\circ\overline{s}(U)= U$ and $\mathcal{B}$ is indeed a basis of a topological space. $\overline{s}^{-1}\circ\overline{s}(U)\supseteq U$ is obvious. Therefore, we will prove the other direction of inclusion.\\
+\par If $\overline{s}(x) = \overline{s}(y)$, then for any open set which contains $x$ also contains $y$. In particular, $y\in U$. Thus we have the equality $\overline{s}^{-1}\circ\overline{s}(U)= U$. And for any $s_x\in \overline{s}(U)\cap\overline{s}(V)$, then $s_x\in\overline{s}(U\cap V)$. Therefore $\mathcal{B}$ is a basis. We denote such topology as $\mathcal{T}_M$.\\
+\par We now show that there is an isomorphism between the sheaf of continuous functions $f:U\to\vert\mathcal{F}\vert$ and $\mathcal{F}^+$.\\
+\par First for any $s\in\mathcal{F}(U)$, $x\mapsto s_x$ defines a continuous map on the topology $\mathcal{T}_M$. Let $V\in\mathcal{T}_M$ then $V$ is of the form,
+\begin{equation*}
+V = \bigcup_{\lambda\in\Lambda}\overline{s}_\lambda(U_\lambda),
+\end{equation*}
+where $\overline{s}_\lambda$ is a map induced by $s\in\mathcal{F}(U_\lambda)$. Thus it is enough to check for some map $\overline{t}:V\to\vert\mathcal{F}\vert$, $\overline{s}^{-1}(\overline{t}(V))$ is open. \\
+\par Indeed let $W = \{x\:|\: x,y\in U\cap V, s_x=t_y\}$, then this is an open map. This follows that take $W_x$ to be an open set such that $x\in W_x, s|_{W_x}=t|_{W_x}$. This is justified by the construction of stalks and germs in abelian groups. Then
+\begin{equation*}
+W = \bigcup_{x\in W}W_x.
+\end{equation*}
+And this $W$ is exactly equal to $\overline{s}^{-1}(t(U))$. \\
+\par On the other hand, we prove that for any continuous section $f:U\to\vert\mathcal{F}\vert$, there is $s\in\mathcal{F}(U)$ such that $f(x) = s_x$. Take $(t,V)$ to be such that $t\in\mathcal{F}(V)$, $x\in V, t_x=f(x)$. Then $V_x=f^{-1}(t(V))$ is an open set. This means for any $y\in V_x$, $f(y)=t_y, y\in V$. Since $(V_x)_{x\in U}$ is an open covering and every pair of  terms $((t_y)_{y\in U_x})_{x\in U}$ coincide on the intersection of its domains, we can glue this to some $(s_x)_{x\in U}$. \\
+
+\par For each $(s_x)_{x\in U},(t_x)_{x\in U}\in\mathcal{F}^+(U)$, 
+\begin{equation*}
+\overline{s+t}(x) = (s+t)_x = s_x+t_x, 
+\end{equation*}
+since restriction maps are group homomorphisms. This shows that $\mathcal{F}^+(U)\ni s\mapsto \overline{s}$ is a group homomorphism which has an inverse. Thus we have proven the statement.
+
 \end{document}
