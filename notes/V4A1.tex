@@ -221,6 +221,11 @@ is a commutative diagram.
 \end{definition}
 
 \begin{proposition}
+\label{direct_limit_exact_functor}
+$\varinjlim$ is an exact functor.
+\end{proposition}
+
+\begin{proposition}
 In the cases where $\mathcal{A}=(\mathbf{Ab}),(\mathbf{Sets})$, there exist direct limits and for each category, such limit is constructed in the following ways.
 \begin{enumerate}[i).]
 \item $\varinjlim A_n = (\bigoplus_{i\in I}A_i)/N$ where $N=\{a_i-\rho_{ij}(a_i)\:|\:a_i,i\leq j\}$.
@@ -521,6 +526,7 @@ Let $\mathcal{F},\mathcal{G}\in\Sh_{(\mathbf{Ab})}(X)$ Then for any morphism $\v
 \begin{equation*}
 \varphi = 0 \Leftrightarrow \forall x\in X,  \varphi_x = 0
 \end{equation*}
+\label{unit_sheaf_morphism}
 \end{proposition}
 
 \begin{proof}
@@ -865,12 +871,96 @@ Where $\varphi_0(U)$ is an inclusion map of abelian groups.\\
 \end{equation*}
 \par $iii)\Rightarrow iv)$,
 Fix $x\in X$.
-\begin{equation*}
-\varphi_x(s_x) = (\varphi(s)_U)_x = 0.
-\end{equation*}
-This implies that 
+\[
+\begin{tikzcd}
+0 \arrow[r] & \mathcal{F}(U) \arrow[r, "\varphi_U"] & \mathcal{G}(U)
+\end{tikzcd}
+\]
+is an exact sequence as $\varphi_U$ is injective for any $U\subset X$ open. Since $\varinjlim$ is left-exact we obtain,
+\[
+\begin{tikzcd}
+0 \arrow[r] & \mathcal{F}_x \arrow[r, "\varphi_x"] & \mathcal{G}_x
+\end{tikzcd}
+\]
+is also an exact sequence.
 \end{proof}
 
+\begin{proposition}
+Let $\varphi:\mathcal{F}\to\mathcal{G}$ be a morphism in $\Sh(X)$. Then the following are equivalent.
+\begin{enumerate}[1).]
+\item $\varphi$ is an epimorphism (for any $\varphi_1,\varphi_2:\mathcal{H}\to\mathcal{F}$, such that $\varphi\circ\varphi_1=\varphi\circ\varphi_2$ implies $\varphi_1=\varphi_2$).
+\item $\Coker\varphi=0$.
+\item For any open set $U\subset X$, 
+\item  For any $x\in X$, $\Coker\varphi_x = 0$, (in other words, $\varphi_x$ is a surjection).
+\end{enumerate}
+\end{proposition}
 
+\begin{proof}
+Recall the definition of epimorphisms is such that $\varphi:\mathcal{F}\to\mathcal{G}$ is an epimorphism if for any morphism $\psi:\mathcal{G}\to\mathcal{G}_0$, we have,
+\begin{equation*}
+\psi\circ\varphi=0\Rightarrow \psi = 0.
+\end{equation*}
+
+$i)\Rightarrow iv)$.
+Suppose $\varphi$ is an epimorphism, then we have
+\[
+\begin{tikzcd}
+\mathcal{F} \arrow[d, "\varphi"'] \arrow[rd, "0"] \arrow[rrd, "0", bend left] &                                                 &               \\
+\mathcal{G} \arrow[r, "\pi"] \arrow[rr, "\psi", bend right]                   & \Coker^{\mathbf{pre}}\varphi \arrow[r, "(-)^+"] & \Coker\varphi
+\end{tikzcd}
+\]
+By the assumption $\psi = 0$.\\
+\par Let $\mathcal{O}_x = \{U\in\mathcal{T}\:|\: x\in U\}$. We consider an exact sequence,
+\[
+\begin{tikzcd}
+0 \arrow[r] & \Ker(\varphi_U) \arrow[r, hook] & \mathcal{F}(U) \arrow[r, "\varphi"] & \mathcal{G}(U) \arrow[r, "\pi"] & \Coker(\varphi_U) \arrow[r] & 0,
+\end{tikzcd}
+\]
+for each $U\in\mathcal{O}_x$. By Proposition \ref{direct_limit_exact_functor}, 
+\[
+\begin{tikzcd}
+0 \arrow[r] & \Ker(\varphi)_x \arrow[r, hook] & \mathcal{F}_x \arrow[r, "\varphi_x"] & \mathcal{G}_x \arrow[r, "\pi_x"] & \Coker(\varphi)_x \arrow[r] & 0
+\end{tikzcd}
+\]
+is also exact. Thus we conclude 
+\begin{equation*}
+\Coker^{pre}(\varphi)_x = \Coker(\varphi_x).
+\end{equation*}
+And we conclude that $\varphi_x$ is surjective by the exactness of the sequence.\\
+\par $iv)\Rightarrow ii)$. Assume For each $x\in X$, $\Coker(\varphi_x)=0$. By applying Proposition. \ref{unit_sheaf_morphism} to $\mathbf{id}:\mathcal{F}\to\mathcal{F}$, we obtain
+\begin{equation*}
+\mathcal{F}=0\Leftrightarrow \forall x\in X, \mathcal{F}_x=0.
+\end{equation*}
+Apply this to $\Coker\varphi$, we derive that
+\begin{equation*}
+\Coker\varphi = 0.
+\end{equation*}
+\par $iv)\Rightarrow i)$. Assume $\Coker(\varphi_x)=0$ for any $x\in X$. Consider a commutative diagram of sheaves
+\[
+\begin{tikzcd}
+\mathcal{F} \arrow[r, "\varphi"] \arrow[rd, "0"'] & \mathcal{G} \arrow[d, "\psi"] \\
+                                                  & \mathcal{G}_0                
+\end{tikzcd}
+\]
+By assumption $\varphi_x:\mathcal{F}_x\to\mathcal{G}_x$ is a surjection. Thus $\psi_x=0$ for any $x\in X$ which is equivalent to $\psi=0$.\\
+\par $ii)\Rightarrow i)$. Suppose $\Coker\varphi=0$ if and only if $\Coker(\varphi)_x=\Coker(\varphi_x)=0$ for any $x\in X$. \\
+\par $iii)\Rightarrow iv)$. Assume $\varphi_U:\mathcal{F}(U)\to\mathcal{G}(U)$ is surjective for any $U\subset X$ open. By Proposition. \ref{direct_limit_exact_functor}, we conclude that 
+\begin{equation*}
+\varphi_x:\mathcal{F}_x\to\mathcal{G}_x
+\end{equation*}
+is also surjective.
+\end{proof}
+
+\begin{corollary}
+Let $\varphi:\mathcal{F}\to\mathcal{G}$ be a morphism of sheaves. Then the following statements are equivalent.
+\begin{enumerate}[1).]
+\item $\varphi$ is an isomorphism.
+\item For all $x\in X$, $\varphi_x$ is an isomorphism. 
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+
+\end{proof}
 
 \end{document}
