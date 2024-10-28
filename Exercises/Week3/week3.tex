@@ -1,0 +1,86 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{calrsfs}
+\usepackage{tikz-cd} 
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}[section] 
+\newtheorem{definition}{Definition}[section] 
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{notation}{Notation}[section] 
+\newtheorem{remark}{Remark}[section] 
+\newtheorem{corollary}{Corollary}[section] 
+\newtheorem{terminology}{Terminology}[section] 
+\newtheorem{claim}{Claim}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Coker}{Coker}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\PreSh}{PreSh}
+\DeclareMathOperator{\Sh}{Sh}
+\DeclareMathOperator{\Fun}{Fun}
+
+
+\title{Algebraic Geometry 1 Week 3 Exercise Sheet Solutions}
+\author{So Murata}
+\date{2024/2025 Winter Semester - Uni Bonn}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 15}
+
+Let us consider a short exact sequence
+\begin{equation*}
+0\to\underline{Z}\overset{2\pi}{\to}\mathcal{O}_{S^1}\overset{\exp}{\to}\mathcal{O}^*_{S^1}\to1.
+\end{equation*}
+
+Since each $s:S^1\to\mathbb{Z}$ is continuous, $\bigcup_{n}\in\mathbb{Z}s^{-1}(n)$ is an open cover of $S^1$ and each of them are disjoint. By the connectedness of $S^1$ we conclude that $s$ is constant on $S^1$. In general, $s\in\underline{Z}(U)$ is constant on each connected component in $U$. From the last exercise of the first week exercise sheet we know that $\Coker f_*\exp=0$, therefore by the definition of the exact sequence we conclude that $R^1f_*\underline{Z}=0$.  
+
+For any connected open set $U$ in $S^1$, $f^{-1}(U) = \left({\frac 1 2}U\right)\cup\left({\frac 1 2}U+\pi\right)$. Thus it consists of two disjoint connected components. When taking direct limits, we can restrict the indexing open sets to be connected. Similarly from the 6th exercise, we conclude that 
+\begin{equation*}
+(f_*\underline{Z})_x = (2\pi i\mathbb{Z})^{\pi_0(\left({\frac 1 2}U\right)\cup\left({\frac 1 2}U+\pi\right))} \cong \mathbb{Z}\oplus\mathbb{Z}.
+\end{equation*}
+\section*{Exercise 16}
+
+We know that $\Sh(\{x\})=(\mathbf{Ab})$. And for such inclusion $i:\{x\}\to X$, 
+\begin{equation*}
+i_{x*}(G)(U) = 
+\begin{cases}
+G\quad (x\in U),\\
+\emptyset \quad(x\not\in U).
+\end{cases}
+\end{equation*}
+
+Given an exact sequence of groups
+\begin{equation*}
+0\to G\to H\to J\overset{\pi}{\to} 0.
+\end{equation*}
+
+We know that $i_{x*}$ is left-exact. Therefore, we will examine if $i_{x*}$ sends $\pi:H\to J$ to an epimorphism. Indeed
+\begin{equation*}
+i_{x*}(\pi)(U) = 
+\begin{cases}
+\pi \quad(x\in U),\\
+*\quad(x\not\in U).
+\end{cases}
+\end{equation*}
+Therefore, for each $U\subset X$ we have $\Coker(i_{x*}(\pi)(U))=0$. Thus $i_{x*}$ is exact.
+\end{document}
