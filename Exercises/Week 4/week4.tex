@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{calrsfs}
+\usepackage{tikz-cd} 
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}[section] 
+\newtheorem{definition}{Definition}[section] 
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{notation}{Notation}[section] 
+\newtheorem{remark}{Remark}[section] 
+\newtheorem{corollary}{Corollary}[section] 
+\newtheorem{terminology}{Terminology}[section] 
+\newtheorem{example}{Example}[section] 
+\numberwithin{equation}{section}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\PreSh}{PreSh}
+\DeclareMathOperator{\Sh}{Sh}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\Coker}{Coker}
+
+\title{Algebraic Geometry 1 Sheet 4 Problem 22}
+\author{So Murata}
+\date{2024/2025 Winter Semester - Uni Bonn}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 22}
+
+Let us pick a short exact sequence of sheaves.
+\begin{equation*}
+0\to\mathcal{G}_1\stackrel{i}{\to}\mathcal{G}_2\stackrel{\pi}{\to}\mathcal{G}_3\to0.
+\end{equation*}
+
+Then we claim that 
+\begin{equation*}
+0\to\Hom(\mathcal{F},\mathcal{G}_1)\stackrel{i}{\to}\Hom(\mathcal{F},\mathcal{G}_2)\stackrel{\pi}{\to}\Hom(\mathcal{F},\mathcal{G}_3),
+\end{equation*}
+is an exact sequence. Indeed for any $\varphi,\psi\in\Hom(\mathcal{F},\mathcal{G}_1)$, we have 
+\begin{equation*}
+i\circ\varphi=i\circ\psi
+\end{equation*}
+implies, $\varphi|_U=\psi|_U$ for any open set $U\subseteq X$ by the injectivity of $i$. Furthermore, for any $\varphi\in\Ker\pi$, we have $\Image\varphi|_U\subseteq\Image i_U$. Thus $\varphi |_U$ factors through $\Image i_U$, there is $\tilde{\varphi}|_U:\mathcal{F}(U)\to\mathcal{G}_1(U)$ such that $i|_U\circ\tilde{\varphi}|_U=\varphi|_U$. The other way is trivial as $\pi\circ i\circ\varphi=0$ by the definition of sheaf morphisms. Thus we have proven the exactness at $\mathcal{G}_2$.\\
+\par Now we show that $\Hom(\cdot,\mathcal{G})$ is a left exact covariant functor. Indeed, we are given
+\begin{equation*}
+0\to\mathcal{F}_1\stackrel{i}{\to}\mathcal{F}_2\stackrel{\pi}{\to}\mathcal{F}_3\to0,
+\end{equation*}
+we will show that 
+\begin{equation*}
+0\to\Hom(\mathcal{F}_3,\mathcal{G})\stackrel{\pi}{\to}\Hom(\mathcal{F}_2,\mathcal{G})\stackrel{i}{\to}\Hom(\mathcal{F}_1,\mathcal{G})
+\end{equation*}
+is exact. By the definition of epimorphism, we have for any $\varphi,\psi\in\Hom(\mathcal{F}_3,\mathcal{G})$
+\begin{equation*}
+\psi\circ\pi = \varphi\circ\pi
+\end{equation*}
+then $\psi=\varphi$. Furthermore, if $\varphi\circ i = 0$ then for any $U\subseteq X$ open we have
+\begin{equation*}
+\Image i|_U\subseteq \Ker\varphi|_U.
+\end{equation*}
+And $\Image i|_U=\Ker\pi|_U$ by the exactness. Therefore, $\varphi$ factors through $\Ker\pi|_U$, there is $\psi$ such that $\psi\pi=\varphi$.
+\end{document}
