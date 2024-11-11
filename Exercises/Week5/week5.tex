@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{calrsfs}
+\usepackage{tikz-cd} 
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}[section] 
+\newtheorem{definition}{Definition}[section] 
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{notation}{Notation}[section] 
+\newtheorem{remark}{Remark}[section] 
+\newtheorem{corollary}{Corollary}[section] 
+\newtheorem{terminology}{Terminology}[section] 
+\newtheorem{example}{Example}[section] 
+\numberwithin{equation}{section}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\PreSh}{PreSh}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Lie}{Lie}
+
+
+\title{V4A1 Sheet 5}
+\author{So Murata}
+\date{2024/2025 Winter Semester - Uni Bonn}
+
+\begin{document}
+\maketitle
+\section*{26}
+
+Let $\varphi:A\to\Gamma(X,\mathcal{O}_X)$ be a homomorphism of rings.\\
+
+\par By the definition of schemes, there exists an open covering $(U_i)_{i\in I}$ of $X$ such that 
+\begin{equation*}
+\forall i\in I, \mathcal{O}(U_i) \cong (\Spec A_i,\mathcal{O}_{\Spec A-i})
+\end{equation*}
+for some ring $A_i$.\\
+\par Let $\rho^{X}_{XU_i}$ be a restriction map. Then $\varphi\circ\rho_{XU_i}:\mathcal{O}_{\Spec A}(U_i)\to \mathcal{O}_X(U_i)=A_i$ is a ring homomorphism. Thus there exists a morphism of ringed spaces $(f_i,f_i^{\#}):(\Spec A_i,\mathcal{O}_{\Spec A_i})\to(\Spec A,\mathcal{O}_{\Spec A})$ corresponding to $9\varphi\circ\rho_{XU_i}$. We will show that this can be glued to a unique morphism of ringed spaces $(f,f^{\#})$.\\
+\par Indeed, by construction of structure sheaves and restrictions, we have that $\{(f_i,f_i^{\#})\}_{i\in I}$ satisfies the sheaf condition. Thus can be glued to a unique morphism $(f,f^{\#})$. The correspondence $\varphi\circ\rho_{XU_i}\leftrightarrow (f_i,f_i^{\#})$ is a bijection. Therefore, $\varphi\to(f,f^{\#})$ is an injection. By the same argument to the restrictions of $(f,f^{\#})$ and the sheaf condition, we derive that this is a surjection. 
+
+\section*{27}
+
+\subsection*{(i)}
+
+Let $(U_i)_{i\in I}$ be an open cover of $X$ such that 
+\begin{equation*}
+\mathcal{O}_X \cong \Spec A_i.
+\end{equation*}
+Let $\iota_i:A_i\to \tilde{A}_i$ be an inclusion. Then we can define a morphism $\nu_i:\tilde{U}_i\to U_i$ by 
+\begin{equation*}
+\nu_i(\mathfrak{q}) = \iota_i^{-1}(\mathfrak{q}).
+\end{equation*}
+
+By the definition of affine schemes and its restrictions, $(\nu_i)_{i\in I}$ satisfies the sheaf condition, thus there exists $\tilde{X}$ and $\nu:\tilde{X}\to X$ extending each $\nu_i$. \\
+\par By the construction, $\mathcal{O}_{\tilde{X}}(\tilde{U}_i)\cong\Spec \tilde{A}_i$. Since $\tilde{A}_i$ is integrally closed, $\tilde{A}_{i,\mathfrak{p}}$ is also integrally closed for each $\mathfrak{p}\in\Spec \tilde{A}_i$. Therefore, $\tilde{X}$ is normal.
+
+\subsection*{(ii)}
+
+Let $U$ be a neighborhood of $x\in X$ such that $\mathcal{O}_X(U)\cong\Spec A$. Suppose $f:Z\to X$ be a dominant morphism of schemes then $f(Z)$ is dense in $X$.\\
+Let $V=f^{-1}(U)$. Since $f$ is dominant, we have that the ring homomorphism induced by $f$, $\varphi: A=\mathcal{O}_X(U)\to \mathcal{O}_Z(V)=B$ is an injection. Since $A$ is an integral domain and $B$ is integrally closed, there is a unique homomorphism $\tilde{\varphi}$ such that
+\begin{equation*}
+\varphi = \tilde{\varphi}\circ\iota
+\end{equation*}
+where $\iota:A\to\tilde{A}$ is an injection and $\tilde{\varphi}:\tilde{A}\to B$. By using the previous problem, there is a morphism of scheme $(g,g^{\#}):((V,\mathcal{O}_Z|_V),(U,\Spec A))\to$ corresponding to $\tilde{\varphi}$ such that $\nu\circ g^{\#} = f^{\#}$.
+
+\end{document}
