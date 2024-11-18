@@ -79,6 +79,13 @@ U,V\in\mathcal{T}_Y, U\cup V\supset f(A), U\cap V=\emptyset, \\
 \end{align*}
 \end{proof}
 
+\begin{definition}
+Let $X$ be a topological space. A point $\eta\in X$ is called a generic point if 
+\begin{equation*}
+\overline{\{\eta\}} = X.
+\end{equation*}
+\end{definition}
+
 
 \section{Category Theory}
 
@@ -356,6 +363,13 @@ Let $X$ be the Zariski topology on $k^n$. A function $f:X\supseteq U\to k$ is sa
 A regular function $f$ on the Zariski topology on $k^n$ is continuous as they are locally equivalent to quotients of polynomial functions.
 \label{reg_cont_inc}
 \end{remark}
+
+\begin{lemma}
+Let $\mathfrak{a}\subset A$ be an ideal. Then we have the following are homeomorphic.
+\begin{equation*}
+\Spec(A/\mathfrak{a}) \cong V(\mathfrak{a}).
+\end{equation*}
+\end{lemma}
 
 \section{Classical Algebraic Geometry}
 
@@ -1352,5 +1366,370 @@ Let $K$ be any field and $A=k[x]/(x^2)$. $A$ is called the ring of dual numbers.
 \end{equation*}
 both consist of single points. Let us define $\ringedspacemorph{f}:\sheaf{\Spec k}{O}\to\sheaf{\Spec A}{O}$. By the previous observation, the function $f:\Spec A\to \Spec k$ is unique map sending the unique point to the unique point. 
 \end{example}
+
+\subsection{Properties of Schemes}
+
+\begin{theorem}[Topological properties of schemes]
+\label{topological_properties_schemes}
+\end{theorem}
+
+\begin{definition}
+A scheme is said to be locally Noetherian if there exists an open cover $(U_i)_{i\in I}$ such that for each $i\in I$,
+\begin{equation}
+U_i\cong \Spec(A_i)
+\label{quasi_compact_affine_set}
+\end{equation}
+for some Noetherian ring $A_i$. 
+\end{definition}
+
+\begin{lemma}
+Let $A,B$ be rings and $\varphi:A\to B$ be a ring homomorphism. Let $a\in A$ and $b=\varphi(a)$, then we have
+\begin{equation*}
+\Spec(A_a)=\Spec(B_b)
+\end{equation*}
+as sets.
+\label{bijection_localization_spec}
+\end{lemma}
+
+\begin{proof}
+Let $\mathfrak{q}\subset B$ be a prime ideal not containing $b$ and $\mathfrak{p}\subset A$ be a contraction of $\mathfrak{q}$ by $\varphi$. $\varphi^{-1}$ is the inclusion from $\Spec(B)$ to $\Spec(A)$. Also we have
+\begin{equation*}
+\Spec(A_a)\cong D_A(a)\subset\Spec(A) %Check AM for this isomorphism.
+\end{equation*}
+for an arbitrary ring and an element. And by $\varphi^{-1}$ we have
+\begin{equation*}
+D_B(b)\subset D_A(a).
+\end{equation*}
+Thus we have an inclusion
+\begin{equation*}
+\Spec(B_b)\subset\Spec(A_a).
+\end{equation*}
+%The other direction later
+\end{proof}
+
+\begin{proposition}
+Let $A,B$ be rings and $\varphi:A\to B$ be a ring homomorphism. Let $a\in A$ and $b=\varphi(a)$, then we have
+\begin{equation*}
+\Spec(A_a)=\Spec(B_b)
+\end{equation*}
+as affine schemes.
+\label{localization_scheme_isomorphism}
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{bijection_localization_spec}, they are equal as sets. Since $\Spec(B)$ is open in $\Spec(A)$. %Check
+Using the definition of structure sheaves, we have
+\begin{equation*}
+\mathcal{O}_{\Spec(A)}|_{\Spec(B)}=\mathcal{O}_{\Spec(B)}.
+\end{equation*}
+Therefore, by the lemma we have
+\begin{equation*}
+\mathcal{O}_{\Spec(A_a)}=\mathcal{O}_{\Spec(B_b)}.
+\end{equation*}
+%later
+\end{proof}
+
+\begin{lemma}
+A scheme $(X,\mathcal{O}_X)$ is locally Noetherian if and only if for any open affine set $U\subset X, U=\Spec(A)$ for some Noetherian ring $A$.
+\end{lemma}
+
+\begin{proof}By definition, $\Leftarrow$ is trivially true. We will prove $\Rightarrow$ direction.\\
+\par Let $X=\bigcup_{i\in I}\Spec(A_i)$ be an open affine Noetherian covering of $X$ and $U=\Spec(A)$ be an open affine set. Let us define an open covering of $U$ by 
+\begin{equation*}
+U_i=U\cap\Spec(A_i), \quad U=\bigcup_{i\in I}U_i.
+\end{equation*}
+%Check which proposition tells quasi-compactness
+By Theorem \ref{topological_properties_schemes} and the assumption on $U$, $U$ is quasi-compact. By arranging $I$, there exists a large enough $n\in\mathbb{N}$ such that
+\begin{equation*}
+U=\bigcup_{i=1}^n U_{i}.
+\end{equation*}
+Since each $i=1,\cdots,n$, $U_{i}$ is open in $\Spec(A_{i}$, thus there is $\{a_{ij}\}_{j=1\cdots,n_i}\subset A_{i}$ such that 
+%Why this holds? localization?
+\begin{equation*}
+U_{i} = \bigcup_{j=1}^{n_i}\Spec(A_{i,a_{ij}}).
+\end{equation*}
+Thus substituting this to \eqref{quasi_compact_affine_set}, we get
+\begin{equation*}
+U = \bigcup_{i=1}^n \bigcup_{j=1}^{n_i}\Spec(A_{i,a_{ij}}).
+\end{equation*}
+Again by the quasi-compactness of $U$, we conclude finitely many $A_{i,a_{ij}}$ cover $U$.\\
+%later \par Let us now fix $B+A_{i,a{ij}}$ for some $i,j$. Then $\Spec(B) \subset\Spec (A)$ is an open subset. This can be verified by the existence of $a\in A$ such that %Why spec is open subset.
+\par Since $A_i$ is Noetherian for each $i\in I$, this means that any localization of it is also Noetherian. Thus we $\{\Spec(A_{i,a_{ij}})$ is an open Noetherian covering of $U$. By rearranging $\{a_{ij}\}$, we let $\{a_1,\cdots,a_n\}$ to be the elements which spectrums of their localizations cover $U$. We then show that
+\begin{equation*}
+\mathfrak{a}=\bigcap_{i=1}^n\pi_i^{-1}(\pi_i(\mathfrak{a})A_{a_i}).
+\label{contraction_ideal_intersection}
+\end{equation*}
+where $\pi_i:A\to A_{a_i}$ is the canonical inclusion for each $i=1,\cdots,n$. \\
+\par $\mathfrak{a}\subseteq\bigcap_{i=1}^n\pi_i^{-1}(\pi_i(\mathfrak{a})A_{a_i})$ is trivial, thus we prove $\mathfrak{a}\supset\bigcap_{i=1}^n\pi_i^{-1}(\pi_i(\mathfrak{a})A_{a_i})$. Let $b\in\bigcap_{i=1}^n\pi_i^{-1}(\pi_i(\mathfrak{a})A_{a_i})$ be arbitrary. By definition, for each $i=1,\cdots,n$, there exists $b_i\in\mathfrak{a}$ and $n_i$ such that
+\begin{equation*}
+\pi_i(b) = {\frac {b_i} {a_i^{n_i}}}.
+\end{equation*}
+Using that $\mathfrak{a}$ is an ideal, we derive that for big enough $N$, we have
+\begin{equation*}
+\pi_i(b) = {\frac {b_i} {a_i^{N}}}.
+\end{equation*}
+Using the definition of localization, for each $i=1,\cdots,n$, there is $m_i$ such that
+\begin{equation*}
+(b_i-a_i^Nb)a_i^{m_i}=0.
+\end{equation*}
+Taking large enough $M$, for each $i=1,\cdots,n$, we derive
+\begin{equation*}
+(b_i-a_i^Nb)a_i^{M}=0.
+\end{equation*}
+Thus for all $i=1,\cdots,n$, we know
+\begin{equation}
+a_i^{N+M}b\in\mathfrak{a}.
+\label{exponent_ideal_product}
+\end{equation}
+Since $\{D_A(a_i)\}_{i=1,\cdots,n}$ covers $\Spec A$, we have
+\begin{equation*}
+\bigcap_{i=1}^n V(a_i)=\emptyset\Leftrightarrow V((a_1,\cdots,a_n))=\emptyset\Leftrightarrow(a_1,\cdots,a_n) = (1).
+\end{equation*}
+Therefore, for any $k\in\mathbb{N}_0$ we have $(a_1^k,\cdots,a_n^k)=(1)$. By Equation \eqref{exponent_ideal_product}, we derive that for some $c_1,\cdots,c_n\in A$, %check why this exponent argument holds.
+\begin{equation*}
+b=\sum_{i=1}^n c_ia_i^k\in\mathfrak{a}.
+\end{equation*}
+Finally, we prove that $A$ is Noetherian. Given an ascending chain of ideal
+\begin{equation*}
+\mathfrak{a}_1\subset\mathfrak{a}_2\subset\cdots.
+\end{equation*}
+We get an ascending chain of extended ideals
+\begin{equation*}
+\pi(\mathfrak{a}_1)A_{a_i}\subset\pi(\mathfrak{a}_2)A_{a_i}\subset\cdots,
+\end{equation*}
+for each $i=1,\cdots,n$. Since each $A_{a_i}$ is Noetherian, we conclude that there is large enough $N$ such that
+\begin{equation*}
+\pi_i(\mathfrak{a}_N)A_{a_i}=\pi_i(\mathfrak{a}_{N+1})A_{a_i}
+\end{equation*}
+for each $i=1,\cdots,n$. By Equation \eqref{contraction_ideal_intersection}, we conclude that
+\begin{equation*}
+\mathfrak{a}_N=\bigcap_{i=1}^n\pi_i^{-1}(\pi_i(\mathfrak{a}_N)A_{a_i})=\bigcap_{i=1}^n\pi_i^{-1}(\pi_i(\mathfrak{a}_{N+1})A_{a_i})=\mathfrak{a}_{N+1}.
+\end{equation*}
+\end{proof}
+
+\begin{corollary}
+An affine scheme $(\Spec A,\mathcal{O}_{\Spec A})$ is a Noetherian scheme, then $A$ is Noetherian.
+\end{corollary}
+
+\begin{remark}
+A Sheaf is noetherian then its base space is Noetherian as topological space. The converse is not true.
+\end{remark}
+
+\begin{definition}
+A scheme $(X,\mathcal{O}_X)$ is said to be reduced if for any open subset $U\subseteq X$, $\mathcal{O}_X(U)$ is a reduced ring.
+\end{definition}
+
+\begin{proposition}
+A scheme $(X,\mathcal{O}_X)$ is reduced if and only if for any $x\in X$, the stalk $\mathcal{O}_{X,x}$ is a reduced ring.
+\end{proposition}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{definition}
+A scheme is integral if every section of it is an integral domain.
+\end{definition}
+
+\begin{proposition}
+A scheme $(X,\mathcal{O}_X)$ is reduced then for any $x\in X$, the stalk $\mathcal{O}_{X,x}$ is an integral domain.
+\end{proposition}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{remark}
+The converse is not true.\\
+\par Let $k$ be a field and $R$ be a $k$-algebra. %later
+\end{remark}
+
+\begin{remark}
+By the definition of reduced rings, it is obvious that integral schemes are reduced.
+\end{remark}
+
+\begin{example}
+An affine scheme on a field $k$ is integral.%later
+\end{example}
+
+\begin{example}
+Let $k$ be a field. $(\Spec k[x]/(x^2),\mathcal{O}_{\Spec k[x]/(x^2)})$ is neither integral nor reduced.%later
+\end{example}
+
+\begin{example}
+Let $k$ be a field. $(\Spec k[x,y]/(x,y),\mathcal{O}_{\Spec k[x,y]/(x,y)})$ is reduced but not integral. %later
+\end{example}
+
+\begin{lemma}
+Let $(X,\mathcal{O}_X)$ is a scheme and fix $s\in\mathcal{O}_X(U)$ for some open set $U$. For each $x\in U$, define $\mathfrak{m}_x$ to be a unique maximal ideal in the stalk. Then the set
+\begin{equation*}
+F=\{x\in U\:|\: s\in\mathfrak{m}_x\}
+\end{equation*}
+is a closed subset of $X$.
+\label{closed_subset_local_ring}
+\end{lemma}
+
+\begin{proof}
+First, let us assume that $U=\Spec(A)$ for some ring $A$. We will prove that $T^c$ is open%later.
+\end{proof}
+
+\begin{lemma}
+A scheme $(X,\mathcal{O}_X)$ is integral if and only if it is a reduced scheme on an irreducible topological space. 
+\end{lemma}
+
+\begin{proof}
+Since integral schemes are reduced. We first prove that $X$ is not irreducible then $(X,\mathcal{O}_X)$ is not integral.\\
+\par Since $X$ is not irreducible, there is non-empty disjoint open subsets $U_1,U_2$ of $X$. Then %Check the definition and equivalent definitions of irreducible spaces.
+\begin{equation*}
+\mathcal{O}_X(U_1\cup U_2) \cong\mathcal{O}_X(U_1)\times\mathcal{O}_X(U_2).
+\end{equation*}
+Therefore, this is not an integral domain. \\
+\par Suppose $X$ is irreducible and $(X,\mathcal{O}_X)$ is reduced. Given an arbitrary open set $U\subset X$, and $s_1,s_2\in\mathcal{O}_X(U)$, we will show that
+\begin{equation*}
+s_1s_2=0\Rightarrow s_1=0\lor s_2=0.
+\end{equation*}
+By Lemma \ref{closed_subset_local_ring}, 
+\begin{equation*}
+X_1 = \{x\in U\:|\: s_1\in\mathfrak{m}_x\},\quad X_2 = \{x\in U\:|\: s_2\in\mathfrak{m}_x\},
+\end{equation*}
+are closed subsets.\\
+\par By the sheaf property, we have $s_1s_2=0$ implies for all $x\in U$, 
+\begin{equation*}
+(s_1s_2)_x=s_{1,x}s_{2,x}=0.
+\end{equation*}
+Since each $\mathfrak{m}_x$ is prime and $s_{1,x}s_{2,x}=0\in\mathfrak{m}_x$, $s_{1,x}\in\mathfrak{m}_x$ or $s_{2,x}\in\mathfrak{m}_x$. Therefore, this show that 
+\begin{equation*}
+U = X_1\cup X_2.
+\end{equation*}
+Since $X$ is irreducible, so is $U$, %\later
+Without the loss of generality, we assume $U=X_1$. Let $\Spec(A)\subset U$ be an open affine set. Let us define
+\begin{equation*}
+t= s_1|_{\Spec(A)}\in A.
+\end{equation*}
+for all $x=\mathfrak{p}\in\Spec(A)\subset U$, we have
+\begin{equation*}
+t_x\in\mathfrak{m}_x\in\mathcal{O}_{X,x}.
+\end{equation*}
+In other words,
+\begin{equation*}
+{\frac t 1}\in\mathfrak{p}A_\mathfrak{p}\subset A_\mathfrak{p}.
+\end{equation*}
+Therefore, $t\in\mathfrak{p}$ for any prime ideal of $A$, thus $t$ is a nilpotent. Furthermore, $X$ is reduced, thus $t=0$.\\
+\par Thus any section $s_1|_{\Spec(A)}=0$ for all $\Spec(A)$. By the sheaf property, we conclude $s_1=0$. 
+\end{proof}
+
+\begin{corollary}
+If $X$ is integral, then there exists a unique generic point $\eta\in X$.
+\end{corollary}
+
+\begin{proof}
+%revision needed
+For any $\Spec(A)\subseteq X$, $A$ is an integral domain. Let $\eta=(0)\in\Spec(A)$. Then $\eta$ is a generic point of $\Spec(A)$. By the irreducibility of $X$, we have $\eta$ is a generic point of $X$.\\
+\par For the uniqueness, assume $\zeta,\eta$ be generic points of $X$. Let us pick an open affine set $\Spec(A)$ containing $\eta$. By closedness of $X\backslash\Spec(A)$ and that $\zeta$ is also a generic point, we conclude that $\zeta\in\Spec(A)$.\\
+\par Without the loss of generality, we assume that $\eta=(0)\subset A$. Since $\eta\not=\zeta$, $\zeta=\mathfrak{p}\subset A$ for some prime ideal. However
+\begin{equation*}
+\eta\in V(\mathfrak{p})\Leftrightarrow\mathfrak{p}=(0)\Rightarrow\eta=\zeta.
+\end{equation*}\
+\end{proof}
+
+
+\subsection{Open and Closed Subschemes}
+
+\begin{definition}
+Let $(X,\mathcal{O}_X)$ be a scheme and $U\subseteq X$ be open. Then
+\begin{equation*}
+(U,\mathcal{O}_X|_U)
+\end{equation*}
+is called an open subscheme of $X$. %Check that this is again a scheme.
+\end{definition}
+
+\begin{remark}
+If $\Spec(B)\subseteq\Spec(A)$ is an open subscheme then 
+\begin{equation*}
+\Spec(B)=\bigcup_{i=1}^n \Spec(A_{a_i}) = \bigcup_{i=1}^n \Spec(B_{b_i}),
+\end{equation*}
+with morphisms $A\ni a_i\mapsto b_i\in B$. %check the proof of the lemma.
+\end{remark}
+
+\begin{definition}[1st definition of closed subschemes]
+Let $(X,\mathcal{O}_X)$ be a scheme and $M$ be a set of morphisms of schemes such that for each $(i,i^{\#})\in M$, 
+\begin{enumerate}
+\item $i:Z\to X$, is a homeomorphism of $Z$ and some closed subset $i(Z)$ of $X$.
+\item $i^{\#}:\mathcal{O}_X\to i_*\mathcal{O}_Z$ is surjective. In other words, for any $z\in Z$, $\mathcal{O}_{X,i(z)}\to\mathcal{O}_{Z,z}$ is a surjection. 
+\end{enumerate}
+We now define an equivalence relation $\sim$ such that $(i,i^{\#}):Y\to X\sim(j,j^{\#}):Z\to X$ if $Y$ and $Z$ are homeomorphic and the following diagram is commutative.
+\[
+\begin{tikzcd}
+(Y,\mathcal{O}_Y) \arrow{r}{(i,i^{\#})} \arrow{d} & (X,\mathcal{O}_X)\\
+(Z,\mathcal{O}_Z)\arrow{ur}[swap]{(j,j^{\#})} 
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{definition}[Second definition of closed subschemes]
+A closed subscheme of a scheme $(X,\mathcal{O}_X)$ consists of a closed subset $i:Z\hookrightarrow X$ and a sheaf $\mathcal{O}_Z$ such that there is a sheaf of ideals $(Z,\mathcal{I}_Z)$ which is a subsheaf of $\mathcal{O}_X$ such that 
+\begin{equation*}
+\mathcal{O}_X|_{\mathcal{I}_Z}\cong i_*\mathcal{O}_X.
+\end{equation*}
+%check the definition of sheaf of ideals.
+\end{definition}
+
+\begin{lemma}
+Let $X=\Spec(A)$ for a commutative ring and consider a scheme $(X,\mathcal{O}_X)$. Consider a closed subscheme $(Z,\mathcal{O}_Z)$ of $(X,\mathcal{O}_X)$ and an ideal
+\begin{equation*}
+\mathfrak{a}_Z = \Ker(A\to Z).
+\end{equation*}
+Then we have the inclusions of set, 
+\begin{equation*}
+Z\subseteq V(\mathfrak{a}_Z)\subseteq \Spec (A).
+\end{equation*}
+\end{lemma}
+
+\begin{lemma}
+The second claim of the preceding lemma.
+\end{lemma}
+
+\begin{lemma}
+Let $A$ be a ring then there exists a natural bijection between 
+\begin{equation*}
+\{\mathfrak{a}\subseteq A\:|\:\mathfrak{a}\text{ is an ideal of A}\}\leftrightarrow\{Z\subseteq\Spec(A)\:|\:Z \text{ is a closed subscheme}\}.
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+%later
+\end{proof}
+
+\subsection{Fiber Products}
+
+\begin{definition}
+Let $X,S$ be schemes. $X$ is called a $S$-scheme if there exists a morphism of schemes $\varphi:X\to S$. 
+\end{definition}
+
+\begin{definition}
+Let $S$ be a scheme. The category of $S$-schemes is $(\mathbf{Sch}/S)$ where
+\begin{enumerate}
+\item $\mathbf{ob}(\mathbf{Sch}/S) = \{\varphi:X\to S\:|\: \varphi$ is a morphism of schemes$\}$.
+\item $(\mathbf{Sch}/S)(\varphi:X\to S,\psi:Y\to S) = \{f:X\to Y\:|\: f$ is a morphism of schemes such that $\varphi=f\circ\psi\}$. 
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Clearly we have
+\begin{equation*}
+(\mathbf{Sch}/\Spec(\mathbb{Z}))=(\mathbf{Sch}).
+\end{equation*}
+For a field $k$ we have,
+\begin{equation*}
+%later
+\end{equation*}
+A given scheme can have many $k$-scheme structure.%later.
+\end{remark}
+
+\begin{definition}
+A fiber product of $S$-schemes $X,Y$ with morphisms $f:X\to S,g:Y\to S$ is such that is a pair of morphisms $(p,q)$ such that
+\begin{equation*}
+\end{equation*}
+\end{definition}
 
 \end{document}

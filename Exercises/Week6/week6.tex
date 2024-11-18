@@ -1,0 +1,107 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{calrsfs}
+\usepackage{tikz-cd} 
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}[section] 
+\newtheorem{definition}{Definition}[section] 
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{notation}{Notation}[section] 
+\newtheorem{remark}{Remark}[section] 
+\newtheorem{corollary}{Corollary}[section] 
+\newtheorem{terminology}{Terminology}[section] 
+\newtheorem{example}{Example}[section] 
+\numberwithin{equation}{section}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\PreSh}{PreSh}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Lie}{Lie}
+
+
+\title{Representation Theory 1 V4A1 Sheet 6 Exercise 30,32}
+\author{So Murata}
+\date{2024/2025 Winter Semester - Uni Bonn}
+
+\begin{document}
+\maketitle
+
+\section*{30}
+Let $f:X\to k$ be a regular function. Since $\mathbb{P}^1_k$ is irreducible, any open sets in $X$ intersects with any other open sets. Therefore, let $x,y\in X$ and $U_x,U_y$ be open sets such that
+\begin{equation*}
+f|_{U_x}={\frac {p_x} {q_x}},f|_{U_y}={\frac {p_y} {q_y}}.
+\end{equation*}
+Then $U_x\cap U_y\not=\emptyset$, thus two rational functions agree on an open set, thus we conclude
+\begin{equation*}
+f={\frac p q}.
+\end{equation*}
+Since $k$ is algebraically closed, $q$ has a pole unless it is a constant. If the former is the case $f$ is not regular thus $q$ is a constant. Since this is a regular function on a projective line, $p$ and $q$ have the same degree. We conclude $f$ is constant.\\
+
+\section*{32}
+
+Since Noetherian scheme is quasi compact, there exists a open covering consisting only of distinguished open sets $\{X_{a_i}\}_{i=1,\cdots,n}$. This follows that $X$ is locally Noetherian. Let $f_i$ be a restriction of $f$ to $X_{a_i}$. We have that 
+\begin{equation*}
+X_a\cap X_{a_i} = X_{aa_i}.
+\end{equation*}
+Since the restriction of $f$ to $X_a$ is $0$, the restriction of $f$ to $X_{aa_i}$ is also $0$. Therefore for some $n_i\in\mathbb{N}$, we have
+\begin{equation*}
+a^{n_i}f_i = 0
+\end{equation*}
+in the localization map. Since we have only finitely many $a_i$, we conclude that for some $n$
+\begin{equation*}
+a^nf = 0
+\end{equation*}
+together with the sheaf property.
+\subsection*{(ii)}
+
+We again argue by the finite cover by distinguished open sets and the sheaf property. Let $h\in \Gamma(X_a,\mathcal{O}_{X_a})$. By restricting $h$ to some $X_{a_i}$, we get 
+\begin{equation*}
+h_i = a^{-n_i}s_i
+\end{equation*}
+for some $s_i\in \mathcal{O}_{X_{a_i}}(X_{a_i})$. Argue again by the finiteness, we conclude there is $n$ such that 
+\begin{equation*}
+a^{n}h_i\in\mathcal{O}_{X_{a_i}}(X_{a_i})
+\end{equation*}
+for all $i$. Each $s_i$ can be glued since for each $i,j$
+\begin{equation*}
+s_i-s_j = 0
+\end{equation*}
+in $X_{aa_ia_j}$. This means that 
+\begin{equation*}
+f^{m_{ij}}(s_i-s_j)=0
+\end{equation*}
+for sufficiently large enough $m_{ij}$ in $X_{a_ia_j}$. Again by the finiteness argument, we conclude that $\{s_i\}$ can be glued to some $t$ in the global section. And the restriction of $t$ to $X_a$ is $a^{n}h$ for some $n$.
+\subsection*{(iii)}
+Let $f,g\in A$ be such that the restriction of $f$ and $g$ are equal in $X_a$. Then 
+\begin{equation*}
+a^n(f-g) = 0.
+\end{equation*}
+But this means that $f$ and $g$ are the same in the localization $A_a$. On the other hand for any $h\in \mathcal{O}_{X_{a}}(X_{a})$ is a restriction of some $t\in A$. Thus $\mathcal{O}_{X_{a}}(X_{a})$ satisfies the properties of localization. By the uniqueness of localizations up to isomorphisms, we conclude the statement.
+\end{document}
