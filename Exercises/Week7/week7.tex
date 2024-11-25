@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{calrsfs}
+\usepackage{tikz-cd} 
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}[section] 
+\newtheorem{definition}{Definition}[section] 
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{notation}{Notation}[section] 
+\newtheorem{remark}{Remark}[section] 
+\newtheorem{corollary}{Corollary}[section] 
+\newtheorem{terminology}{Terminology}[section] 
+\newtheorem{example}{Example}[section] 
+\numberwithin{equation}{section}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\PreSh}{PreSh}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Lie}{Lie}
+
+\title{Sheet 7 V4A1}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{39}
+
+\subsection*{(ii)}
+Let $K/k$ be an arbitrary transcendental extension of fields. And $f:\Spec(K)\to\Spec(k)$ be a natural mapping (ie. mapping the unique point to the unique point). This is not of finite type. But it has finite fibers, but it has a base change with infinite fibers. In particular, take $T\in K$ to be a transcendental element over $k$, and we claim that the base change by $\Spec(k(T))\to \Spec(k)$ has infinite fibers. This base change is $\Spec(K\otimes_kk(T))\to\Spec(k(T))$, which factors as
+\begin{equation*}
+\Spec(K\otimes_kk(T))\to\Spec(k(T)\otimes_kk(T))\to\Spec(k(T))
+\end{equation*}
+whose first step is surjective (being a base change of the surjection $\Spec(K)\to\Spec(k(T))$, so it is enough that the second map $q:\Spec(k(T)\otimes_kk(T))\to\Spec(k(T))$ has infinite fiber. But we described $k(T)\otimes_kk(T)$ above and its Spec is infinite.
+
+This shows both that quasi-finite and injectivity are not preserved under morphisms.
+
+\subsection*{(iii)}
+Let $f:Z\to X$ be a closed immersion. In other words, there is an open affine covering $\{U_i\}$, with $U_i=\Spec(A_i)$ of $X$ such that $f^{-1}(U_i)=\Spec(A_i/I_i)$ for some ideal $I_i$ of $A_i$. \\
+\par Let $g:Y\to X$ be a morphism. To show that $q:Z\times_XY\to Y$ is a closed immersion,
+we take an open affine covering $\{\Spec(B_i)\}$ of $Y$ such that $g(\Spec(B_i))\subset(\Spec(A_i))$. \\
+\par By since $q(\Spec(B_i)) = (\Spec(B_i))\times_XZ = (\Spec(B_i))\times_{\Spec(A_i)}\Spec(A_i/I_i) = \Spec(B_i\otimes_{A_i}A_i/I_i) = \Spec(B_i/I_iB_i)$, therefore $q$ is a closed immersion.\\
+\par For open immersion, we have
+
+\section*{40}
+
+We have that $U\times_SV$ is an open subscheme of $X\times_SX$. 
+
+\[
+\begin{tikzcd}
+X \arrow[r, "\Delta", bend left=49] & X\times_SX \arrow[l, "p"] \arrow[r, "q"']                                                                    & X \arrow[l, "\Delta"', bend right=49] \\
+U \arrow[u, "i_U"]                  & U\times_S V \arrow[l, "p_U"'] \arrow[r, "q_V"] \arrow[u, "i_{UV}"]                                           & V \arrow[u, "i_V"']                   \\
+                                    & U\cap V \arrow[lu, "\iota_U"] \arrow[ru, "\iota_V"'] \arrow[u, "\theta_{UV}"'] \arrow[uu, dashed, bend left] &                                      
+\end{tikzcd}
+\]
+
+where $i_U,i_V,\iota_U,\iota_V$ are inclusions and $\theta_{UV}$ is an isomorphism of $U\times_SV$ and $U\cap V$, this follows from that $\Delta^{-1}(U\times_SV)$.\\
+\par By the universal property of $X\times_S X$, we have
+\begin{equation*}
+h = i_{UV}\theta_{UV}:U\cap V\to X\times_S X, \quad p\circ h  = i_U\iota_U, q\circ h = i_v\iota_V.
+\end{equation*}
+On the other hands, there are $\delta i_U\iota_U, \delta i_V\iota_V$ satisfying the conditions as $h$. We conclude that 
+\begin{equation*}
+p_1\circ(\Delta i_u\iota_U)=id_Xi_U\iota_U = i_U\iota_U, p_2\circ(\Delta i_V\iota_V) = i_V\iota_V.
+\end{equation*}
+Again using the universal property, we derive
+\begin{equation*}
+h = \Delta i_U\iota_U = i_{UV}\theta_{UV}\Rightarrow \Delta(U\cap V) = \theta_{UV}(U\cap)\subseteq U\times_S V\Rightarrow U\cap V\supseteq\Delta^{-1}(U\times_SV).
+\end{equation*}
+Also we have
+\begin{equation*}
+U\subseteq p(U\times_S V)\subseteq p_1\Delta\Delta^{-1}(U\times_S V) = \Delta^{-1}(U\times_S V),
+\end{equation*}
+we derive $V\subseteq\Delta^{-1}(U\times_SV)$, we conclude $U\cap V\subseteq \Delta^{-1}(U\times_SV)$.\\
+\par We have $U,V,S$ are affine therefore, $U\times_S V$ is affine. Since $U\cap V=\Delta^{-1}(U\times_S V)$. $\Delta|_{U\cap V}$ is a restriction of a closed immersion, there fore a closed immersion. We conclude that $U\cap V$ is affine.
+\end{document}

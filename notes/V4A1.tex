@@ -44,6 +44,9 @@
 \newcommand*{\localization}[2]{#1_{\mathfrak{#2}}}
 \newcommand*{\ringedspacemorph}[1]{(#1,#1^{\#})}
 \newcommand*{\sheaf}[2]{(#1,{\mathcal{#2}}_{#1})}
+\newcommand{\fib}[1]{%
+  \mathbin{\mathop{\times}\limits_{#1}}%
+}
 
 \title{Algebraic Geometry 1}
 \author{So Murata}
@@ -1727,9 +1730,305 @@ A given scheme can have many $k$-scheme structure.%later.
 \end{remark}
 
 \begin{definition}
-A fiber product of $S$-schemes $X,Y$ with morphisms $f:X\to S,g:Y\to S$ is such that is a pair of morphisms $(p,q)$ such that
+A fiber product of $S$-schemes $X,Y$ with morphisms $f:X\to S,g:Y\to S$ is a scheme $X\fib{S}Y$ together with a morphisms $p:X\fib{S}Y\to X,q:X\fib{S}Y\to Y$ such that
 \begin{equation*}
+f\circ p = g\circ q
+\end{equation*}
+and for any scheme $F$ with such pair of morphisms $p_F:F\to X,q_F:F\to Y$, there is a morphisms of scheme $\varphi:F\to X\fib{S}Y$ such that we have
+\begin{equation*}
+p\circ\varphi=p_F,\quad q\circ\varphi = q_F.
+\end{equation*}
+\[
+\begin{tikzcd}
+F \arrow[rrd, "q_F"] \arrow[rdd, "p_F"'] \arrow[rd, "\exists !\varphi" description, dotted] &                                           &                  \\
+                                                                                     & X\fib{S} Y \arrow[d, "p"] \arrow[r, "q"'] & Y \arrow[d, "g"] \\
+                                                                                     & X \arrow[r, "f"']                         & S               
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{proposition}
+A fiber product of $S$-schemes $X,Y$ is unique up to isomorphisms if it exists.
+\end{proposition}
+\begin{proof}
+%later
+\end{proof}
+\begin{proposition}
+Let $X,Y$ be $S$-schemes. Then we have an isomorphism
+\begin{equation*}
+X\fib{S}Y\cong Y\fib{S}X.
+\end{equation*}
+\end{proposition}
+\begin{proof}
+%later
+\end{proof}
+\begin{proposition}
+Let $X$ be a $S$-scheme, $Z$ be a $T$-scheme, and $Y$ be both a $S$ and $T$-scheme. Then we have an isomorphism
+\begin{equation*}
+(X\fib{S}Y)\fib{T}Z \cong X\fib{S}(Y\fib{T}Z).
+\end{equation*}
+\end{proposition}
+\begin{proof}
+\end{proof}
+\begin{example}
+Let $X,Y,S\in \mathbf{ob}(\mathbf{Sch})$ and $f:X\to S, g:Y\to S$ be mappings. Define
+\begin{equation*}
+X\fib{S}Y = \{(x,y)\in X\times Y\:|\: f(x) = g(y)\}.
+\end{equation*}
+Then this is a fiber product together with restriction of projections from $X\times Y\to X,Y$ to $X\fib{S} Y$, denoted by $p,q$. 
+%later check the universality.
+\end{example}
+
+\begin{example}
+There does not exist a fiber product for $\mathbb{A}_k^1,\mathbb{A}_k^1,\Spec(k)$. %Proof later
+\end{example}
+
+\begin{lemma}
+Fiber products exist in $(\mathbf{AffSch})$. 
+\label{fiber_product_affine_scheme}
+\end{lemma}
+\begin{proof}
+%later
+\end{proof}
+
+\begin{corollary}
+Let $k$ be a field and $m,n\in\mathbb{N}$ then we have
+\begin{equation*}
+\mathbb{A}^m_k\times \mathbb{A}^m_k \cong\mathbb{A}^{m+n}_k.
+\end{equation*}
+\end{corollary}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{remark}
+For a scheme $X$, write $|X|$ be its underling topological space. Then as topological spaces we have
+\begin{equation*}
+|\mathbb{A}^1_k|\times| \mathbb{A}^1_k|\not\cong|\mathbb{A}^{2}_k|.
+\end{equation*}
+Since %later.
+\end{remark}
+
+\begin{lemma}
+Let $X,Y$ be $S$-schemes and assume the fiber product $X\fib{S}Y$ exists with projections $p:X\fib{S}Y\to X$ and $q:X\fib{S}Y\to Y$. Then for open sets $U\subseteq X, V\subseteq Y$, we have
+\begin{equation*}
+p^{-1}(U)\cong U\fib{S}Y,\quad q^{-1}(V)\cong X\fib{S}V.
+\end{equation*}
+\end{lemma}
+\begin{proof}
+%later
+\end{proof}
+
+\begin{lemma}
+Let $X,Y$ be $S$-schemes and $X=\bigcup_{i\in I}U_i$ be an open covering of $X$. If for each $i$, the fiber product $U_i\fib{S}Y$ exists, then the fiber product $X\fib{S}Y$ exists.
+\label{sheaf_property_fiber_product}
+\end{lemma}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{corollary}
+Let $X,Y$ be $S$-schemes and assume $Y,S$ are affine. Then $X\fib{S}Y$ exists.
+\end{corollary}
+
+\begin{proof}
+Let $X=\bigcup_{i\in I}U_i$ be an open covering such that for each $i\in I$, $\Gamma(U_i,\mathcal{O}_X)$ is affine. Then by Lemma \ref{fiber_product_affine_scheme}, fiber products $\{U_i\fib{S}Y\}_{i\in I}$ exist. By Lemma \ref{sheaf_property_fiber_product}, we conclude the fiber product $X\fib{S}Y$ exists.
+\end{proof}
+
+\begin{corollary}
+Let $X,Y$ be $S$-schemes and assume $X,S$ are affine. Then $X\fib{S}Y$ exists.
+\label{right_locally_affine_fiber_product}
+\end{corollary}
+
+\begin{corollary}
+Let $X,Y$ be $S$-schemes and assume $S$ is affine. Then $X\fib{S}Y$ exists.
+\end{corollary}
+
+\begin{proof}
+Let $X=\bigcup_{i\in I}U_i$ be an open covering such that for each $i\in I$, $\Gamma(U_i,\mathcal{O}_X)$ is affine. They by Corollary \ref{right_locally_affine_fiber_product}, fiber products $\{U_i\fib{S}Y\}_{i\in I}$ exist. By Lemma \ref{sheaf_property_fiber_product}, $X\fib{S}Y$ exists. 
+\end{proof}
+
+\begin{proposition}
+Fiber products exist in $(\mathbf{Sch})$. 
+\end{proposition}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{definition}
+Let $Y$ be a topological group and $(Y,\mathcal{O}_Y)$ be a locally ringed space. We denote the residue field of $y$ to be
+\begin{equation*}
+k(y) = \mathcal{O}_{Y,y}/\mathfrak{m}_y
+\end{equation*}
+where $\mathfrak{m}_y$ is the maximal ideal of the stalk $\mathcal{O}_{Y,y}$.
+\end{definition}
+
+\begin{definition}
+Let $f:X\to Y$ be a scheme morphism and $y\in Y$. The fiber of $f$ over $y$ is the scheme $X_y$ defined as
+\begin{equation*}
+X_y = X\fib{Y}\Spec(k(y)).
+\end{equation*}
+\[
+\begin{tikzcd}
+\Spec(k(y))\fib{Y}X \arrow[d] \arrow[r] & X \arrow[d, "f"] \\
+\Spec(k(y)) \arrow[r, "i"']             & Y               
+\end{tikzcd}
+\]
+%later check i if it is actually i^\#
+\end{definition}
+
+\begin{definition}
+Let $|X_y|$ be an underlying topological space of $X_y$. Then we have the homeomorphism between
+\begin{equation*}
+|X_y|\cong f^{-1}(y)
+\end{equation*}
+with the topology on $f^{-1}(y)$ is the induced topology. %check the def of induced topology.
+\end{definition}
+
+\begin{proof}
+%later.
+\end{proof}
+
+\begin{definition}
+Let $k$ be a field. We define a category $(\mathbf{Sch}/k)$ such that its object consists of morphisms of schemes $f:X\to\Spec(k)$ and morphisms between two objects $\varphi:X\to\Spec(k)$ and $\psi:Y\to\Spec(k)$ consists of morphisms $f:X\to Y$ such that 
+\[
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] \arrow[r, "f"] & Y \arrow[ld, "\psi"] \\
+\Spec(k)                               &                  
+\end{tikzcd}
+\]
+is a commutative diagram.
+\end{definition}
+
+\begin{proposition}
+Let $K/k$ be an extension of fields. Then we have a morphism such that 
+\begin{equation*}
+(\mathbf{Sch}/k)\ni [f:X\to\Spec(k)]\mapsto [X\fib{k}K\to\Spec(K)]\in(\mathbf{Sch}/K).
+\end{equation*}
+\label{base_change_field_extension}
+\end{proposition}
+
+\begin{definition}
+Let $K/k$ be an extension of fields. Let $X$ be a $\Spec(k)$ scheme then the base change $X_K$ of $X$ to $K$ is 
+\begin{equation*}
+X_K = X\fib{k}K.
+\end{equation*} 
+\end{definition}
+
+\begin{proposition}
+Let $K/k$ be an extension of fields. Let $X,Y$ be $\Spec(k)$ scheme. A morphism $f:X\to Y$ between two objects $\varphi:X\to\Spec(k),\psi:Y\to\Spec(k)$ of $(\mathbf{Sch}/k)$, there is a unique morphism $f_K:X_K\to Y_K$ such that it is a morphism between $X_K$ and $Y_K$ in $(\mathbf{Sch}/K)$.
+\end{proposition}
+
+\begin{definition}
+Let $K/k$ be a field extension and $X$ be a $\Spec(k)-scheme$. Then we define the set of $K$-rational points of $X$ by 
+\begin{equation*}
+X(K) = %later
 \end{equation*}
 \end{definition}
+
+\begin{remark}
+There is one to one correspondence between
+\begin{equation*}
+X(K)\leftrightarrow X_K(K).
+\end{equation*}
+%later
+\end{remark}
+
+\begin{definition}
+Let $f:X\to Y$ be a morphism of schemes and $y\in Y$. Consider the residue field $k(y)$ and its algebraic closure $\overline{k(y)}$. \\
+\par The geometric fiber over $y$ is 
+\begin{equation*}
+X_{\overline{y}} = \Spec(\overline{k(y)})\fib{\Spec(k(y))}X_y.
+\end{equation*}
+\end{definition}
+
+\begin{proposition}
+We have the isomorphism,
+\begin{equation*}
+X_{\overline{y}} \cong\Spec(\overline{k(y)})\fib{Y}X.
+\end{equation*}
+\label{isomorphism_geometric_fiber}
+\end{proposition}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{example}
+\[
+\begin{tikzcd}
+\mathbb{A}_{\overline{\mathbb{Q}}}^1 \arrow[d] \arrow[r] & \mathbb{A}_{\mathbb{Q}}^1 \arrow[d] \\
+\Spec(\overline{\mathbb{Q}}) \arrow[r]                   & \Spec(\mathbb{Q})=\{y\}                  
+\end{tikzcd}
+\]
+where
+\begin{equation*}
+\mathbb{A}^1_{\mathbb{Q}} = \{(f)\:|\: f \in \mathbb{Q}[x]\text{ is irreducible}\}\cup\{(0)\}
+\end{equation*}
+and
+\begin{equation*}
+\mathbb{A}^1_{\overline{\mathbb{Q}}} = \{(x-\lambda)\:|\: \lambda \in \mathbb{Q}\}\cup\{(0)\}.
+\end{equation*}
+%later
+\end{example}
+
+\begin{example}
+Consider $X\to Y = \Spec(\mathbb{Z}_{(p)})$. Notice that $Y = \{\eta,t\}$ where $\eta=(0)$ a generic point and $t=$%later.
+We have 
+\begin{equation*}
+X_\eta \cong\Spec(\mathbb{Q}),\quad X_t\cong\Spec(\mathbb{F}_p).
+\end{equation*}
+And geometric fibers
+\begin{equation*}
+X_{\overline{\eta}} \cong\Spec(\overline{\mathbb{Q}}),\quad X_{\overline{t}}\cong\Spec(\overline{\mathbb{F}_p}).
+\end{equation*}
+%later
+\end{example}
+
+\begin{example}
+There is a bijection between $\mathbb{A}^n_k(\overline{k})$ and $\overline{k}^n$ by
+\begin{equation*}
+(x_1-\lambda_1,\cdots,x_n-\lambda_n) \leftrightarrow (\lambda_1,\cdots,\lambda_n).
+\end{equation*}
+%later
+\end{example}
+
+\begin{remark}
+The base change does not preserve the topology in general.
+\[
+\begin{tikzcd}
+X_K \arrow[d] \arrow[r] & X \arrow[d] \\
+\Spec(K) \arrow[r]      & \Spec(k)   
+\end{tikzcd}
+\]
+And $X$ is connected does not imply $X_K$ being connected.
+%later
+Indeed, we have a counter example that
+\begin{equation*}
+X = \Spec(\mathbb{C}),\quad k =\mathbb{R}, \quad K=\mathbb{C}.
+\end{equation*}
+By Proposition \ref{isomorphism_geometric_fiber} we have
+\begin{equation*}
+X_K = \Spec(\mathbb{C})\fib{\Spec(\mathbb{R})}\Spec(\mathbb{C}).
+\end{equation*}
+We observe that 
+\begin{equation*}
+|X_K| = \{(x-i),(x+i)\}
+\end{equation*}
+which is disconnected however,
+\begin{equation*}
+|X| = \{(0)\}
+\end{equation*}
+which is connected.
+\end{remark}
+
+\begin{proposition}
+Let $K/k$ be a field extension where both $k,K$ are algebraically closed. Then the topology on $X_K$ coincides with the topology on $X$.%later
+\end{proposition}
+\begin{proof}
+\end{proof}
 
 \end{document}
