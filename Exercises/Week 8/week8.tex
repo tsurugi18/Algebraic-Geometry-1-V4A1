@@ -1,0 +1,136 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{calrsfs}
+\usepackage{tikz-cd} 
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}[section] 
+\newtheorem{definition}{Definition}[section] 
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{notation}{Notation}[section] 
+\newtheorem{remark}{Remark}[section] 
+\newtheorem{corollary}{Corollary}[section] 
+\newtheorem{terminology}{Terminology}[section] 
+\newtheorem{example}{Example}[section] 
+\numberwithin{equation}{section}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\MaxSpec}{MaxSpec}
+\DeclareMathOperator{\PreSh}{PreSh}
+\DeclareMathOperator{\Sh}{Sh}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\Coker}{Coker}
+%\newcommand*{\name}[\num_arguments][default values]{{\color{#1}\Large #2}}
+\newcommand*{\multivar}[2]{{#1_1,\cdots,#1_{#2}}}
+\newcommand*{\localization}[2]{#1_{\mathfrak{#2}}}
+\newcommand*{\ringedspacemorph}[1]{(#1,#1^{\#})}
+\newcommand*{\sheaf}[2]{(#1,{\mathcal{#2}}_{#1})}
+
+\newcommand{\fib}[1]{%
+  \mathbin{\mathop{\times}\limits_{#1}}%
+}
+\newcommand{\tens}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+\title{Algebraic Geometry 1}
+\author{So Murata}
+\date{2024/2025 Winter Semester - Uni Bonn}
+
+\begin{document}
+\maketitle
+\subsection*{46}
+
+Universally closedness is stable under the base change by definition. We will prove both separated and finite-type are stable under any base change.
+
+\subsubsection*{Being of separated is stable under the base change.}
+
+Let $f:X\to Y$ be a morphism of schemes over a base $S$. Let $S'\to S$ be a morphism of schemes. Let $f':X_{S'}\to Y_{S'}$ be the base change of $f$. Then the diagonal morphism of $f'$ is 
+\begin{equation*}
+\Delta_{f'}:X_{S'} = S'\fib{S}X\to X_{S'}\fib{Y_{S'}X_{S'}} = S'\fib{S}(X\fib{Y}X)
+\end{equation*}
+which can be seen as the base change of $\Delta_f$. Since closed immersion is stable under base change from the previous sheet. We need to show that quasi-compactness is stable under the base change.\\
+\par We see that it is enough to prove the case for affine schemes. Let $Y=\Spec(B),Y'=\Spec(B')$ be affine. And let $g:X\to Y$ be quasi-compact. Then $X$ can be covered by a finite collection of affine open subschemes $\Spec(A_i)$ and then
+\begin{equation*}
+X'=X\fib{Y}Y'
+\end{equation*}
+is covered by the finite collection of affine open subschemes $\Spec(A_i\tens{B}B')$ by the definition of fiber products. Thus $X'$ is quasi-compact with $Y'$ being quasi-compact.
+
+\subsubsection*{Being of finite type is stable under the base change.}
+
+Let $f:X\to Y$ be of finite type and $g:S'\to S$ be a scheme morphism. 
+\[
+\begin{tikzcd}
+X'=X\fib{S}S'\arrow[r,"f'"]\arrow[d]&S'\arrow[d,"g"]\\
+X\arrow[r,"f"]&S
+\end{tikzcd}
+\]
+
+Where $S=\bigcup_{i\in I} S_i,S_i = \Spec(B_i)$. We have
+\begin{equation*}
+f^{-1}(S_i) = \bigcup_{j\in J}U_{i_j}, U_{i_j} = \Spec(A_{i_j})
+\end{equation*}
+where $J$ is finite. We can regard $A_{i_j}$ as a finitely generated $B_i$ algebra.\\
+\par $g^{-1}(S_i)$ is an open subscheme, thus $g^{-1}(S_i) = \bigcup_{k\in K}W_{i_k}, W_{i_k} = \Spec(C_{i_k})$. We derive that 
+\begin{equation*}
+S' = g^{-1}(S) = \bigcup_{i,k} W_{i_k}.
+\end{equation*}
+We have
+\begin{equation*}
+f'^{-1}(W_{i_j}) = X\fib{S}W_{i_j} = f^{-1}(S_i)\fib{S_i}W_{i_j} = \bigcup_{k\in K} U_{i_k}\fib{S_i}W_{i_j} = \bigcup_{k\in K} \Spec(A_{i_k}\tens{B_i}C_{i_j}).
+\end{equation*}
+
+Therefore each $f'^{-1}(W_{i_j})$ can be covered by finitely many affine sets. We have $A_{i_k}$ is finite over $B_i$, there are $a_1,\cdots,a_n\in A_{i_k}$ such that
+\begin{equation*}
+A_{i_k} = B_i[a_1,\cdots,a_n].
+\end{equation*}
+We also have $C_{i_j}$ is an $B_i$ algebra, thus by scalar multiplication we have
+\begin{equation*}
+A_{i_k}\tens{B_i}C_{i_j} = C_{i_j}[a_1\tens{B_i}1,\cdots,a_n\tens{B_i}1].
+\end{equation*}
+We derived that base change preserves finite type. \\
+\par In conclusion, properness is stable under base changes.
+
+\section*{Exercise 45}
+
+First let us assume that we have $X=\Spec(A), S = \Spec(\mathbb{F}_{p})$ with the morphism $\Fr_X:X\to S$ induced by a homomorphism of rings of finite type $\varphi:\mathbb{F}_{p}\to A$. Thus $A$ is automatically of characteristic $p$. Since $\varphi$ is of finite type we have
+\begin{equation*}
+A = \mathbb{F}_{p}[a_1,\cdots,a_n]
+\end{equation*}
+for some $a_1,\cdots,a_n\in A$. Under this condition, we also have that $F_S = id$. Then 
+\begin{equation*}
+X^{(p)} = X\fib{S}S = \Spec(A\tens{\mathbb{F}_p}\mathbb{F}_p) = \Spec(A) = X.
+\end{equation*}
+And $F_{X/S}$ is an identity.\\
+\par In the case where $X=\Spec(A)$ and $S=\Spec(\mathbb{F}_{p^r}$. From Commutative Algebra, we know that 
+\begin{equation*}
+A \cong \mathbb{F}_{p^r}[(X_i)_{i\in I}]/((f_j)_{j\in J}),
+\end{equation*}
+for some variables and polynomials. Then $A^{(p)}$ is such that 
+\begin{equation*}
+A^{(p)} \cong \mathbb{F}_{p^r}[(X_i)_{i\in I}]/((f_j^p)_{j\in J}),
+\end{equation*}
+
+And $F_{X/S}$ is induced by the inclusion from $\varphi(x) = x^p$.
+
+\end{document}

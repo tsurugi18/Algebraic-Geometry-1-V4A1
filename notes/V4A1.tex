@@ -7,7 +7,6 @@
 \usepackage{bbm}
 \usepackage{lipsum}
 \usepackage{fancyhdr}
-\usepackage{calrsfs}
 \usepackage{tikz-cd} 
 
 \newtheorem{theorem}{Theorem}[section] 
@@ -22,9 +21,11 @@
 \numberwithin{equation}{section}
 
 \DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Ann}{Ann}
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\interior}{int}
@@ -36,6 +37,7 @@
 \DeclareMathOperator{\PreSh}{PreSh}
 \DeclareMathOperator{\Sh}{Sh}
 \DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\Image}{Im}
 \DeclareMathOperator{\Coker}{Coker}
@@ -188,7 +190,7 @@ is a commutative diagram. Each $\alpha_A$ is called a component of $\alpha$.
 \subsection{Direct Limits}
 
 \begin{definition}
-A partially ordered set $(X,\leq)$ is directed if for any $x,y\in X$ there is $z\in X$ such that $x\leq c$ and $y\leq c$.
+A partially ordered set $(X,\leq)$ is directed if for any $x,y\in X$ there is $z\in X$ such that $x\leq z$ and $y\leq z$.
 \end{definition}
 
 \begin{example}
@@ -214,6 +216,7 @@ Let $I$ be a directed partially ordered set and $\mathcal{A}$ be a category. A d
 
 \begin{remark}
 Categorically, the directed system of objects of $\mathcal{A}$ indexed by $I$ is a functor $\mathcal{O}^{op}\to\mathcal{C}$, where $\mathcal{O}$ is a category which encodes the ordered set $I$ as a category by the same procedure as in Example \ref{order_category}. Then a directed system if a functor $\mathcal{O}^{\mathbf{op}}\to\mathcal{A}$.
+%Revise the sentences, check the definitions
 \end{remark}
 
 \begin{definition}
@@ -238,8 +241,13 @@ is a commutative diagram.
 
 \begin{proposition}
 \label{direct_limit_exact_functor}
-$\varinjlim$ is an exact functor.
+$\varinjlim$ is an exact functor.\
+%Check the definition of exact functor.
 \end{proposition}
+
+\begin{proof}
+%Missing proof
+\end{proof}
 
 \begin{proposition}
 In the cases where $\mathcal{A}=(\mathbf{Ab}),(\mathbf{Sets})$, there exist direct limits and for each category, such limit is constructed in the following ways.
@@ -247,8 +255,12 @@ In the cases where $\mathcal{A}=(\mathbf{Ab}),(\mathbf{Sets})$, there exist dire
 \item $\varinjlim A_n = (\bigoplus_{i\in I}A_i)/N$ where $N=\{a_i-\rho_{ij}(a_i)\:|\:a_i,i\leq j\}$.
 \item $\varinjlim A_n = (\coprod_{i\in I}A_i)/\sim$ where $a_i\sim a_j$ if there is $k$ such that $i\leq k$ $j\leq k$, and $\rho_{ik}(a_i)=\rho_{jk}(a_j)$.
 \end{enumerate}
-Furthermore, these two direct limits match as sets.
+Furthermore, these two direct limits coincide as sets.
 \end{proposition}
+
+\begin{proof}
+%Missing proof
+\end{proof}
 
 \begin{proposition}
 $\varinjlim$ is (left) exact in $(\mathbf{Ab})$. In other words, 
@@ -272,6 +284,10 @@ There exists a short exact sequence
 \end{tikzcd}
 \]
 \end{proposition}
+
+\begin{proof}
+%Missing proof
+\end{proof}
 
 \section{Commutative Algebra}
 
@@ -374,6 +390,18 @@ Let $\mathfrak{a}\subset A$ be an ideal. Then we have the following are homeomor
 \end{equation*}
 \end{lemma}
 
+\begin{lemma}
+Let $A$ be a commutative ring and $a\in A$. For elements ${\frac {b_1} {a^{n_1}}},{\frac {b_2} {a^{n_2}}}$ of $A_a$, assume that for any $\mathfrak{p}\in D(a)$, 
+\begin{equation*}
+{\frac {b_1} {a^{n_1}}},{\frac {b_2} {a^{n_2}}}\in A_{\mathfrak{p}}, \quad {\frac {b_1} {a^{n_1}}}={\frac {b_2} {a^{n_2}}}
+\end{equation*}
+Let us define an ideal
+\begin{equation*}
+\mathfrak{q} = \Ann(b_1a^{n_2}-b_2a^{n_1}).
+\end{equation*}
+Then for any $\mathfrak{p}\in D(a)$, we have $\mathfrak{q}\not\subseteq \mathfrak{p}$.
+\end{lemma}
+
 \section{Classical Algebraic Geometry}
 
 \subsection{Affine Variety}
@@ -411,22 +439,22 @@ A(X)=k[x_1,\cdots,x_n]/I(X).
 \subsection{Presheaves}
 
 \begin{definition}
-Let $(X,\mathcal{T})$ be a topological space. We define the presheaf $\mathcal{F}$ of a category $\mathcal{A}$ on $X$ such that 
+Let $(X,\mathcal{T})$ be a topological space. We define a presheaf $\mathcal{F}$ of a category $\mathcal{A}$ on $X$ to be such that 
 \begin{enumerate}[\textbullet]
 \item $U\in\mathcal{T}$, $\mathcal{F}(U)\in\ob(\mathcal{A})$,
 \item $U,V\in\mathcal{T}$, $V\subset U \Rightarrow $ there exists a map $\rho_{UV}:\mathcal{F}(U)\to\mathcal{F}(V)$ 
 \end{enumerate}
 
-such that 
+satisfying,
 \begin{enumerate}[i).]
 \item For any $U\in\mathcal{T}$, $\rho_{UU}=1_{\mathcal{F}(U)}$.
 \item $U,V,W\in\mathcal{T}, W\subset V\subset U\rightarrow \rho_{UW}=\rho_{VW}\circ\rho_{UW}$.
 \end{enumerate}
 \end{definition}
 
-\begin{remark}
+\begin{notation}
 In the case $\mathcal{A} = (\mathbf{Sets}),(\mathbf{Ab})$, $\mathcal{F}(\emptyset)=\emptyset,\{1\}$, respectively.
-\end{remark}
+\end{notation}
 
 \begin{definition}
 An element of $\mathcal{F}(U)$ is called a local section of $\mathcal{F}$ and $\Gamma(U,\mathcal{F}) = \mathcal{F}(U)$ is called the space of sections over $U$. In particular $\Gamma(X,\mathcal{F})$ is called the space of global sections of $\mathcal{F}$.
@@ -520,6 +548,7 @@ A morphism of presheaves is a natural transformation $\varphi:\mathcal{F}\to \ma
 \begin{enumerate}[i).]
 \item injective if 
 \end{enumerate}
+%Find definitions for the natural transformation to be injective/surjective/epimorphism. Should put this into the category theory section.
 \end{definition}
 
 
@@ -537,14 +566,16 @@ Let $X$ be a differential manifold(eg. $X\subset\mathbb{R}^n$). Let us define
 \begin{equation*}
 \mathcal{C}^{\mathbf{diff}}(U) = \{f:U\to\mathbb{R}\:|\:f\text{ is differentiable.}\}. 
 \end{equation*}
-Then the inclusions $\mathcal{C}_X^{\mathbf{diff}}(U)\subset\mathcal{C}_X(U)$ defines the natural transformation.
+Then the inclusions $\mathcal{C}_X^{\mathbf{diff}}(U)\subset\mathcal{C}_X(U)$ defines a morphism of presheaves.
 \end{example}
 
 \begin{example}
 Let $X,Y=S^1$ be topological spaces and $F$ be a presheaf such that for any open set $U\subset X$, $F(U)=\mathcal{C}^0(U,Y)$.Then we can introduce a natural transformation such that 
 \begin{equation*}
-\mathcal{C}_X(U)\ni f\mapsto \exp(2\pi fi).
+\mathcal{C}_X(U)\ni f\mapsto \exp(2\pi fi)
 \end{equation*}
+which is indeed a morphism of presheaves $\mathcal{C}_X(U)$ and $F(U)$
+%Gives an explicit formula for the restrictions
 \end{example}
 
 \subsection{Sheaves}
@@ -571,15 +602,16 @@ A presheaf $\mathcal{O}_X$ with $X=\Spec(A)$ is a sheaf.
 
 \begin{example}
 Let $(X,\mathcal{T})$ be a topological space and $G$ be a group. We define a constant presheaf $\mathbb{G}(U) = G$. In general, this is not a sheaf. Instead, we define a constant sheaf $\underline{\mathbb{G}}(U) = \mathcal{C}^0(U,G)$ where $G$ is regarded as a topological space with the discrete topology. Then for any connected component of $X$ is mapped to a single point set in $G$.
+%Review the definition and properties of fundamental groups.
 \end{example}
 
 \begin{definition}
 Let $\mathcal{F}_1,\mathcal{F}_2$ be sheaves. A mapping $\varphi:\mathcal{F}_1\to\mathcal{F}_2$ is called a morphism of sheaves if it is a morphism of presheaves.
 \end{definition}
 
-\begin{definition}
+\begin{notation}
 A set of sheaves of $\mathcal{A}$ on the topological space $(X,\mathcal{T})$ is denoted as $\Sh_{\mathcal{A}}(X)$.
-\end{definition}
+\end{notation}
 
 \begin{remark}
 As in the case of presheaves, $\Sh_\mathcal{A}(X)$ can be regarded as a category with sheaf morphisms.
@@ -595,12 +627,20 @@ In the case $\mathcal{A}=(\mathbf{Ab})$, we denote $\Sh_{(\mathbf{Ab})}(X) = \Sh
 
 \subsection{Stalks}
 
+\begin{notation}
+Let $(X,\mathcal{T})$ be a topological space. For a point $x\in X$ ,we denote the collection of all open sets which contain $x$ as
+\begin{equation*}
+\mathcal{O}_x = \{U\in\mathcal{T}\:|\: x\in U\}.
+\end{equation*}
+\end{notation}
+
 \begin{definition}
 \label{def_stalk}
 Suppose we have a topological space $(X,\mathcal{T})$ and a category $\mathcal{A}$ which admits direct limits. For a presheaf $\mathcal{F}\in\PreSh_{\mathcal{A}}(X)$, by inheriting the notations from Example \ref{top_dir_cat}, we define the stalk $\mathcal{F}_x$ of $\mathcal{F}$ at $x\in X$ by
 \begin{equation*}
-\mathcal{F}_x = \varinjlim_{U\in\mathcal{O}_x}\mathcal{F}(U) =  \varinjlim_{x\in U,U\in\mathcal{T}}\mathcal{F}(U).
+\mathcal{F}_x = \varinjlim_{U\in\mathcal{O}_x}\mathcal{F}(U).
 \end{equation*}
+%Check if this can be defined in more general settings.
 \end{definition}
 
 \begin{example}
@@ -820,7 +860,7 @@ holds for any $\mathfrak{q}\in V$.
 \subsection{Morphisms in $\PreSh_{(\mathbf{Ab})}(X)$}
 
 \begin{definition}
-Let $\varphi:\mathcal{F}\to\mathcal{G}$ be a homomorphism of presheaves $\PreSh_{(\mathbf{Ab})}(X)$. Then we define the following.
+Let $\varphi:\mathcal{F}\to\mathcal{G}$ be a homomorphism of presheaves $\PreSh_{(\mathbf{Ab})}(X)$. Then we define the following presheaves.
 \begin{enumerate}[1).]
 \item $\Ker^{\mathbf{pre}}(\varphi)(U) = \Ker\varphi_U$,
 \item $\Image^{\mathbf{pre}}(\varphi)(U) = \Image\varphi_U$,
@@ -1109,8 +1149,230 @@ Let $\varphi:\mathcal{F}\to\mathcal{G}$ be a morphism of sheaves. Then the follo
 \end{corollary}
 
 \begin{proof}
-
+%missing proof
 \end{proof}
+
+\subsection{Exact Sequences of Sheaves}
+
+\begin{definition}
+A sequence
+\[
+\begin{tikzcd}
+\mathcal{F}\arrow[r,"\varphi"]&\mathcal{G}\arrow[r,"\psi"]&\mathcal{H}
+\end{tikzcd}
+\]
+of sheaves with morphisms $\varphi,\psi$ of sheaves is said to be exact at $\mathcal{G}$ if
+\begin{equation*}
+\Image\varphi=\Ker\psi.
+\end{equation*}
+\end{definition}
+
+\begin{definition}
+A short exact sequence of sheaves is a sequence
+\[
+\begin{tikzcd}
+0\arrow[r]&\mathcal{F}\arrow[r,"\varphi"]&\mathcal{G}\arrow[r,"\psi"]&\mathcal{H}\arrow[r]&0
+\end{tikzcd}
+\]
+which is exact at all terms. In other words,
+\begin{enumerate}[i).]
+\item $\varphi$ is injective,
+\item $\psi$ is surjective,
+\item $\Image\varphi=\Ker\psi$.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+Given a exact sequence
+\[
+\begin{tikzcd}
+0\arrow[r]&\mathcal{F}\arrow[r,"\varphi"]&\mathcal{G}\arrow[r,"\psi"]&\mathcal{H},
+\end{tikzcd}
+\]
+of sheaves on a topological space $X$. Then for each open set $U\subseteq X$, we derive an exact sequence of abelian groups
+\[
+\begin{tikzcd}
+0\arrow[r]&\mathcal{F}(U)\arrow[r,"\varphi"]&\mathcal{G}(U)\arrow[r,"\psi"]&\mathcal{H}(U),
+\end{tikzcd}
+\]
+\end{proposition}
+
+\begin{proof}
+%missing proof
+\end{proof}
+
+\begin{corollary}
+Taking stalks in $\Sh_{(\mathbf{Ab})}(X)$ is an exact functor.
+%Revise the statement
+\end{corollary}
+
+\begin{theorem}
+The category of sheaves of abelian groups is an abelian category.
+%Check the definition of abelian categories.
+\end{theorem}
+
+\subsection{Direct Image Functors}
+
+\begin{definition}
+Let $(X,\mathcal{T}_X),(Y,\mathcal{T}_Y)$ be topological spaces and $f:X\to Y$ be a continuous map. The direct image functor is the functor $f_*:\Sh(X)\to\Sh(Y)$ such that,
+\begin{equation*}
+\mathcal{F}\in\Sh(X), U\in \mathcal{T}_Y \{\quad f_*\mathcal{F}(U) = \mathcal{F}(f^{-1}(U))
+\end{equation*}
+\end{definition}
+
+\begin{proposition}
+Such $f_*\mathcal{F}$ is indeed a sheaf.
+\end{proposition}
+
+\begin{proof}
+%missing proof
+\end{proof}
+
+\begin{definition}
+Let $f_*:\Sh(X)\to\Sh(Y)$ be a direct image functor. Given a morphism of sheaves, $\varphi:\mathcal{F}\to\mathcal{G}$ in $\Sh(X)$. For an open set $U\in Y$, the image of $\varphi$ under $f_*$ is 
+\begin{equation*}
+(f_*\varphi)_U = \varphi_{f^{-1}(U)}:f_*\mathcal{F}(U)\to f_*\mathcal{G}(U).
+\end{equation*}
+\end{definition}
+
+\begin{definition}
+Let $(X,\mathcal{T}_X),(Y,\mathcal{T}_Y)$ be topological spaces and $f:X\to Y$ be a continuous map. The inverse image functor 
+\begin{equation*}
+f^{-1}:\Sh(Y)\to\Sh(X)
+\end{equation*}
+is defined as follow.\\
+\par For a sheaf $\mathcal{G}\in\Sh(Y)$, we set $f^{-1}\mathcal{G}$ to be the sheafification of the presheaf
+\begin{equation*}
+V\in\mathcal{T}_X,\quad f^{-1}\mathcal{G}(V) = \varinjlim_{U\in\mathcal{O}_V}\mathcal{G}(U),
+\end{equation*}
+where $\mathcal{O}_V = \{U\in\mathcal{T}_X\:|\: V\subseteq U\}$.
+%Define the restriction map if possible in explicit form, also the image of morphisms of sheaves using the universal property of the sheafification.
+\end{definition}
+
+\begin{definition}
+Let $(X,\mathcal{T}_X),(Y,\mathcal{T}_Y)$ be topological spaces and $f:X\to Y$ be a continuous map. For a sheaf $\mathcal{F}\in\Sh(X)$ and a point $y\in Y$, we define the stalk of $f_*\mathcal{F}$ at $y$ as
+\begin{equation*}
+(f_*\mathcal{F})_y = \varinjlim_{U\in\mathcal{O}_y}\mathcal{F}(f^{-1}(U)).
+\end{equation*}
+\end{definition}
+
+\begin{proposition}
+Let $(X,\mathcal{T}_X),(Y,\mathcal{T}_Y)$ be topological spaces and $f:X\to Y$ be a continuous map. For $\mathcal{F}\in\Sh(Y),x\in X$, there exists an isomorphism such that 
+\begin{equation*}
+(f^{-1}\mathcal{F})_x \cong \mathcal{F}_{f(x)}.
+\end{equation*}
+%Check the statement and the exercise 11.
+\end{proposition}
+
+\begin{example}
+Given a topological space $X$ and a single point set $\{y\}$. A unique map $f:X\to \{y\}$ is continuous. We know that 
+\begin{equation*}
+\Sh(\{y\}) = (\mathbf{Ab}).
+\end{equation*}
+Thus the direct image functor $f_*$ and $\mathcal{F}\in\Sh(\{y\})$, we have
+\begin{equation*}
+f_*\mathcal{F} =  \mathcal{F}(X)\in(\mathbf{Ab}).
+\end{equation*}
+\end{example}
+
+\begin{example}
+Given a topological space $X$ and a single point set $\{y\}$ and a unique continuous map $f:X\to \{y\}$. We have for $G\in\Sh(\{y\}) = (\mathbf{Ab})$, 
+\begin{equation*}
+f^{-1}G = G.
+\end{equation*}
+\end{example}
+
+\begin{example}
+Given a topological space $X$ and a single point set $\{y\}$ and a continuous map $f: \{y\}\to X$. We have for $G\in\Sh(\{y\}) = (\mathbf{Ab})$, 
+\begin{equation*}
+f_*G(U) = 
+\begin{cases}
+G\quad (f(y)\in U),\\
+0\quad (f(y)\not\in U).
+\end{cases}
+\end{equation*}
+\end{example}
+
+\begin{example}
+Given a topological space $X$ and a single point set $\{y\}$ and a continuous map $f: \{y\}\to X$. For $\mathcal{F}\in\Sh(X)$,
+\begin{equation*}
+f^{-1}\mathcal{F}(\{y\}) = \mathcal{F}_f(y).
+\end{equation*}
+\end{example}
+
+\begin{lemma}
+Given a topological spaces $X$ and $Y$, $f:X\to Y$ a continuous function. The inverse image functor $f^{-1}$ is exact. 
+\end{lemma}
+
+\begin{lemma}
+Given a topological spaces $X$ and $Y$, $f$ a continuous function. The direct image functor $f_*$ is (only) left-exact.
+\end{lemma}
+
+\begin{lemma}
+Given a topological spaces $X$ and $Y$, $f$ a continuous function. We have seen that $f_*$ induces a group homomorphism between $\Hom(\mathcal{F},\mathcal{G})$ and $\Hom(f_*\mathcal{F},f_*\mathcal{G})$. Allowing the abuse of notation, we denote this homomorphism by 
+\begin{equation*}
+f_*:\Hom(\mathcal{F},\mathcal{G})\to\Hom(f_*\mathcal{F},f_*\mathcal{G}).
+\end{equation*}
+For such homomorphism we have
+\begin{equation*}
+f_*(\mathcal{F}\oplus\mathcal{G}) \cong f_*\mathcal{F}\oplus f_*\mathcal{G}.
+\end{equation*}
+\end{lemma}
+
+\section{Cohomology of Sheaves}
+
+\subsection{Basics of Cohomology}
+
+%Consider putting some basic of cohomology in other sections
+
+\begin{example}
+Sheaf of holomorphic functions.
+\end{example}
+
+\subsection{$\delta$-Functors}
+
+\begin{definition}
+Let $\mathcal{A},\mathcal{B}$ be categories. A $\delta$=functor from $\mathcal{A}\to\mathcal{B}$ consist of additive functors
+\begin{equation*}
+H^i:\mathcal{A}\to\mathcal{B}\quad (i=0,1,\cdots),
+\end{equation*}
+such that for any short exact sequence
+\[
+\begin{tikzcd}
+0\arrow[r]&A_1\arrow[r]&A_2\arrow[r]&A_3\arrow[r]&0
+\end{tikzcd}
+\]
+in $\mathcal{A}$, we have mapping
+\begin{equation*}
+\delta^i:H^i(A_3)\to H^{i+1}(A_1),
+\end{equation*}
+which make the sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] & H_0(A_1) \arrow[r] & H_0(A_2) \arrow[r]             & H_0(A_3) \arrow[r, "\delta^0"] & H_1(A_1) \arrow[r] & \cdots \\
+            & \cdots \arrow[r]   & H_i(A_3) \arrow[r, "\delta^i"] & H_{i+1}(A_1) \arrow[r]         & \cdots             &       
+\end{tikzcd}
+\]
+a long exact sequence.\\
+\par Furthermore, given a commutative diagram,
+\[
+\begin{tikzcd}
+0 \arrow[r] & A_1 \arrow[r] \arrow[d] & A_2 \arrow[r] \arrow[d] & A_3 \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & B_1 \arrow[r]           & B_2 \arrow[r]           & B_3 \arrow[r]           & 0
+\end{tikzcd}
+\]
+we get a commutative diagram
+\[
+\begin{tikzcd}
+\cdots \arrow[r] & H^i(A_1) \arrow[r] \arrow[d] & H^i(A_2) \arrow[r] \arrow[d] & H^i(A_3) \arrow[r] \arrow[d] & \cdots \\
+\cdots \arrow[r] & H^i(B_1) \arrow[r]           & H^i(B_2) \arrow[r]           & H^i(B_3) \arrow[r]           & \cdots
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{definition}
+A $\delta$-functor $(H^i:\mathcal{A}\to\mathcal{B},\delta^i)_i$ is universal if for any other $\delta$-functor $(\tilde{H}^i:\mathcal{A}\to\mathcal{B},\tilde{\delta}^i)_i$ together with a morphism 
+\end{definition}
 
 \section{Scheme Theory}
 
@@ -2030,5 +2292,282 @@ Let $K/k$ be a field extension where both $k,K$ are algebraically closed. Then t
 \end{proposition}
 \begin{proof}
 \end{proof}
+
+\begin{example}
+\[
+\begin{tikzcd}
+X_{\overline{\mathbb{Q}}} \arrow[r] \arrow[d] & X=\Spec(\overline{\mathbb{Q}}) \arrow[d] &                                                            \\
+\Spec(\overline{\mathbb{Q}}) \arrow[r]        & \Spec(\mathbb{Q})                        &                                                            \\
+                                              &                                          & \Spec(\overline{\mathbb{Q}}) \arrow[luu] \arrow[llu, "id"]
+\end{tikzcd}
+\]
+Then $X_{\overline{\mathbb{Q}}}=X(\overline{\mathbb{Q}})=\Gal(\overline{\mathbb{Q}}/\mathbb{Q})$.
+\end{example}
+
+\begin{definition}[Conjugate of $k$-schemes]
+Given a $k$-scheme $X\to\Spec(k)$, and $\sigma\in\Aut(k)$. A conjugate $k$-scheme is defined as the fiber product.
+\[
+\begin{tikzcd}
+X^\sigma \arrow[r] \arrow[d]  & X \arrow[d] \\
+\Spec(k) \arrow[r, "\sigma"'] & \Spec(k)   
+\end{tikzcd}
+\]
+%Check the notes of this part from others
+We call the morphism $X^\sigma\to\Spec(k)$ the $k$-scheme structure of $X^\sigma$.
+\end{definition}
+
+\begin{remark}
+As schemes we have $X^\sigma\cong X$, but typically not as $k$-schemes. We could have taken another isomorphism of schemes
+\[
+\begin{tikzcd}
+X^\sigma \arrow[rd] \arrow[r, "\varphi"] & X \arrow[d] \\
+                                         & \Spec(k)   
+\end{tikzcd}
+\]
+%Revise what he meant by this
+\end{remark}
+
+\begin{example}
+Let $X=\Spec(\mathbb{R})$ and consider $\Spec(X\to\mathbbb{Q}(\sqrt{2}))$ and $\sigma:\mathbb{Q}(\sqrt{2})\to\mathbb{Q}(-\sqrt{2})$. Such that $\sigma(\sqrt{2})=-\sqrt{2}$. 
+\end{example}
+
+\begin{proposition}
+Let $f:\Spec(B)\to\Spec(A)$ be a morphism of affine schemes corresponding to a ring homomorphism $\varphi:A\to B$. For $s\in A$ and $t=\varphi(s)\in B$ we have
+\begin{equation*}
+f^{-1}(\Spec(A_s)) = \Spec(B_t).
+\end{equation*}
+\end{proposition}
+
+\begin{proposition}
+Suppose $\Spec(A),\Spec(B)\subseteq X$ be schemes which are open affine. Then the intersection $\Spec(A)\cap\Spec(B)$ can be covered by open affine sets $U\subseteq\Spec(A)\cap\Spec(B)$ of the form
+\begin{equation*}
+U = D(s)=\Spec(A_s)
+\end{equation*}
+for some element $s\in A$ and 
+\begin{equation*}
+U = D(t)=\Spec(B_t)
+\end{equation*}
+for some element $t\in B$.
+\end{proposition}
+
+\begin{proposition}
+Suppose we have a morphism $f:X\to Y$ of schemes where 
+\begin{equation*}
+X = \bigcup_{i\in I} \Spec(B_i),\quad Y = \Spec(A).
+\end{equation*}
+Given homomorphisms of rings $\varphi_i:A\to B_i, \varphi(s) = t_i$ for some fixed $s\in A$. We have
+\begin{equation*}
+f^{-1}(\Spec(A_s)) = \Spec((B_i)_{t_i}).
+\end{equation*}
+\end{proposition}
+
+\begin{proposition}
+Suppose we have a ring homomorphism $\varphi:A\to B$ and $\{b_i\}_{i\in I}\subset B$ be such that
+\begin{equation*}
+(b_1,\cdots,b_i,\cdots)_{i\in I} = (1) =  B.
+\end{equation*}
+If each $B_{b_i}$ is of finite type over $A$ for all $i\in I$, then $B$ is also of finite type over $A$.
+\end{proposition}
+
+\begin{proposition}
+Given a ring homomorphism $\varphi:A\to B$ and $\{s_i\}_{i\in I}\subseteq A$ such that
+\begin{equation*}
+(a_i)_{i\in I} = (1) = A.
+\end{equation*}
+Denote $\{t_i = \varphi(s_i)\}_{i\in I}$. If for each $B_{t_i}$ is of finite type over $A_{s_i}$ then $B$ is of finite type over $A$.
+\end{proposition}
+
+\begin{proposition}
+Let $X$ be a scheme and denote its global section by $A=\Gamma(X,\mathcal{O}_X)$. Then $X$ is affine (ie. $X=\Spec9A$) if and only if there exists finitely many $a_1,\cdots,a_n\in A$ such that
+\begin{enumerate}
+\item $(a_1,\cdots,a_n) = (1)=A$,
+\item $X_{a_i} = \{x\in X\:|\: (a_i)_x\in\mathcal{O}^*_{X,x}\}$ is affine.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+Let $f:X\to Y$ be a morphism of schemes. Then $f$ is locally of finite type if and only if for any open affine set $V=\Spec(A)\subseteq Y$ and an open affine subset $U=\Spec(B)$ of $f^{-1}(V)$, $B$ is of finite type over $A$.
+\end{proposition}
+
+\begin{proposition}
+Let $f:X\to Y$ be a morphism of scheme. $f$ is locally of finite type if and only if for any open affine set $V=\Spec(A)\subseteq Y$, and for any open affine subset $U=\Spec(B)\subseteq f^{-1}(V)$, $B$ is of finite type over $A$.
+\end{proposition}
+
+\begin{proposition}
+Let $f:X\to Y$ be a morphism of schemes. Then $f$ is affine if and only if for any open set $V=\Spec(A)\subseteq Y$, $f^{-1}(V)$ is affine.
+\end{proposition}
+
+\begin{corollary}
+If a morphism of schemes $f:X\to\Spec(A)$ is affine then $X$ is affine.
+\end{corollary}
+
+\begin{corollary}
+A morphism of scheme $f$ is finite if and only if for any open set $V=\Spec(A)\subseteq Y$, and for all $f^{-1}(\Spec(B))$, $B$ is finite over $A$.%later.
+\end{corollary}
+
+\begin{lemma}
+Let $f:X\to Y$ be a morphism of affine schemes where $X= \Spec(B),Y = \Spec(A)$. Then if $f$ is finite then $f$ is closed and quasi-finite.
+\end{lemma}
+
+\begin{proposition}
+Let $f:X\to Y$ be a morphism of schemes. If $f$ is finite then $f$ is closed and quasi-fintie.
+\end{proposition}
+
+\subsection{Separated and Proper Morphisms}
+
+\begin{proposition}
+Any morphism of affine schemes is separated. 
+\end{proposition}
+
+\begin{proposition}
+Any affine morphism is separated.
+\end{proposition}
+
+\begin{proposition}
+Any open or closed immersions are separated.
+\end{proposition}
+
+\begin{lemma}
+Let $f:X\to Y$ be a morphism of schemes, then we have
+\begin{equation*}
+f\text{ is separated.}\Leftrightarrow \Delta(X)\subseteq X\fib{Y}X.
+\end{equation*}
+\end{lemma}
+
+\begin{lemma}
+Let $Z$ be a topological space. $Z$ is Hausdorff if and only if $\Delta(Z)=\{(z,z)\:|\: z\in Z\}\subseteq Z\times Z$ is closed.
+\end{lemma}
+
+\begin{proposition}
+A morphism $f:X\to Y$ of schemes is separated if and only if $\Delta(X)\subseteq X\fib{Y}X$ is closed.
+\end{proposition}
+
+\begin{remark}
+The Zariski topology on $X\fib{Y}X$ is not the product topology.
+\end{remark}
+
+
+\begin{definition}[Universally closed]
+A morphism of scheme $f:X\to Y$ is said to be universally closed if,%later
+\end{definition}
+
+\begin{definition}
+A morphism $f:X\to Y$ of scheme such that 
+\begin{enumerate}
+\item $f$ is separated,
+\item $f$ is of finite type,
+\item $f$ is universally closed,
+\end{enumerate}
+is said to be proper.
+\end{definition}
+
+\begin{example}
+A morphism $\mathbb{A}_k^1\to\Spec(k)$ is closed but not universally closed. thus not a proper morphism.
+\end{example}
+
+\begin{remark}
+A morphism $\mathbb{P}_k^1\to\Spec(k)$ is proper (in fact this is projective.)
+\end{remark}
+
+\begin{proposition}
+Every finite morphisms of scheme is proper.
+\end{proposition}
+
+\begin{example}
+A morphism of scheme begin 
+\begin{enumerate}
+\item quasi-finite,
+\item separated,
+\item finite-type,
+\item surjective
+\end{enumerate}
+does not imply that it is proper.
+\end{example}
+
+\begin{proposition}[Nagata compactification]
+If a morphism $f:X\to Y$ of schemes is separated and finite type between Noetherian schemes, then there exists a scheme $Z$ and morphisms $h:X\to Z,g:Z\to Y$ of schemes such that 
+\begin{equation*}
+f = g\circ h
+\end{equation*}
+with $h$ is an open immersion, $g$ is proper.
+\end{proposition}
+
+\begin{proposition}
+Let $f:X\to Y$ be a morphism of schemes. Then we have
+\begin{equation*}
+f\text{ is finite.}\Leftrightarrow f \text{ is quasi-finite and proper.}
+\end{equation*}
+\end{proposition}
+
+\subsection{Magic Squares}
+
+\begin{definition}
+Given morphisms of schemes
+\[
+\begin{tikzcd}
+X_1 \arrow[rd, "f_1"]  &                  &   \\
+                       & Y \arrow[r, "g"] & Z \\
+X_2 \arrow[ru, "f_2"'] &                  &  
+\end{tikzcd}
+\]
+We define a magic square of it to be
+%later
+\[
+\begin{tikzcd}
+X_1\fib{Y}X_2 \arrow[d] \arrow[r] & Y \arrow[d, "\Delta_{Y/Z}"] \\
+X_1\fib{Z}X_2 \arrow[r]           & Y\fib{Z}Y                  
+\end{tikzcd}
+\]
+which is a fiber product.
+\end{definition}
+
+\begin{proposition}
+Given morphisms of schems
+\[
+\begin{tikzcd}
+X \arrow[r, "f"] & Y \arrow[r, "g"] & Z
+\end{tikzcd}
+\]
+We have
+\begin{enumerate}
+\item $f,g$ are both separated $\Rightarrow $ $g\circ f$ is separated.
+\item $f,g$ are both proper $\Rightarrow, g\circ f$ is proper.
+\end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+Given morphisms of schemes
+\[
+\begin{tikzcd}
+X_1 \arrow[rd, "f_1"]  &                  &   \\
+                       & Y \arrow[r, "g"] & Z \\
+X_2 \arrow[ru, "f_2"'] &                  &  
+\end{tikzcd}
+\]
+where $g$ is separated. We have the graph
+\begin{equation*}
+\Gamma_f:X\to X\fib{Z}Y
+\end{equation*}
+is a closed immersion.
+\end{corollary}
+
+\begin{corollary}
+Given morphisms of schemes
+\[
+\begin{tikzcd}
+X_1 \arrow[rd, "f_1"]  &                  &   \\
+                       & Y \arrow[r, "g"] & Z \\
+X_2 \arrow[ru, "f_2"'] &                  &  
+\end{tikzcd}
+\]
+where $g$ is separated. Then we have, for the magic square
+\[
+\begin{tikzcd}
+X_1\fib{Y}X_2 \arrow[d, "\psi"] \arrow[r] & Y \arrow[d, "\Delta_{Y/Z}"] \\
+X_1\fib{Z}X_2 \arrow[r]           & Y\fib{Z}Y                  
+\end{tikzcd}
+\]
+$\Delta$ is a closed immersion. Hence $\psi$ is also a closed immersion.
+\end{corollary}
 
 \end{document}
