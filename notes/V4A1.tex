@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{ mathrsfs }
 \usepackage{enumerate}
 \usepackage{bbm}
 \usepackage{lipsum}
@@ -37,10 +38,12 @@
 \DeclareMathOperator{\PreSh}{PreSh}
 \DeclareMathOperator{\Sh}{Sh}
 \DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\Image}{Im}
 \DeclareMathOperator{\Coker}{Coker}
+\DeclareMathOperator{\id}{id}
 %\newcommand*{\name}[\num_arguments][default values]{{\color{#1}\Large #2}}
 \newcommand*{\multivar}[2]{{#1_1,\cdots,#1_{#2}}}
 \newcommand*{\localization}[2]{#1_{\mathfrak{#2}}}
@@ -62,7 +65,7 @@
 \subsection{Connected Sets}
 
 \begin{definition}
-Let $(X,\mathcal{T})$ be a topological space. A subset $A$ of $X$ is said to be connected if for any $U,V\in\mathcal{T}$, $U\cap V=\empty, U\cup V\supset A$ then $A$ is fully contained in one of $U,V$. 
+Let $(X,\mathcal{T})$ be a topological space. A subset $A$ of $X$ is said to be connected if for any $U,V\in\mathcal{T}$, $U\cap V=\emptyset, U\cup V\supset A$ then $A$ is fully contained in one of $U,V$. 
 \end{definition}
 
 \begin{definition}
@@ -288,6 +291,162 @@ There exists a short exact sequence
 \begin{proof}
 %Missing proof
 \end{proof}
+
+\subsection{Abelian Categories}
+
+\begin{definition}
+A category $\mathscr{A}$ is said to be preadditive if for any objects $A,B\in\mathscr{A}$, $\mathscr{A}(A,B)$ is forms an abelian group and the map 
+\begin{equation*}
+(f,g)\in\mathscr{A}(A,B)\times \mathscr{A}(A,B)\to \mathscr{A}(A,B),\quad (f,g)\mapsto g\circ f
+\end{equation*}
+is bilinear.
+\end{definition}
+
+\begin{definition}
+Let $\mathscr{A}$ be a category and $A,B\in\mathbf{ob}(\mathscr{A})$. The coproduct $A\coprod B$ of $A$ and $B$ is an object equipped with two morphisms $\iota_A:A\to A\coprod B,\iota_B:B\to A\coprod B$ such that we have a following commutative diagram
+\[
+\begin{tikzcd}
+A \arrow[rd, "f"'] \arrow[r, "\iota_A"] & A\coprod B \arrow[d, "{\exists!(f,g)}", dotted] & B \arrow[ld, "g"] \arrow[l, "\iota_B"'] \\
+                                        & C                                               &                                        
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{definition}
+A preadditive category $\mathscr{A}$ is said to be additive if any pair of objects admits a coproduct.
+\end{definition}
+
+\begin{definition}
+Let $\mathscr{A}$ be an additive category and $A_1,\cdots,A_n\in\mathbf{ob}(\mathscr{A})$. A biproduct of these objects is an object $\bigoplus_{i=1}^n A_i$ together with morphisms 
+\[
+\begin{tikzcd}
+\bigoplus_{i=1}^n A_i \arrow[r, "\pi_k", shift left] & A_k \arrow[l, "\iota_k", shift left]
+\end{tikzcd}
+\]
+for each $k=1,\cdots,n$ such that 
+\begin{equation*}
+\iota_k\circ\pi_l = \delta_{kl},\quad \sum_{k=1}^n \pi\circ\iota_k = \id_{\bigoplus_{i=1}^n A_i}.
+\end{equation*}
+%Here check how the addition of morphisms is defined in the preadditive categoreis and add the definition of zero objects and its existence
+\end{definition}
+
+\begin{definition}
+Let $\mathscr{A},\mathscr{B}$ be additive categories. A functor $F:\mathscr{A}\to\mathscr{B}$ is said to be additive if it preserves finite biproduct. That is to say for a zero object $0\in\mathscr{A}$, $F(0)$ is a zero object in $\mathscr{B}$ and for given any two objects $A,B\in\mathscr{A}$, there is an isomorphism 
+\begin{equation*}
+F(A\oplus B)\cong F(A)\oplus F(B),
+\end{equation*}
+which respects the inclusion and projection maps of the direct sum.
+\[
+\begin{tikzcd}
+A \arrow[rd, "\iota_A"'] &                                                    & B \arrow[ld, "\iota_B"]     &  & F(A) \arrow[rd, "F(\iota_A)"] &                                                                                  & F(B) \arrow[ld, "F(\iota_B)"'] \\
+                         & A\oplus B \arrow[ld, "\pi_A"'] \arrow[rd, "\pi_B"] & {} \arrow[rr, "F", maps to] &  & {}                            & F(A\oplus B)\cong F(A)\oplus F(B) \arrow[ld, "F(\pi_A)"'] \arrow[rd, "F(\pi_B)"] &                                \\
+A                        &                                                    & B                           &  & F(A)                          &                                                                                  & F(B)                          
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{definition}
+Let $\mathscr{A}$ be an abelian category. An object $I\in\mathbf{ob}(\mathscr{A})$ is said to be injective if for any monomorphism $\iota\in\mathscr{A}(A_1,A_2)$ and a morphism $\varphi\in\mathscr{A}(A_1,I)$, there is $\psi\in\mathscr{A}(A_2,I)$ making the following diagram commutative.
+\[
+\begin{tikzcd}
+A_1 \arrow[r, "\iota", hook] \arrow[d, "\varphi"'] & A_2 \arrow[ld, "\exists\psi", dotted] \\
+I                                                  &                                      
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{remark}
+Clearly, a zero object is injective by the definition.
+\end{remark}
+
+\begin{definition}
+Let $\mathscr{A}$ be an abelian category. A short exact sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] & A_1 \arrow[r,"\iota"] & A_2 \arrow[r,"\pi"] & A_3 \arrow[r] & 0
+\end{tikzcd}
+\]
+in $\mathscr{A}$ is said to split if there exists a morphism $\varphi:A_2\to A_1$ such that $\varphi\circ\iota = \id_{A_1}$. 
+\end{definition}
+
+\begin{definition}
+%Write the definition of left/right exact functor
+\end{definition}
+
+\begin{lemma}
+Let $G\in\mathbf{ob}(\mathbf{Ab})$. Then the functor
+\begin{equation*}
+\Hom(G,\cdot):(\mathbf{Ab})\to(\mathbf{Ab}),
+\end{equation*}
+is left exact.
+\end{lemma}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{lemma}
+Let $\mathscr{A}$ be an abelian category and
+\[
+\begin{tikzcd}
+0 \arrow[r] & A_1 \arrow[r,"\iota"] & A_2 \arrow[r,"\pi"] & A_3 \arrow[r] & 0
+\end{tikzcd}
+\]
+be a short exact sequence in $\mathscr{A}$.\\
+\par The sequence splits if and only if $A_2\cong A_1\oplus A_3$ and under such isomorphism, $\iota,\pi$ are mapped to an injection and a projection from $A_1$ and to $A_3$, respectively. 
+\end{lemma}
+
+\begin{proof}
+\[
+\begin{tikzcd}
+0 \arrow[r] & A_1 \arrow[d, "\id_A"] \arrow[r, "\iota"] & A_2 \arrow[r, "\pi"] \arrow[ld, "\varphi", dotted] & A_3 \arrow[r] & 0 \\
+            & A_1                                       &                                                    &               &  
+\end{tikzcd}
+\]
+%Complete the proof for the equivalent characterization of splitting short exact sequence
+\end{proof}
+
+\begin{lemma}
+Let $\mathscr{A}$ be an abelian category and
+\[
+\begin{tikzcd}
+0 \arrow[r] & A_1 \arrow[r,"\iota"] & A_2 \arrow[r,"\pi"] & A_3 \arrow[r] & 0
+\end{tikzcd}
+\]
+be a short exact sequence in $\mathscr{A}$.\\
+\par If $A_1$ is injective then the sequence splits.
+\end{lemma}
+
+\begin{proof}
+By the definition of injective objects, such $\varphi:A_2\to A_1$ making the diagram
+\[
+\begin{tikzcd}
+0 \arrow[r] & A_1 \arrow[d, "\id_A"] \arrow[r, "\iota"] & A_2 \arrow[r, "\pi"] \arrow[ld, "\varphi", dotted] & A_3 \arrow[r] & 0 \\
+            & A_1                                       &                                                    &               &  
+\end{tikzcd}
+\]
+commutative exists. 
+\end{proof}
+
+\begin{definition}
+Let $\mathscr{A}$ be an abelian category and $A\in\mathbf{ob}(\mathscr{A})$.\\
+\par An injective resolution of $A$ is a long exact sequence in $\mathscr{A}$
+\[
+\begin{tikzcd}
+0 \arrow[r] & A \arrow[r] & I_0 \arrow[r] & I_1 \arrow[r] & \cdots
+\end{tikzcd}
+\]
+, where all $(I_i)_{i\in\mathbb{N}_0}$ are injective objects
+\end{definition}
+
+\begin{definition}
+An abelian category is said to have enough injective objects if any objects admits an injective resolution.
+\end{definition}
+
+\begin{example}
+The category $(\mathbf{Ab})$ of abelian groups has enough injectives. (eg. $\mathbb{Q},\mathbb{Q}/\mathbb{Z},\mathbb{R}/\mathbb{Z}$).
+%Proof later.
+\end{example}
 
 \section{Commutative Algebra}
 
@@ -1319,7 +1478,9 @@ f_*(\mathcal{F}\oplus\mathcal{G}) \cong f_*\mathcal{F}\oplus f_*\mathcal{G}.
 \end{equation*}
 \end{lemma}
 
-\section{Cohomology of Sheaves}
+\section{Cohomology}
+
+%consider writing the definition for complex 
 
 \subsection{Basics of Cohomology}
 
@@ -1371,8 +1532,208 @@ we get a commutative diagram
 \end{definition}
 
 \begin{definition}
-A $\delta$-functor $(H^i:\mathcal{A}\to\mathcal{B},\delta^i)_i$ is universal if for any other $\delta$-functor $(\tilde{H}^i:\mathcal{A}\to\mathcal{B},\tilde{\delta}^i)_i$ together with a morphism 
+A $\delta$-functor $(H^i:\mathcal{A}\to\mathcal{B},\delta^i)_i$ is universal if for any other $\delta$-functor $(\tilde{H}^i:\mathcal{A}\to\mathcal{B},\tilde{\delta}^i)_i$ together with a morphism (functor transforms) $H^i\to\tilde{H}^i$ such that for any exact sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] & A_1 \arrow[r] & A_2 \arrow[r] & A_3 \arrow[r] & 0
+\end{tikzcd}
+\]
+in $\mathcal{A}$, we get a commutative diagram
+\[
+\begin{tikzcd}
+\cdots \arrow[r] & H^i(A_2) \arrow[r] \arrow[d] & H^i(A_3) \arrow[r, "\delta^i"] \arrow[d]       & H^i(A_1) \arrow[r] \arrow[d] & \cdots \\
+\cdots \arrow[r] & \tilde{H}^i(A_2) \arrow[r]   & \tilde{H}^i(A_3) \arrow[r, "\tilde{\delta}^i"] & \tilde{H}^i(A_1) \arrow[r]   & \cdots
+\end{tikzcd}
+\]
 \end{definition}
+
+\begin{lemma}
+A universal $\delta$-functor $(H^i:\mathscr{A}\to\mathscr{B},\delta^i)$ is uniquely determined by fixing $H^0$.
+\end{lemma}
+\begin{proof}
+%Proof for uniqueness of universal \delta functors with fixed H^0
+\end{proof}
+
+\begin{definition}
+Let $F:\mathscr{A}\to\mathscr{B}$ be a functor. $F$ is said to be erasable if for any $A\in\mathbf{ob}(\mathscr{A})$, there exists a monomorphism $\varphi:A\hookrightarrow A'$ for some $A'\in\mathbf{ob}(\mathscr{A})$ such that $F(\varphi) = 0$.
+%Consider putting the definition of erasability in the category theory section.
+\end{definition}
+
+\begin{theorem}
+Supposer $(H^i:\mathscr{A}\to\mathscr{B},\delta^i)$ be a $\delta$-functor such that for any $i\in\mathbb{N}$, $H^i$ is erasable. Then $(H^i,\delta^i)$ is universal.
+\end{theorem}
+
+\begin{proof}
+%See the exercise 13 for the universality of the erasable delta functors.
+\end{proof}
+
+\begin{definition}
+A $\delta$-functor $(H^i:\mathscr{A}\to\mathscr{B},\delta^i)$such that for any $i\in\mathbb{N}$, $H^i$ is erasable. Let us denote $H^0=F$, then $(H^i:\mathscr{A}\to\mathscr{B},\delta^i)$ is called higher derived functors of $F$ and each $H^i$ is denoted as $R^iF$.
+%Refined the definition of the higher derived functors.
+\end{definition}
+
+\begin{definition}
+Let $\mathscr{A},\mathscr{B}$ be abelian categories and $F:\mathscr{A}\to\mathscr{B}$ be a functor such that
+\begin{enumerate}[i).]
+\item $\mathscr{A}$ has enough injectives,
+\item $F$ is additive left exact. 
+\end{enumerate}
+Given an injective resolution of $A$
+\[
+\begin{tikzcd}
+0 \arrow[r] & A \arrow[r] & I_0 \arrow[r] & I_1 \arrow[r] & \cdots
+\end{tikzcd}
+\]
+we define
+\begin{equation*}
+R^iF(A) = {\frac {\Ker(FI_i\to FI_{i+1})} {\Image(FI_{i-1}\to FI_i)}}.
+\end{equation*}
+\label{construction_higher_derivative_functors}
+\end{definition}
+
+\begin{lemma}
+Let $\mathscr{A},\mathscr{B}$ be abelian categories with $\mathscr{A}$ having enough injectives, $F:\mathscr{A}\to\mathscr{B}$ be an additive left exact functor. \\
+\par Then for any $A\in\mathbf{ob}(\mathscr{A})$, we have
+\begin{equation*}
+R^0F(A)\cong F(A).
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+By the left exactness of $F$, we see
+\begin{equation*}
+R^0FA = \Ker(FI_0\to FI_1) = FA.
+\end{equation*}
+\end{proof}
+
+\begin{lemma}
+Let $\mathscr{A},\mathscr{B}$ be abelian categories with $\mathscr{A}$ having enough injectives, $F:\mathscr{A}\to\mathscr{B}$ be an additive left exact functor. \\
+\par Each $R^iF(A)$ is independent of the choice of injective resolution, thus Definition \ref{construction_higher_derivative_functors} is well-defined.
+\end{lemma}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{corollary}
+Let $\mathscr{A},\mathscr{B}$ be abelian categories with $\mathscr{A}$ having enough injectives, $F:\mathscr{A}\to\mathscr{B}$ be an additive left exact functor. \\
+\par For any injective object $A\in\mathscr{A}$, we have
+\begin{equation*}
+\forall i\in\mathbb{N},\quad R^iF(A) = 0
+\end{equation*}
+\label{corollary_injective_delta_functor}
+\end{corollary}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{lemma}
+Let $\mathscr{A},\mathscr{B}$ be abelian categories with $\mathscr{A}$ having enough injectives, $F:\mathscr{A}\to\mathscr{B}$ be an additive left exact functor. \\
+\par %Write the construction of boundary maps
+\end{lemma}
+\begin{proof}
+%later
+\end{proof}
+
+\begin{lemma}
+Let $\mathscr{A},\mathscr{B}$ be abelian categories with $\mathscr{A}$ having enough injectives, $F:\mathscr{A}\to\mathscr{B}$ be an additive left exact functor. \\
+\par For any $i\in\mathbb{N}$, $R^iF$ is erasable.%Check the definition with functors
+\end{lemma}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{corollary}
+Let $\mathscr{A},\mathscr{B}$ be abelian categories with $\mathscr{A}$ having enough injectives, $F:\mathscr{A}\to\mathscr{B}$ be an additive left exact functor. \\
+\par $(R^F,\delta^i)$ is a universal $\delta$-functor where
+\begin{equation*}
+\delta %Write the construction as in the previous lemma.
+\end{equation*}
+with $H^0=F$.
+\end{corollary}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{example}
+Let $G\in\mathbf{ob}(\mathbf{Ab})$ be a fixed abelian group. Since
+\begin{equation*}
+H\in\mathbf{ob}(\mathbf{Ab}), \quad H\mapsto \Hom(G,H),
+\end{equation*}
+is an additive left exact functor, we can define the following
+\begin{equation*}
+\Ext^i(G,\cdot) = R^i\Hom(G,\cdot)
+\end{equation*}
+which is called the Ext-functor.
+\end{example}
+
+\begin{definition}
+Let $\mathscr{A},\mathscr{B}$ be abelian categories with $\mathscr{A}$ having enough injectives, $F:\mathscr{A}\to\mathscr{B}$ be an additive left exact functor. \\ %Check if we can reduce the assumption on the definition of F-acyclic
+\par An object $A\in\mathbf{ob}(\mathscr{A})$ is said to be $F$-acyclic if we have
+\begin{equation*}
+\forall i\in\mathbb{N}\,\quad R^iF(A) = 0.
+\end{equation*}
+\end{definition}
+
+\begin{remark}
+For any such functor $F:\mathscr{A}\to\mathscr{B}$, by Corollary \ref{corollary_injective_delta_functor}, every injective object is  $F$-acyclic.
+\end{remark}
+
+\begin{definition}
+Let $\mathscr{A},\mathscr{B}$ be abelian categories with $\mathscr{A}$ having enough injectives, $F:\mathscr{A}\to\mathscr{B}$ be an additive left exact functor. \\
+\par A $F$-acyclic resolution of an object $A\in\mathbf{ob}(\mathscr{A})$ is the complex
+\[
+\begin{tikzcd}
+0\arrow[r]&A\arrow[r]&I_0\arrow[r]&I_1\arrow[r]&\cdots
+\end{tikzcd}
+\]
+which is exact and each $I_0,I_1,\cdots$ are $F$-acyclic. 
+\end{definition}
+
+\begin{lemma}
+Let $\mathscr{A},\mathscr{B}$ be abelian categories with $\mathscr{A}$ having enough injectives, $F:\mathscr{A}\to\mathscr{B}$ be an additive left exact functor.\\
+\par Let $A\in\mathbf{ob}(\mathscr{A})$ and a $F$-acyclic resolution of $A$
+\[
+\begin{tikzcd}
+0\arrow[r]&A\arrow[r]&I_0\arrow[r]&I_1\arrow[r]&\cdots
+\end{tikzcd}
+\]
+We can compute the cohomology by %Refine the definition of the cohomology with respect to F-acyclic resolutions.
+\end{lemma}
+
+\begin{proof}
+%later
+\end{proof}
+
+\subsection{Cohomology of Sheaves}
+
+\begin{lemma}
+For a topological space $X$, the category of sheaves $\Sh(X)$ on $X$ has enough injectives.
+\end{lemma}
+
+\begin{proof}
+%later
+\end{proof}
+
+\begin{example}
+Let $X$ be a topological space. Then the global section functor
+\begin{equation*}
+\Gamma(X,\cdot):\Sh(X)\to(\mathbf{Ab}), \quad \mathcal{F}\mapsto \mathcal{F}(X).
+\end{equation*}
+is an additive left exact functor. %Need to prove the global section functor is an additive left exact functor
+%Later
+\end{example}
+
+\begin{example}
+Let $X,Y$ be topological spaces and $f:X\to Y$ be a continuous function. Then the direct image functor $f_*$ is an additive left exact functor. %Need to prove the direct image functor is an additive left exact functor
+\end{example}
+
+\begin{proposition}
+Let $X,Y$ be topological spaces and $f:X\to Y$ be a continuous map. 
+\end{proposition}
 
 \section{Scheme Theory}
 
@@ -2328,7 +2689,7 @@ X^\sigma \arrow[rd] \arrow[r, "\varphi"] & X \arrow[d] \\
 \end{remark}
 
 \begin{example}
-Let $X=\Spec(\mathbb{R})$ and consider $\Spec(X\to\mathbbb{Q}(\sqrt{2}))$ and $\sigma:\mathbb{Q}(\sqrt{2})\to\mathbb{Q}(-\sqrt{2})$. Such that $\sigma(\sqrt{2})=-\sqrt{2}$. 
+Let $X=\Spec(\mathbb{R})$ and consider $\Spec(X\to\mathbb{Q}(\sqrt{2}))$ and $\sigma:\mathbb{Q}(\sqrt{2})\to\mathbb{Q}(-\sqrt{2})$. Such that $\sigma(\sqrt{2})=-\sqrt{2}$. 
 \end{example}
 
 \begin{proposition}

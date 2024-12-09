@@ -1,0 +1,116 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{ mathrsfs }
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{tikz-cd} 
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}[section] 
+\newtheorem{definition}{Definition}[section] 
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{notation}{Notation}[section] 
+\newtheorem{remark}{Remark}[section] 
+\newtheorem{corollary}{Corollary}[section] 
+\newtheorem{terminology}{Terminology}[section] 
+\newtheorem{example}{Example}[section] 
+\numberwithin{equation}{section}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\MaxSpec}{MaxSpec}
+\DeclareMathOperator{\PreSh}{PreSh}
+\DeclareMathOperator{\Sh}{Sh}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\Coker}{Coker}
+\DeclareMathOperator{\id}{id}
+%\newcommand*{\name}[\num_arguments][default values]{{\color{#1}\Large #2}}
+\newcommand*{\multivar}[2]{{#1_1,\cdots,#1_{#2}}}
+\newcommand*{\localization}[2]{#1_{\mathfrak{#2}}}
+\newcommand*{\ringedspacemorph}[1]{(#1,#1^{\#})}
+\newcommand*{\sheaf}[2]{(#1,{\mathcal{#2}}_{#1})}
+\newcommand{\fib}[1]{%
+  \mathbin{\mathop{\times}\limits_{#1}}%
+}
+
+\title{Algebraic Geometry 1}
+\author{So Murata}
+\date{2024/2025 Winter Semester - Uni Bonn}
+
+\begin{document}
+\maketitle
+\section*{50}
+
+By taking the global section of 
+\begin{equation*}
+\tilde{M}\to\mathscr{F},
+\end{equation*}
+it is clear that the morphism
+\begin{equation*}
+\alpha:\Hom_{\mathcal{O}_x}(\tilde{M},\mathscr{F})\to\Hom_A(M,\Gamma(X,\mathscr{F}))
+\end{equation*}
+exists. Let $\varphi:M\to\mathscr{F}(X)$ and for $X=\bigcup D(a)$, we define
+\begin{equation*}
+\varphi_a:\tilde{M}(D(a))=M_a\to\mathscr{F}(D(f))., {\frac m {a^i}} \mapsto {\frac {\varphi(m)|_{D(a)}} {a^i}}.
+\end{equation*}
+Since $\mathscr{F}(D(a))$ i an $A_a$-module and ${\frac 1 {a^i}}\in A_a$, we have 
+\begin{equation*}
+{\frac {\varphi(m)|_{D(a)}} {a^i}}\in\mathscr{F}(D(a)).
+\end{equation*}
+In particular $\varphi_a({\frac m 1}) = \varphi(m)|_{D(a)}$.\\
+\par By $D(a)\cap D(b) = D(ab)$ and the sheaf property if we have
+\begin{equation*}
+(\varphi_a)_{ab} = (\varphi_b)_{ab},
+\end{equation*}
+then we can glue $(\varphi_a)$ to $\varphi:\tilde{M}\to\mathscr{F}$. 
+\begin{align*}
+(\varphi_a)_{ab}:(M_a)_{ab} &= M_{ab} \in{\frac m {(ab)^i)}} = {\frac {{\frac 1 m}} {(ab)^i)}}\\
+&\mapsto {\frac {\varphi_a({\frac m 1})|_{D(ab)}} {(ab)^i}}\\
+& = {\frac {(\varphi(m)|_{D(a)})|_{D(ab)}} {(ab)^i}}\\
+& = {\frac {\varphi(m)|_{D(ab)}} {(ab)^i}}\in\mathscr{D(ab)}.
+\end{align*}
+The last equality follows from the composition of restrictions. Therefore
+\begin{equation*}
+(\varphi_a)_{ab}\left({\frac m {(ab)^i}}\right) = {\frac {\varphi(m)|_{D(ab)}} {(ab)^i}} = (\varphi_b)_{ab}\left({\frac m {(ab)^i}}\right).
+\end{equation*}
+Thus we can glue $(\varphi_a)$ to get $\varphi:\tilde{M}\to\mathscr{F}$. Thus there exists
+\begin{equation*}
+\beta:\Hom_A(M,\Gamma(X,\mathscr{F}))\to\Hom_{\mathcal{O}_X}(\tilde{M},\mathscr{F}).
+\end{equation*}
+
+By the construction of $\beta(\varphi)$, taking the global section of it we get 
+\begin{equation*}
+\varphi:M\to\mathscr{F}(X).
+\end{equation*}
+
+Thus we get $\alpha\beta(\varphi) = \varphi$. On the other hands, by the uniqueness of glueing process, we have 
+\begin{equation*}
+\beta\alpha = \id_{\Hom_{\mathcal{O}_X}(\tilde{M},\mathscr{F})}.
+\end{equation*}
+
+In conclusion, we have
+\begin{equation*}
+\Hom_{\mathcal{O}_X}(\tilde{M},\mathscr{F}) \cong\Hom_A(M,\Gamma(X,\mathscr{F})).
+\end{equation*}
+
+\end{document}
